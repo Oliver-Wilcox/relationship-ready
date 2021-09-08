@@ -33,7 +33,7 @@
       “I was able to date with a deeper confidence and for the first time I
       began trusting my intuition”
     </p>
-    <button class="jessica-btn">HEAR JESSICAS EXPERIENCE</button>
+  <router-link to="/JessicaExp"><button class="jessica-btn">HEAR JESSICAS EXPERIENCE</button></router-link> 
   </div>
 </template>
 
@@ -233,7 +233,7 @@ tl.from(lines, {y:40, opacity: 0, duration: 0.6, stagger: 0.1, rotationX:80, tra
     left: calc(100% - 40vw);
     width: 44vw;
     height: 16vw;
-    z-index: +100;
+    z-index: +1;
   }
 
   .person {

@@ -142,6 +142,8 @@ export default {
   z-index: +2;
   transition: 0.4s ease-in-out;
   overflow-y: scroll;
+  top: 0;
+margin: 0;
 }
 
 .navActive {
@@ -157,11 +159,13 @@ export default {
 
 .burger-container {
   position: absolute;
-
+top: 0;
+margin: 0;
   right: 0;
   z-index: +5;
   width: 9.5vw;
   height: 100vh;
+  
 }
 
 .burger {
