@@ -28,7 +28,9 @@
 
     
     <Testimonials/>
-    
+    <Path/>
+    <Lila/>
+      <WorkTogether />
     </div>
   
 </template>
@@ -39,15 +41,18 @@
 import FrontButtons from "../components/FrontButtons.vue";
 import FrontVideo from "../components/FrontVideo.vue";
 import Testimonials from "../components/Testimonials.vue";
-
+import Path from "../components/Path.vue";
+import Lila from "../components/Lila.vue";
+import WorkTogether from "../components/WorkTogether.vue";
 export default {
   name: "App",
   components: {
     FrontButtons,
     FrontVideo,
-  
+    Path,
     Testimonials,
-    
+    Lila,
+    WorkTogether
   },
 
 
