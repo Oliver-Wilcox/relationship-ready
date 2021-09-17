@@ -1,11 +1,15 @@
 <template>
-  <div id="app">
-
+  <div class="app">
     <div class="text-container">
       <div class="title-container">
         <h1 class="title">
           <span id="spans-container"
-            ><span class="natural">THE NATURAL</span></span
+            ><span
+              class="natural"
+              @mouseover="hover = true"
+              @mouseleave="hover = false"
+              >THE NATURAL</span
+            ></span
           ><span id="spans-container"
             ><span class="version">VERSION OF YOU</span></span
           ><span id="spans-container" class="the-upgrade"
@@ -22,46 +26,41 @@
           ><span>time and energy.</span>
         </h3>
       </div>
-      <FrontButtons />
+      <FrontButtons @mouseover="hover = true" @mouseleave="hover = false" />
     </div>
     <FrontVideo />
 
-    
-    <Testimonials/>
-    <Path/>
-    <Lila/>
-      <WorkTogether />
-    </div>
-  
+    <Testimonials />
+    <Path />
+    <Lila />
+    <WorkTogether />
+  </div>
 </template>
 
 <script>
-
-
 import FrontButtons from "../components/FrontButtons.vue";
 import FrontVideo from "../components/FrontVideo.vue";
 import Testimonials from "../components/Testimonials.vue";
 import Path from "../components/Path.vue";
 import Lila from "../components/Lila.vue";
 import WorkTogether from "../components/WorkTogether.vue";
+
 export default {
   name: "App",
+  data: () => ({
+    hover: false,
+  }),
   components: {
     FrontButtons,
     FrontVideo,
     Path,
     Testimonials,
     Lila,
-    WorkTogether
+
+    WorkTogether,
   },
-
-
-
-methods:{
-  
-}
+  methods: {},
 };
-
 </script>
 
 <style>
@@ -77,22 +76,7 @@ methods:{
   font-weight: normal;
 }
 
-#app {
-  font-family: BonVivant;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #544a3f;
-  padding: 0;
-  margin: 0;
-  font-weight: normal;
-}
 
-body {
-  background: #efebe6;
-  padding: 0;
-  margin: 0;
-}
 
 .text-container {
   position: relative;
@@ -227,7 +211,7 @@ body {
 .arrow-circle {
   position: absolute;
   bottom: 0;
-  border: 0.4vw solid #e1d6c2;
+  border: 0.3vw solid #e1d6c2;
   height: 2.5vw;
   width: 2.5vw;
   border-radius: 50%;
@@ -240,7 +224,7 @@ body {
 
   margin-top: -2vw;
   top: 0;
-  font-size: 1.2vw;
+  font-size: 1.3vw;
   text-align: left;
   z-index: +1;
   font-family: "DM Sans", sans-serif;
@@ -258,8 +242,6 @@ body {
 .we-specialize {
   margin-left: 4vw;
 }
-
-
 
 @media (max-aspect-ratio: 200/200) and (max-width: 500px) {
   .text-container {
@@ -343,7 +325,7 @@ body {
     height: 70vw;
   }
   .discover {
- left: 50%;
+    left: 50%;
     transform: translateX(-50%);
     margin-top: 140px;
     width: 25vw;
@@ -375,7 +357,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   .title-container {
     text-align: center;
   }
@@ -397,5 +379,9 @@ body {
   .sub-title-container {
     margin-top: -5vw;
   }
+}
+
+.work-together-container {
+  background: #f7f5f2;
 }
 </style>

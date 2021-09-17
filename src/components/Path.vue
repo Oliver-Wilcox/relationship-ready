@@ -4,7 +4,7 @@
       <img src="../assets/pathPic.png" alt="" class="path-pic" />
     </div>
     <h1 class="path-text">A FRESH PATH TO DATING</h1>
-    <p class="path-paragraph">
+    <p class="path-paragraph" v-bind:class="{paragraphActive:IsParagraphActive}">
       We work with you to unravel the unhelpful thought patters that are
       creating your relationship patterns.
       <br />
@@ -13,7 +13,7 @@
       allows you to show up to your dating and romantic life with fresh thought,
       opening up fresh paths and opportunities for you in your love life.
     </p>
-    <button class="path-btn">LEARN ABOUT OUR PROGRAMS</button>
+  <button class="path-btn" v-on:click="prog">LEARN ABOUT OUR PROGRAMS</button>
   </div>
 </template>
 
@@ -27,7 +27,8 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 export default {
     data: () => ({
-     isPathPicActive: false
+     isPathPicActive: false,
+     isParagraphActive: false
     }),
   mounted() {
     ScrollTrigger.create({
@@ -35,7 +36,20 @@ export default {
       toggleActions: "play none none none",
       onEnter: () => (this.isPathPicActive = true),
     });
+    ScrollTrigger.create({
+      trigger: ".path-paragraph",
+      toggleActions: "play none none none",
+      onEnter: () => (this.isParagraphActive = true),
+    });
   },
+  methods: {
+      prog(){
+          window.scrollTo(0, 0);
+          window.setTimeout(this.$router.push("/programmes"), 2000);
+         
+         
+      }
+  }
 };
 </script>
 
@@ -64,10 +78,15 @@ export default {
   margin-top: 16.5vw;
   text-align: left;
   margin-left: 11vw;
-
+  transition: 1s;
   font-size: 1.3vw;
   width: 50vw;
+  opacity: 0;
   font-family: DM sans;
+}
+
+.paragraphActive{
+    opacity: 1;
 }
 
 .path-btn {

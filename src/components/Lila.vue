@@ -1,10 +1,18 @@
 <template>
   <div class="lila-container">
     <div class="lila-text-container">
-      <h1 class="lila-title" ref="lilaTitle" v-bind:class="{ lilaTitleActive: isLilaTitleActive }">
+      <h1
+        class="lila-title"
+        ref="lilaTitle"
+        v-bind:class="{ lilaTitleActive: isLilaTitleActive }"
+      >
         everyone deserves to be in a loving relationship
       </h1>
-      <p class="lila-p" ref="lilaP"  v-bind:class="{ lilaPActive: isLilaPActive }">
+      <p
+        class="lila-p"
+        ref="lilaP"
+        v-bind:class="{ lilaPActive: isLilaPActive }"
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu
         elementum massa, eu fermentum lectus. Cras sed maximus velit. Proin nec
         nisi nisi. Mauris purus erat, sollicitudin non dolor a, tempus mollis
@@ -32,35 +40,32 @@ gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 export default {
-
-    data: () => ({
+  data: () => ({
     isLilaTitleActive: false,
-    isLilaPActive: false
-    }),
+    isLilaPActive: false,
+  }),
   mounted() {
     ScrollTrigger.create({
       trigger: ".lila-title",
       toggleActions: "play none none none",
       onEnter: () => this.timeLine(),
 
-      start: () => 'top ' + window.innerHeight*0.95,
-    
-       onLeaveBack: self => self.disable()
+      start: () => "top " + window.innerHeight * 0.95,
+
+      onLeaveBack: (self) => self.disable(),
     });
 
     ScrollTrigger.create({
       trigger: ".lila-p",
       toggleActions: "play none none none",
-       start: () => 'top ' + window.innerHeight*0.9,
-      onEnter: () => this.isLilaPActive = true,
-       onLeaveBack: self => self.disable()
+      start: () => "top " + window.innerHeight * 0.9,
+      onEnter: () => (this.isLilaPActive = true),
+      onLeaveBack: (self) => self.disable(),
     });
-    
   },
   methods: {
     timeLine() {
-this.isLilaTitleActive = true
-
+      this.isLilaTitleActive = true;
 
       let tl = gsap.timeline(),
         mySplitText = new SplitText(this.$refs.lilaTitle, { type: "lines" }),
@@ -80,13 +85,9 @@ this.isLilaTitleActive = true
         },
         "+=0"
       );
-
-
-
-      
     },
-    timeLineTwo(){
-        let tl = gsap.timeline(),
+    timeLineTwo() {
+      let tl = gsap.timeline(),
         mySplitText = new SplitText(this.$refs.lilaP, { type: "lines" }),
         lines = mySplitText.lines;
 
@@ -105,7 +106,6 @@ this.isLilaTitleActive = true
         "+=0"
       );
     },
-
   },
 };
 </script>
@@ -144,15 +144,15 @@ this.isLilaTitleActive = true
 .lila-title {
   position: relative;
   left: 4vw;
-opacity: 0;
+  opacity: 0;
   width: 25vw;
   font-size: 3vw;
   text-align: left;
   text-transform: uppercase;
 }
 
-.lilaTitleActive{
-    opacity: 1;
+.lilaTitleActive {
+  opacity: 1;
 }
 
 .lila-p {
@@ -166,8 +166,8 @@ opacity: 0;
   font-family: DM Sans;
 }
 
-.lilaPActive{
-    opacity: 1;
+.lilaPActive {
+  opacity: 1;
 }
 
 .about-lila-btn {
@@ -191,7 +191,7 @@ opacity: 0;
   .lila-container {
     top: 0;
     margin-top: -8vw;
-    height: 300vw;
+    height: 310vw;
   }
   .lila-text-container {
     position: relative;

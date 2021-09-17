@@ -142,7 +142,7 @@ export default {};
   left: 0;
   position: absolute;
   background: blue;
-  height:30vw;
+  height: 30vw;
   width: 30vw;
   overflow: hidden;
 }
@@ -172,68 +172,62 @@ export default {};
 .name {
 }
 
- .exp-name {
-    position: absolute;
-    bottom: -9vw;
-    font-size: 6vw;
-    z-index: +10;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-  }
+.exp-name {
+  position: absolute;
+  bottom: -9vw;
+  font-size: 6vw;
+  z-index: +10;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
 
-    .experience-2-container {
-    top: 0;
-    left: 0;
-    position: absolute;
-   
-    height: 30vw;
-    width: 30vw;
-    margin-top: 0vw;
-left: 0;
+.experience-2-container {
+  top: 0;
+  left: 0;
+  position: absolute;
 
-  }
+  height: 30vw;
+  width: 30vw;
+  margin-top: 0vw;
+  left: 0;
+}
 
+.experience-3-container {
+  margin-top: 0vw;
+  right: 0vw;
 
-  .experience-3-container {
-    margin-top: 0vw;
-    right: 0vw;
-  
-    transform: none;
-    position: absolute;
-    height: 30vw;
-    width: 30vw;
- 
-  }
+  transform: none;
+  position: absolute;
+  height: 30vw;
+  width: 30vw;
+}
 
-    .mary-btn {
-     position: absolute;
-     z-index: +1;
-     left: 50%;
-     transform: translateX(-50%);
-     bottom: -12vw;
-     background: none;
-    width: 16vw;
-    height: 6vw;
-    font-size: 1.1vw;
-    border: 0.2vw solid #d4c09e;
-  }
+.mary-btn {
+  position: absolute;
+  z-index: +1;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -12vw;
+  background: none;
+  width: 16vw;
+  height: 6vw;
+  font-size: 1.1vw;
+  border: 0.2vw solid #d4c09e;
+}
 
-    .claudia-btn {
-     position: absolute;
-     z-index: +1;
-     left: 50%;
-     transform: translateX(-50%);
-     bottom: -12vw;
-     background: none;
-    width: 16vw;
-    height: 6vw;
-    font-size: 1.1vw;
-    border: 0.2vw solid #d4c09e;
-  }
-
-
- 
+.claudia-btn {
+  position: absolute;
+  z-index: +1;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -12vw;
+  background: none;
+  width: 16vw;
+  height: 6vw;
+  font-size: 1.1vw;
+  border: 0.2vw solid #d4c09e;
+}
 
 @media (max-aspect-ratio: 200/200) {
   .jessica-picture-container {
@@ -262,26 +256,26 @@ left: 0;
     transform: translateX(-50%);
   }
 
-   .mary-btn {
-     position: absolute;
-     z-index: +1;
-     left: 50%;
-     transform: translateX(-50%);
-     bottom: -30vw;
-     background: none;
+  .mary-btn {
+    position: absolute;
+    z-index: +1;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -30vw;
+    background: none;
     width: 50vw;
     height: 15vw;
     font-size: 2.5vw;
     border: 0.5vw solid #d4c09e;
   }
 
-    .claudia-btn {
-     position: absolute;
-     z-index: +1;
-     left: 50%;
-     transform: translateX(-50%);
-     bottom: -30vw;
-     background: none;
+  .claudia-btn {
+    position: absolute;
+    z-index: +1;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -30vw;
+    background: none;
     width: 50vw;
     height: 15vw;
     font-size: 2.5vw;
