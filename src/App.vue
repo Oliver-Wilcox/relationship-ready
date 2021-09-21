@@ -41,6 +41,7 @@ body {
   margin: 0;
   overflow-x:hidden;
   overflow-y: auto;
+  width: 100vw;
   height: 100%;
 
 }
@@ -48,5 +49,7 @@ body {
 html{
   overflow-x: hidden;
   overflow-y: auto;
+    width: 100vw;
+  height: 100%;
 }
 </style>

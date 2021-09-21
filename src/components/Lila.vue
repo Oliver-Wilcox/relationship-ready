@@ -171,14 +171,14 @@ export default {
 }
 
 .about-lila-btn {
-  position: absolute;
+  position: relative;
   left: 4vw;
   bottom: 0;
-
+margin-top: 3vw;
   width: 12vw;
   height: 4.5vw;
   display: block;
-
+top: 0;
   font-family: DM sans;
 
   font-size: 1vw;

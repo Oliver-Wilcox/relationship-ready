@@ -29,10 +29,12 @@
         </div>
       </div>
     </div>
+    <div class="testimonial-para-container">
     <p class="testimonial-paragraph" ref="paragraph">
       “I was able to date with a deeper confidence and for the first time I
       began trusting my intuition”
     </p>
+    </div>
   <router-link to="/JessicaExp"><button class="jessica-btn">HEAR JESSICAS EXPERIENCE</button></router-link> 
   </div>
 </template>
@@ -191,6 +193,8 @@ tl.from(lines, {y:40, opacity: 0, duration: 0.6, stagger: 0.1, rotationX:80, tra
   width: 22vw;
   margin-top: 3.5vw;
 }
+
+
 
 .jessica-btn {
   position: relative;
