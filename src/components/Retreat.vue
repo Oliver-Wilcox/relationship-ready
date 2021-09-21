@@ -21,7 +21,7 @@
       <div class="retreat-blur"></div>
       <img src="../assets/retreat.png" class="retreat-picture" />
     </div>
-    <div class="checkbox 1">
+    <div class="checkbox 1" v-bind:class="{checkboxActive: isCheckOneActive}" ref="checkOne">
       <div class="checkbox-img-container">
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
@@ -30,7 +30,7 @@
         date so they can really get to know who you are.
       </p>
     </div>
-    <div class="checkbox 2">
+    <div class="checkbox 2" v-bind:class="{checkboxActive: isCheckTwoActive}" ref="checkTwo">
       <div class="checkbox-img-container">
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
@@ -39,7 +39,7 @@
         a more natural connection.
       </p>
     </div>
-    <div class="checkbox 3">
+    <div class="checkbox 3" v-bind:class="{checkboxActive: isCheckThreeActive}" ref="checkThree">
       <div class="checkbox-img-container">
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
@@ -48,7 +48,7 @@
         taking the work out of double guessing yourself.
       </p>
     </div>
-    <div class="checkbox 4">
+    <div class="checkbox 4"  v-bind:class="{checkboxActive: isCheckFourActive}" ref="checkFour">
       <div class="checkbox-img-container">
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
@@ -60,7 +60,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -73,6 +72,10 @@ export default {
   data: () => ({
     isRetreatActive: false,
     isRetreatParagraphActive: false,
+    isCheckOneActive: false,
+    isCheckTwoActive: false,
+    isCheckThreeActive: false,
+    isCheckFourActive: false
   }),
   mounted() {
     ScrollTrigger.create({
@@ -80,7 +83,7 @@ export default {
       toggleActions: "play none none none",
       onEnter: () => (this.isRetreatActive = true),
 
-      start: () => "top " + window.innerHeight * 0.85,
+      start: () => "top " + window.innerHeight * 1,
 
       onLeaveBack: (self) => self.disable(),
     });
@@ -100,10 +103,47 @@ export default {
       toggleActions: "play none none none",
       onEnter: () => this.timelineRetreat(),
 
-      start: () => "top " + window.innerHeight * 0.85,
+      start: () => "top " + window.innerHeight * 0.9,
 
       onLeaveBack: (self) => self.disable(),
     });
+    
+    ScrollTrigger.create({
+      trigger: this.$refs.checkOne,
+      toggleActions: "play none none none",
+      onEnter: () => (this.isCheckOneActive = true),
+
+      start: () => "top " + window.innerHeight * 0.9,
+
+      onLeaveBack: (self) => self.disable(),
+    });     
+      ScrollTrigger.create({
+      trigger: this.$refs.checkTwo,
+      toggleActions: "play none none none",
+      onEnter: () => (this.isCheckTwoActive = true),
+
+      start: () => "top " + window.innerHeight * 0.9,
+
+      onLeaveBack: (self) => self.disable(),
+    });     
+    ScrollTrigger.create({
+      trigger: this.$refs.checkThree,
+      toggleActions: "play none none none",
+      onEnter: () => (this.isCheckThreeActive = true),
+
+      start: () => "top " + window.innerHeight * 0.9,
+
+      onLeaveBack: (self) => self.disable(),
+    });    
+    ScrollTrigger.create({
+      trigger: this.$refs.checkFour,
+      toggleActions: "play none none none",
+      onEnter: () => (this.isCheckFourActive = true),
+
+      start: () => "top " + window.innerHeight * 0.9,
+
+      onLeaveBack: (self) => self.disable(),
+    });    
   },
   methods: {
     timelineRetreat() {
@@ -175,7 +215,7 @@ export default {
   width: 28vw;
   height: 42vw;
   transform: rotate(0deg);
-  top: 1vw;
+  top: -2vw;
   overflow: hidden;
   opacity: 0.2;
   transition: 1s;
@@ -198,8 +238,13 @@ export default {
   left: 16vw;
   height: 8vw;
   width: 35vw;
-
+  opacity: 0;
   top: 32vw;
+  transition: 1s;
+}
+
+.checkboxActive{
+  opacity: 1;
 }
 
 .checkbox-img-container {
@@ -231,7 +276,7 @@ export default {
   .retreat-picture-container {
     width: 38vw;
     height: 50vw;
-    right: 6vw;
+    right: 0vw;
     z-index: -1;
     top: -2vw;
     opacity: 1;
@@ -278,6 +323,10 @@ export default {
     font-size: 3.8vw;
     left: 10vw;
     width: 60vw;
+  }
+
+    .retreatPicActive {
+    right: 6vw;
   }
 }
 </style>

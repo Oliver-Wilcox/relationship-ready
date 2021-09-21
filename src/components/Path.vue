@@ -4,7 +4,7 @@
       <img src="../assets/pathPic.png" alt="" class="path-pic" />
     </div>
     <h1 class="path-text">A FRESH PATH TO DATING</h1>
-    <p class="path-paragraph" v-bind:class="{paragraphActive:IsParagraphActive}">
+    <p class="path-paragraph" v-bind:class="{paragraphActive:isParagraphActive}">
       We work with you to unravel the unhelpful thought patters that are
       creating your relationship patterns.
       <br />
