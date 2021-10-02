@@ -1,14 +1,96 @@
 <template>
-  <div class="work-together-container">
-    <h1 class="work-together-title">LETS WORK TOGETHER</h1>
-    <p class="work-together-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum elementum purus orci, quis accumsan arcu vulputate eget. In vitae gravida ex. Donec at ipsum sollicitudin, placerat sem id, tincidunt diam. Donec vestibulum justo dignissim urna lacinia, quis tempor dui convallis.</p>
+  <div class="work-together-container"  v-for="inTouchText in inTouchTexts"
+    :key="inTouchText._id">
+    <h1 class="work-together-title" ref="togetherTitle" v-bind:class="{togetherTextActive:isTogetherTitleActive}">{{inTouchText.inTouchTitle}}</h1>
+    <p class="work-together-paragraph"  ref="togetherParagraph" v-bind:class="{togetherTextActive:isTogetherParaActive}">{{inTouchText.inTouchParagraph}}</p>
     <button class="work-together-button">BOOK A CALL</button>
   </div>
 </template>
 
 <script>
+
+import sanity from "../client";
+
+const queryInTouch = `*[_type == "inTouchText"]{
+_id,
+inTouchTitle,
+inTouchParagraph
+}[0...50]`;
+
+import { gsap } from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+import { SplitText } from "gsap/dist/SplitText";
+gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
+
 export default {
-    
+   data: () => ({
+     isTogetherTitleActive: false,
+ isTogetherParaActive: false,
+ inTouchTexts: []
+     }),
+    mounted(){
+    ScrollTrigger.create({
+      trigger: this.$refs.togetherTitle,
+      toggleActions: "play none none none",
+      onEnter: () => this.timelineTogether(),
+
+      start: () => "top " + window.innerHeight * 0.85,
+
+      onLeaveBack: (self) => self.disable(),
+    });
+    ScrollTrigger.create({
+      trigger: this.$refs.togetherParagraph,
+      toggleActions: "play none none none",
+      onEnter: () => (this.isTogetherParaActive = true),
+          start: () => "top " + window.innerHeight * 0.9,
+
+      onLeaveBack: (self) => self.disable(),
+    });
+    },
+    created() {
+    this.fetchDataInTouch();
+
+  },
+   methods: {
+     timelineTogether() {
+      this.isTogetherTitleActive = true;
+
+      let tl = gsap.timeline(),
+        mySplitText = new SplitText(this.$refs.togetherTitle, { type: "lines" }),
+        lines = mySplitText.lines;
+
+      gsap.set(this.$refs.togetherTitle, { perspective: 400 });
+
+      tl.from(
+        lines,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          rotationX: 80,
+          transformOrigin: "20% 0 0",
+        },
+        "+=0"
+      );
+    },
+    fetchDataInTouch() {
+      this.error = this.inTouchTitle = null;
+      this.loading = true;
+      sanity.fetch(queryInTouch).then(
+        (inTouchTexts) => {
+          this.loading = false;
+          this.inTouchTexts = inTouchTexts;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+   }
 };
 </script>
 
@@ -30,6 +112,8 @@ export default {
   text-align: right;
   font-size: 6.25vw;
   line-height: 5.75vw;
+  transition: 1s;
+  opacity: 0;
 }
 
 
@@ -41,8 +125,14 @@ export default {
 text-align: left;
   margin-top: -1vw;
   font-size: 1.3vw;
-
+opacity: 0;
   font-family: DM sans;
+  transition: 1s;
+  
+}
+
+.togetherTextActive{
+  opacity: 1;
 }
 
 .work-together-button{
@@ -84,8 +174,8 @@ text-align: left;
     }
 
     .work-together-button{
-         margin-top: 8vw;
-   left: 50%;
+    margin-top: 8vw;
+    left: 50%;
     width: 35vw;
     height: 15vw;
     font-size: 2.5vw;

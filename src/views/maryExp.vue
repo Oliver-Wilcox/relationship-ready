@@ -1,9 +1,9 @@
 <template>
   <div class="jessica-experience">
     <div class="jessica-picture-container">
-      <img src="../assets/jessicaSample.png" alt="" class="jessica-img" />
+      <img src="../assets/marySample.png" alt="" class="jessica-img" />
     </div>
-    <h1 class="jessica-name">JESSICA</h1>
+    <h1 class="jessica-name">MARY</h1>
 
     <p class="experience-1">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
@@ -44,10 +44,10 @@
     </p>
     <div class="other-experiences-container">
       <div class="experience-2-container">
-        <h1 class="exp-name">MARY</h1>
+        <h1 class="exp-name">JESSICA</h1>
         <button class="mary-btn">HEAR MARY'S STORY</button>
         <div class="experience-2-img-container">
-          <img src="../assets/marySample.png" alt="" class="experience-2-img" />
+          <img src="../assets/jessicaSample.png" alt="" class="experience-2-img" />
         </div>
       </div>
       <div class="experience-3-container">

@@ -1,23 +1,48 @@
 <template>
-  <div class="path-container">
-    <div class="path-picture-container" v-bind:class="{pathPicActive:isPathPicActive}">
+  <div
+    class="path-container"
+    v-for="pathsTitle in pathsTitles"
+    :key="pathsTitle._id"
+  >
+    <div
+      class="path-picture-container"
+      ref="pathPic"
+      v-bind:class="{ pathPicActive: isPathPicActive }"
+    >
       <img src="../assets/pathPic.png" alt="" class="path-pic" />
     </div>
-    <h1 class="path-text">A FRESH PATH TO DATING</h1>
-    <p class="path-paragraph" v-bind:class="{paragraphActive:isParagraphActive}">
-      We work with you to unravel the unhelpful thought patters that are
-      creating your relationship patterns.
+    <h1 class="path-text">{{ pathsTitle.pathTitle }}</h1>
+    <p
+    v-for="pathParagraph in pathParagraphs"
+    :key="pathParagraph._id"
+
+      class="path-paragraph"
+      ref="para"
+      v-bind:class="{ paragraphActive: isParagraphActive }"
+    >
+     {{pathParagraph.pathParagraphOne}}
       <br />
       <br />
-      We will coach you in a direction that gives you an understanding that
-      allows you to show up to your dating and romantic life with fresh thought,
-      opening up fresh paths and opportunities for you in your love life.
+      {{pathParagraph.pathParagraphTwo}}
     </p>
-  <button class="path-btn" v-on:click="prog">LEARN ABOUT OUR PROGRAMS</button>
+    <button class="path-btn" v-on:click="prog">LEARN ABOUT OUR PROGRAMS</button>
   </div>
 </template>
 
 <script>
+import sanity from "../client";
+
+const queryPath = `*[_type == "pathsTitle"]{
+_id,
+pathTitle
+}[0...50]`;
+
+const queryPathParagraph = `*[_type == "pathParagraph"]{
+_id,
+pathParagraphOne,
+pathParagraphTwo
+}[0...50]`;
+
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -26,30 +51,64 @@ gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 export default {
-    data: () => ({
-     isPathPicActive: false,
-     isParagraphActive: false
-    }),
+  data: () => ({
+    isPathPicActive: false,
+    isParagraphActive: false,
+    pathsTitles: [],
+    pathParagraphs: []
+  }),
   mounted() {
     ScrollTrigger.create({
       trigger: ".path-paragraph",
-      toggleActions: "play none none none",
-      onEnter: () => (this.isPathPicActive = true),
-    });
-    ScrollTrigger.create({
-      trigger: ".path-paragraph",
+
+
       toggleActions: "play none none none",
       onEnter: () => (this.isParagraphActive = true),
     });
+    ScrollTrigger.create({
+      trigger: ".path-container",
+            markers: true,
+        
+      toggleActions: "play none none none",
+      onEnter: () => (this.isPathPicActive = true),
+    });
+  },
+  created() {
+    this.fetchDataPath();
+    this.fetchDataPathParagraph();
   },
   methods: {
-      prog(){
-          window.scrollTo(0, 0);
-          window.setTimeout(this.$router.push("/programmes"), 2000);
-         
-         
-      }
-  }
+    fetchDataPath() {
+      this.error = this.pathsTitle = null;
+      this.loading = true;
+      sanity.fetch(queryPath).then(
+        (pathsTitles) => {
+          this.loading = false;
+          this.pathsTitles = pathsTitles;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+     fetchDataPathParagraph() {
+      this.error = this.pathParagraph = null;
+      this.loading = true;
+      sanity.fetch(queryPathParagraph).then(
+        (pathParagraphs) => {
+          this.loading = false;
+          this.pathParagraphs = pathParagraphs;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+    prog() {
+      window.scrollTo(0, 0);
+      window.setTimeout(this.$router.push("/programmes"), 2000);
+    },
+  },
 };
 </script>
 
@@ -59,8 +118,7 @@ export default {
   margin-top: -4vw;
   width: 100vw;
   height: 50vw;
-  background: #f7f5f2;
- 
+
 }
 
 .path-text {
@@ -85,8 +143,8 @@ export default {
   font-family: DM sans;
 }
 
-.paragraphActive{
-    opacity: 1;
+.paragraphActive {
+  opacity: 1;
 }
 
 .path-btn {
@@ -107,25 +165,25 @@ export default {
 
 .path-picture-container {
   position: absolute;
- 
+
   width: 32vw;
   height: 40vw;
   top: 60%;
   transform: translateY(-50%);
   right: -20vw;
   overflow: hidden;
-   transition: 1s;
-   opacity: 0.2;
+  transition: 1s;
+  opacity: 0.2;
 }
 
 .path-pic {
   width: 115%;
 }
 
- .pathPicActive{
-        opacity: 1;
-        right: 0;
-    }
+.pathPicActive {
+  opacity: 1;
+  right: 0;
+}
 
 @media (max-aspect-ratio: 200/200) {
   .path-container {
@@ -162,13 +220,10 @@ export default {
     top: 41%;
     opacity: 0.2;
     right: -50vw;
-   
   }
- .pathPicActive{
-        opacity: 0.6;
-        right: 0;
-    }
-    
-   
+  .pathPicActive {
+    opacity: 0.6;
+    right: 0;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="section-two">
+  <div class="section-two" v-for="testimonialImages in testImages" :key="testimonialImages._id">
     <div class="pictures-container">
       <div class="pictures-trigger"></div>
       <div class="pictures">
@@ -10,7 +10,7 @@
             pictureInactive: isOnePictureInactive,
           }"
         >
-          <img class="pic-one-img" src="../assets/jessicaSample.png" />
+          <img class="pic-one-img" v-if="testimonialImages.imageOne" :src="imageUrlFor(testimonialImages.imageOne)" />
         </div>
         <div
           class="two-picture"
@@ -20,7 +20,7 @@
             twoPictureInactiveRight: isTwoPictureInactiveRight,
           }"
         >
-          <img class="pic-two-img" src="../assets/marySample.png" />
+          <img class="pic-two-img"  v-if="testimonialImages.imageTwo" :src="imageUrlFor(testimonialImages.imageTwo)"  />
         </div>
         <div
           class="three-picture"
@@ -29,7 +29,7 @@
             threePictureInactive: isThreePictureInactive,
           }"
         >
-          <img class="pic-three-img" src="../assets/claudiaSample.png" />
+          <img class="pic-three-img"  v-if="testimonialImages.imageThree" :src="imageUrlFor(testimonialImages.imageThree)" />
         </div>
       </div>
       <h3 class="success-stories">
@@ -59,6 +59,24 @@
 </template>
 
 <script>
+
+import sanity from "../client";
+import imageUrlBuilder from "@sanity/image-url";
+const imageBuilder = imageUrlBuilder(sanity);
+
+const query = `*[_type == "testimonialImages"]{
+  _id,
+  frontParagraphThe,
+imageOne,
+imageTwo,
+imageThree
+ 
+
+}[0...50]`;
+
+
+
+
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -71,7 +89,9 @@ export default {
   components: {
     RightSection,
   },
-  props: {},
+  props: {
+   
+  },
   data: () => ({
     isOnePictureActive: false,
     isOnePictureInactive: false,
@@ -80,15 +100,32 @@ export default {
     isTwoPictureInactiveLeft: false,
     isThreePictureActive: false,
     isThreePictureInactive: false,
+    testImages: []
   }),
   mounted() {
-    ScrollTrigger.create({
-      trigger: ".pictures-trigger",
-      toggleActions: "play none none none",
-      onEnter: () => (this.isOnePictureActive = true),
-    });
+
+  },
+  created() {
+    this.fetchData();
   },
   methods: {
+    imageUrlFor(source) {
+      return imageBuilder.image(source);
+    },
+     fetchData() {
+      this.error = this.testimonialImages = null;
+      this.loading = true;
+      sanity.fetch(query).then(
+        (testImages) => {
+          this.loading = false;
+          this.testImages = testImages;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+
     updatePictureOne(updatedPictureOne) {
       this.isThreePictureInactive = updatedPictureOne;
       this.isTwoPictureInactiveRight = updatedPictureOne;
@@ -114,7 +151,7 @@ export default {
     updatePictureThreeFalse(updatedPictureThreeFalse) {
       this.isThreePictureInactive = updatedPictureThreeFalse;
     },
-  },
+      },
 };
 </script>
 

@@ -1,29 +1,36 @@
 <template>
-  <div class="app">
+  <div class="apps" v-for="post in posts" :key="post._id"  >
     <div class="text-container">
       <div class="title-container">
         <h1 class="title">
           <span id="spans-container"
             ><span
+              
               class="natural"
               @mouseover="hover = true"
               @mouseleave="hover = false"
-              >THE NATURAL</span
+              >{{post.titleOne}}</span
             ></span
           ><span id="spans-container"
-            ><span class="version">VERSION OF YOU</span></span
+            ><span class="version" >
+              {{post.titleTwo}}
+             </span></span
           ><span id="spans-container" class="the-upgrade"
-            ><span class="upgrade">IS THE UPGRADE</span></span
+            ><span class="upgrade" 
+              >{{post.titleThree}}
+              
+            </span
+            ></span
           >
         </h1>
       </div>
-      <div class="sub-title-container">
+      <div class="sub-title-container" v-for="subTitle in subTitles" :key="subTitle._id">
         <h3 class="sub-title">
           <span class="we-specialize"
-            >We specialize in helping people find relationships and </span
+            >{{subTitle.frontParagraphOne}}</span
           ><span
-            >dating a more natural, enjoyable and rewarding use of your </span
-          ><span>time and energy.</span>
+            >{{subTitle.frontParagraphTwo}}</span
+          ><span>{{subTitle.frontParagraphThree}}</span>
         </h3>
       </div>
       <FrontButtons @mouseover="hover = true" @mouseleave="hover = false" />
@@ -38,6 +45,22 @@
 </template>
 
 <script>
+import sanity from "../client.js";
+
+const queryPost = `*[_type == "post"]{
+  _id,
+  titleOne,
+  titleTwo,
+   titleThree
+}[0...50]`;
+
+const querySubtitle = `*[_type == "subTitle"]{
+  _id,
+  frontParagraphOne,
+ frontParagraphTwo,
+ frontParagraphThree,
+}[0...50]`;
+
 import FrontButtons from "../components/FrontButtons.vue";
 import FrontVideo from "../components/FrontVideo.vue";
 import Testimonials from "../components/Testimonials.vue";
@@ -46,9 +69,12 @@ import Lila from "../components/Lila.vue";
 import WorkTogether from "../components/WorkTogether.vue";
 
 export default {
-  name: "App",
+  name: "Home",
   data: () => ({
     hover: false,
+    loading: true,
+    posts: [],
+    subTitles: []
   }),
   components: {
     FrontButtons,
@@ -59,11 +85,47 @@ export default {
 
     WorkTogether,
   },
-  methods: {},
+  created() {
+    this.fetchDataPost();
+      this.fetchDataSubtitle();
+  },
+  computed: {
+  
+  },
+  methods: {
+    fetchDataPost() {
+      this.error = this.post = null;
+      this.loading = true;
+      sanity.fetch(queryPost).then(
+        (posts) => {
+          this.loading = false;
+          this.posts = posts;
+           this.blocks = posts.body;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+     fetchDataSubtitle() {
+      this.error = this.subTitle = null;
+      this.loading = true;
+      sanity.fetch(querySubtitle).then(
+        (subTitles) => {
+          this.loading = false;
+          this.subTitles = subTitles;
+           this.blocks = subTitles.body;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
 @font-face {
   font-family: "BonVivant";
   src: url("/fonts/BonVivantSerif/font.woff2") format("woff");
@@ -75,8 +137,6 @@ export default {
   src: url("/fonts/BonVivantSerif/font.woff") format("woff");
   font-weight: normal;
 }
-
-
 
 .text-container {
   position: relative;
@@ -171,54 +231,6 @@ export default {
   transform: rotate(90deg);
 }
 
-.discover {
-  position: relative;
-  display: block;
-  width: 13vw;
-  height: 4.5vw;
-  border: 0.2vw solid #d4c09e;
-  background: none;
-  left: 0;
-  margin-top: 4vw;
-  cursor: pointer;
-}
-
-.discover h3 {
-  font-size: 0.9vw;
-  color: #544a3f;
-  padding: 0.45vw;
-}
-
-.arrow {
-  position: absolute;
-  cursor: pointer;
-  height: 4vw;
-  width: 3vw;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: -2.8vw;
-}
-
-.arrow-svg {
-  position: absolute;
-  bottom: 0.9vw;
-  left: 50%;
-  width: 1.2vw;
-  transform: translateX(-50%);
-  z-index: +1;
-}
-
-.arrow-circle {
-  position: absolute;
-  bottom: 0;
-  border: 0.3vw solid #e1d6c2;
-  height: 2.5vw;
-  width: 2.5vw;
-  border-radius: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .sub-title-container {
   position: relative;
 
@@ -271,32 +283,7 @@ export default {
     width: 75vw;
     height: 90vw;
   }
-  .discover {
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 100px;
-    width: 42vw;
-    height: 15.5vw;
-    border: 0.5vw solid #d4c09e;
-  }
-  .discover h3 {
-    font-size: 2.6vw;
-  }
-
-  .arrow {
-    margin-top: 20vw;
-  }
-
-  .arrow-svg {
-    bottom: 2.2vw;
-    width: 3vw;
-  }
-
-  .arrow-circle {
-    border: 0.8vw solid #e1d6c2;
-    height: 6vw;
-    width: 6vw;
-  }
+  
 }
 
 @media (max-aspect-ratio: 200/200) and (min-width: 500px) {

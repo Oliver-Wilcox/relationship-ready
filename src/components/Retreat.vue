@@ -1,7 +1,12 @@
 <template>
-  <div class="retreat-container">
-    <div class="retreat-text-container">
-      <h1 class="retreat-title" ref="retreatTitle">THE RETREAT</h1>
+  <div class="retreat-container" >
+    <div
+      class="retreat-text-container"
+    
+    >
+      <h1 class="retreat-title" ref="retreatTitle">
+      
+      </h1>
       <p
         class="retreat-paragraph"
         v-bind:class="{ retreatParagraphActive: isRetreatParagraphActive }"
@@ -21,7 +26,11 @@
       <div class="retreat-blur"></div>
       <img src="../assets/retreat.png" class="retreat-picture" />
     </div>
-    <div class="checkbox 1" v-bind:class="{checkboxActive: isCheckOneActive}" ref="checkOne">
+    <div
+      class="checkbox 1"
+      v-bind:class="{ checkboxActive: isCheckOneActive }"
+      ref="checkOne"
+    >
       <div class="checkbox-img-container">
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
@@ -30,7 +39,11 @@
         date so they can really get to know who you are.
       </p>
     </div>
-    <div class="checkbox 2" v-bind:class="{checkboxActive: isCheckTwoActive}" ref="checkTwo">
+    <div
+      class="checkbox 2"
+      v-bind:class="{ checkboxActive: isCheckTwoActive }"
+      ref="checkTwo"
+    >
       <div class="checkbox-img-container">
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
@@ -39,7 +52,11 @@
         a more natural connection.
       </p>
     </div>
-    <div class="checkbox 3" v-bind:class="{checkboxActive: isCheckThreeActive}" ref="checkThree">
+    <div
+      class="checkbox 3"
+      v-bind:class="{ checkboxActive: isCheckThreeActive }"
+      ref="checkThree"
+    >
       <div class="checkbox-img-container">
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
@@ -48,7 +65,11 @@
         taking the work out of double guessing yourself.
       </p>
     </div>
-    <div class="checkbox 4"  v-bind:class="{checkboxActive: isCheckFourActive}" ref="checkFour">
+    <div
+      class="checkbox 4"
+      v-bind:class="{ checkboxActive: isCheckFourActive }"
+      ref="checkFour"
+    >
       <div class="checkbox-img-container">
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
@@ -61,6 +82,15 @@
   </div>
 </template>
 <script>
+import sanity from "../client";
+
+const queryRetreat = `*[_type == "retreatPage"]{
+  _id,
+
+
+}[0...50]`;
+
+
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -75,8 +105,13 @@ export default {
     isCheckOneActive: false,
     isCheckTwoActive: false,
     isCheckThreeActive: false,
-    isCheckFourActive: false
+    isCheckFourActive: false,
+    retreatPageText: []
+
   }),
+  created() {
+  this.fetchDataRetreatText();
+  },
   mounted() {
     ScrollTrigger.create({
       trigger: ".retreat-title",
@@ -107,7 +142,7 @@ export default {
 
       onLeaveBack: (self) => self.disable(),
     });
-    
+
     ScrollTrigger.create({
       trigger: this.$refs.checkOne,
       toggleActions: "play none none none",
@@ -116,8 +151,8 @@ export default {
       start: () => "top " + window.innerHeight * 0.9,
 
       onLeaveBack: (self) => self.disable(),
-    });     
-      ScrollTrigger.create({
+    });
+    ScrollTrigger.create({
       trigger: this.$refs.checkTwo,
       toggleActions: "play none none none",
       onEnter: () => (this.isCheckTwoActive = true),
@@ -125,7 +160,7 @@ export default {
       start: () => "top " + window.innerHeight * 0.9,
 
       onLeaveBack: (self) => self.disable(),
-    });     
+    });
     ScrollTrigger.create({
       trigger: this.$refs.checkThree,
       toggleActions: "play none none none",
@@ -134,7 +169,7 @@ export default {
       start: () => "top " + window.innerHeight * 0.9,
 
       onLeaveBack: (self) => self.disable(),
-    });    
+    });
     ScrollTrigger.create({
       trigger: this.$refs.checkFour,
       toggleActions: "play none none none",
@@ -143,9 +178,25 @@ export default {
       start: () => "top " + window.innerHeight * 0.9,
 
       onLeaveBack: (self) => self.disable(),
-    });    
+    });
   },
+  
   methods: {
+
+        fetchDataRetreatText() {
+      this.error = this.retreatPage = null;
+      this.loading = true;
+      sanity.fetch(queryRetreat).then(
+        (retreatPageText) => {
+          this.loading = false;
+          this.retreatPageText = retreatPageText;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+  
     timelineRetreat() {
       this.$refs.retreatTitle.style.opacity = "1";
       let tl = gsap.timeline(),
@@ -167,6 +218,8 @@ export default {
         "+=0"
       );
     },
+  
+    
   },
 };
 </script>
@@ -243,7 +296,7 @@ export default {
   transition: 1s;
 }
 
-.checkboxActive{
+.checkboxActive {
   opacity: 1;
 }
 
@@ -325,7 +378,7 @@ export default {
     width: 60vw;
   }
 
-    .retreatPicActive {
+  .retreatPicActive {
     right: 6vw;
   }
 }

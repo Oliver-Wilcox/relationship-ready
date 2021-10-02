@@ -1,7 +1,7 @@
 <template>
-  <div class="programmes-text-container">
+  <div class="programmes-text-container" v-for="programmesContent in programmesText" :key="programmesContent._id">
     <h1 class="our-programmes-title" ref="programmes">
-      <span class="our">OUR</span> <br />PROGRAMMES
+      <span class="our">{{programmesContent.programmesTitleOne}}</span> <br />{{programmesContent.programmesTitleTwo}}
     </h1>
     <p class="our-programmes-paragraph" ref="programmesParagraph">
       The passion and drive of our program is to help you show up to
@@ -23,6 +23,14 @@
 
 <script>
 
+import sanity from "../client";
+
+const queryProgrammes = `*[_type == "programmesContent"]{
+  _id,
+  programmesTitleOne,
+  programmesTitleTwo
+
+}[0...50]`;
 
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -42,6 +50,9 @@ export default {
     Coaching,
     WorkTogether,
   },
+  data: () => ({
+    programmesText: []
+  }),
   mounted() {
 this.timelineProgrammes1()
 
@@ -49,7 +60,23 @@ this.timelineProgrammes2()
 
 
   },
+  created() {
+  this.fetchDataProgrammes();
+  },
   methods: {
+     fetchDataProgrammes() {
+      this.error = this.programmesContent = null;
+      this.loading = true;
+      sanity.fetch(queryProgrammes).then(
+        (programmesText) => {
+          this.loading = false;
+          this.programmesText = programmesText;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
       timelineProgrammes1(){
   let tl = gsap.timeline(), 
     mySplitText = new SplitText(this.$refs.programmes, {type:"lines"}), 

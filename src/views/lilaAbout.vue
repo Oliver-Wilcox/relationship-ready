@@ -1,9 +1,9 @@
 <template>
   <div class="jessica-experience">
     <div class="jessica-picture-container">
-      <img src="../assets/jessicaSample.png" alt="" class="jessica-img" />
+      <img src="../assets/Lila_1.png" alt="" class="jessica-img" />
     </div>
-    <h1 class="jessica-name">JESSICA</h1>
+    <h1 class="jessica-name">ABOUT LILA</h1>
 
     <p class="experience-1">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
@@ -42,26 +42,7 @@
       sodales at. Curabitur quis sollicitudin lacus. Vivamus id commodo enim,
       pharetra fermentum sapien. Integer ultrices vitae metus nec mattis.
     </p>
-    <div class="other-experiences-container">
-      <div class="experience-2-container">
-        <h1 class="exp-name">MARY</h1>
-        <button class="mary-btn">HEAR MARY'S STORY</button>
-        <div class="experience-2-img-container">
-          <img src="../assets/marySample.png" alt="" class="experience-2-img" />
-        </div>
-      </div>
-      <div class="experience-3-container">
-        <h1 class="exp-name">CLAUDIA</h1>
-        <button class="claudia-btn">HEAR CLAUDIA'S STORY</button>
-        <div class="experience-3-img-container">
-          <img
-            src="../assets/claudiaSample.png"
-            alt=""
-            class="experience-3-img"
-          />
-        </div>
-      </div>
-    </div>
+  
       <WorkTogether />
   </div>
 </template>

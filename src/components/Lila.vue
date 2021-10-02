@@ -1,29 +1,31 @@
 <template>
-  <div class="lila-container">
+  <div
+    class="lila-container"
+    v-for="lilaTitle in lilaTitleTexts"
+    :key="lilaTitle._id"
+  >
     <div class="lila-text-container">
       <h1
         class="lila-title"
         ref="lilaTitle"
         v-bind:class="{ lilaTitleActive: isLilaTitleActive }"
       >
-        everyone deserves to be in a loving relationship
+        {{ lilaTitle.lilaTitleText }}
       </h1>
       <p
         class="lila-p"
         ref="lilaP"
         v-bind:class="{ lilaPActive: isLilaPActive }"
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu
-        elementum massa, eu fermentum lectus. Cras sed maximus velit. Proin nec
-        nisi nisi. Mauris purus erat, sollicitudin non dolor a, tempus mollis
-        enim. Nunc malesuada, elit ac placerat lacinia, erat nisl elementum
-        lectus, viverra tincidunt urna arcu efficitur massa.
+        {{lilaTitle.lilaParagraphTextOne}}
+       
         <br />
         <br />
-        Suspendisse condimentum massa eget erat facilisis malesuada. Aenean vel
-        lobortis magna. Vestibulum sed rhoncus ipsum. Cras eget lectus orci.
+{{lilaTitle.lilaParagraphTextTwo}}
       </p>
+      <router-link to="aboutLila">
       <button class="about-lila-btn">ABOUT LILA</button>
+      </router-link>
     </div>
     <div class="lila-picture-container">
       <img src="../assets/Lila_1.png" class="lila-pic" />
@@ -32,6 +34,16 @@
 </template>
 
 <script>
+import sanity from "../client";
+
+const queryTitle = `*[_type == "lilaTitle"]{
+  _id,
+lilaTitleText,
+lilaParagraphTextOne,
+lilaParagraphTextTwo 
+
+}[0...50]`;
+
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -43,15 +55,16 @@ export default {
   data: () => ({
     isLilaTitleActive: false,
     isLilaPActive: false,
+    lilaTitleTexts: [],
   }),
   mounted() {
     ScrollTrigger.create({
-      trigger: ".lila-title",
+      trigger: ".lila-p",
       toggleActions: "play none none none",
       onEnter: () => this.timeLine(),
 
       start: () => "top " + window.innerHeight * 0.95,
-
+ 
       onLeaveBack: (self) => self.disable(),
     });
 
@@ -62,6 +75,9 @@ export default {
       onEnter: () => (this.isLilaPActive = true),
       onLeaveBack: (self) => self.disable(),
     });
+  },
+  created() {
+    this.fetchDataTitle();
   },
   methods: {
     timeLine() {
@@ -86,6 +102,20 @@ export default {
         "+=0"
       );
     },
+    fetchDataTitle() {
+      this.error = this.lilaTitleText = null;
+      this.loading = true;
+      sanity.fetch(queryTitle).then(
+        (lilaTitleTexts) => {
+          this.loading = false;
+          this.lilaTitleTexts = lilaTitleTexts;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+
     timeLineTwo() {
       let tl = gsap.timeline(),
         mySplitText = new SplitText(this.$refs.lilaP, { type: "lines" }),
@@ -174,11 +204,11 @@ export default {
   position: relative;
   left: 4vw;
   bottom: 0;
-margin-top: 3vw;
+  margin-top: 3vw;
   width: 12vw;
   height: 4.5vw;
   display: block;
-top: 0;
+  top: 0;
   font-family: DM sans;
 
   font-size: 1vw;
@@ -202,8 +232,9 @@ top: 0;
   }
   .lila-picture-container {
     position: relative;
-    margin-top: 15vw;
+    margin-top: 10vw;
     margin-left: 6vw;
+
     width: 88vw;
   }
   .lila-title {
@@ -219,7 +250,8 @@ top: 0;
   }
 
   .about-lila-btn {
-    bottom: -100vw;
+    margin-top: 95vw;
+    bottom: 0;
     left: 6vw;
     width: 35vw;
     height: 15vw;

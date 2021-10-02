@@ -1,5 +1,5 @@
 <template>
-  <div class="coaching-container">
+  <div class="coaching-container" v-for="testimonialText in testTexts" :key="testimonialText._id">
     <div class="coaching-text-container">
       <h1
         class="coaching-title"
