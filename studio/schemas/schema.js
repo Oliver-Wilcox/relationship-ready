@@ -8,15 +8,11 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import blockContent from './blockContent'
 import category from './category'
 import landing from './landing'
-import pathsTitle from './pathsTitle'
+import pathPage from './pathPage'
 import testimonialImages from './testimonialImages'
-import pathParagraph from './pathParagraph'
 import lilaTitle from './lilaTitle'
 import getInTouchText from './getInTouchText'
-import retreatPage from './retreatPage'
 import programmesContent from './programmesContent'
-import coachingContent from './coachingContent'
-import virtualParagraph from './virtualParagraph'
 import aboutLilaContent from './aboutLilaContent'
 
 
@@ -37,16 +33,15 @@ export default createSchema({
     category,
     testimonialImages,
     lilaTitle,
-pathsTitle,
-pathParagraph,
+pathPage,
 getInTouchText,
-retreatPage,
+
 programmesContent,
-virtualParagraph,
+
 aboutLilaContent,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
-    coachingContent
+
   ]),
 })

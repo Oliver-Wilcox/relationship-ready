@@ -1,32 +1,31 @@
 <template>
-  <div
-    class="path-container"
-    ref="pathcont"
-  >
-  <div class="path-cont-2" v-for="pathsTitle in pathsTitles"
-    :key="pathsTitle._id">
+  <div class="path-container" ref="pathcont">
     <div
-      class="path-picture-container"
-      ref="pathPic"
-      v-bind:class="{ pathPicActive: isPathPicActive }"
+      class="path-cont-2"
+      v-for="pathsTitle in pathsTitles"
+      :key="pathsTitle._id"
     >
-      <img src="../assets/pathPic.png" alt="" class="path-pic" />
-    </div>
-    <h1 class="path-text" v-on:click="refresh">{{ pathsTitle.pathTitle }}</h1>
-    <p
-    v-for="pathParagraph in pathParagraphs"
-    :key="pathParagraph._id"
-
-      class="path-paragraph"
-      ref="para"
-      v-bind:class="{ paragraphActive: isParagraphActive }"
-    >
-     {{pathParagraph.pathParagraphOne}}
-      <br />
-      <br />
-      {{pathParagraph.pathParagraphTwo}}
-    </p>
-    <button class="path-btn" v-on:click="prog">LEARN ABOUT OUR PROGRAMS</button>
+      <div
+        class="path-picture-container"
+        ref="pathPic"
+        v-bind:class="{ pathPicActive: isPathPicActive }"
+      >
+        <img src="../assets/pathPic.png" alt="" class="path-pic" />
+      </div>
+      <h1 class="path-text" v-on:click="refresh">{{ pathsTitle.pathTitle }}</h1>
+      <p
+        class="path-paragraph"
+        ref="para"
+        v-bind:class="{ paragraphActive: isParagraphActive }"
+      >
+        {{ pathsTitle.pathParagraphOne }}
+        <br />
+        <br />
+        {{ pathsTitle.pathParagraphTwo }}
+      </p>
+      <button class="path-btn" v-on:click="prog">
+        LEARN ABOUT OUR PROGRAMS
+      </button>
     </div>
   </div>
 </template>
@@ -36,13 +35,10 @@ import sanity from "../client";
 
 const queryPath = `*[_type == "pathsTitle"]{
 _id,
-pathTitle
-}[0...50]`;
-
-const queryPathParagraph = `*[_type == "pathParagraph"]{
-_id,
+pathTitle,
 pathParagraphOne,
 pathParagraphTwo
+
 }[0...50]`;
 
 import { gsap } from "gsap";
@@ -57,8 +53,8 @@ export default {
     isPathPicActive: false,
     isParagraphActive: false,
     pathsTitles: [],
-    pathParagraphs: [],
-    scrollTriggerPic: null
+
+    scrollTriggerPic: null,
   }),
   mounted() {
     ScrollTrigger.create({
@@ -68,16 +64,10 @@ export default {
       onEnter: () => (this.isParagraphActive = true),
     });
 
-  
-
-   
-
-
     this.scrollTriggerPic = ScrollTrigger.create({
       trigger: ".path-container",
-          
-        
-         start: () => "top " + window.innerHeight * 0.75,
+
+      start: () => "top " + window.innerHeight * 0.75,
       toggleActions: "play none none none",
       onEnter: () => (this.isPathPicActive = true),
     });
@@ -85,8 +75,10 @@ export default {
 
   created() {
     this.fetchDataPath();
-    this.fetchDataPathParagraph();
-setTimeout(function(){ ScrollTrigger.refresh() }, 50);
+
+    setTimeout(function() {
+      ScrollTrigger.refresh();
+    }, 50);
   },
   methods: {
     fetchDataPath() {
@@ -103,21 +95,9 @@ setTimeout(function(){ ScrollTrigger.refresh() }, 50);
       );
     },
     refresh() {
-ScrollTrigger.refresh();
+      ScrollTrigger.refresh();
     },
-     fetchDataPathParagraph() {
-      this.error = this.pathParagraph = null;
-      this.loading = true;
-      sanity.fetch(queryPathParagraph).then(
-        (pathParagraphs) => {
-          this.loading = false;
-          this.pathParagraphs = pathParagraphs;
-        },
-        (error) => {
-          this.error = error;
-        }
-      );
-    },
+
     prog() {
       window.scrollTo(0, 0);
       window.setTimeout(this.$router.push("/programmes"), 2000);
@@ -132,8 +112,7 @@ ScrollTrigger.refresh();
   margin-top: -4vw;
   width: 100vw;
   height: 50vw;
-overflow: hidden;
-
+  overflow: hidden;
 }
 
 .path-text {

@@ -1,44 +1,45 @@
 <template>
   <div class="virtual-container">
-    <div class="virtual-container-2"  v-for="virtualParagraph in virtualParagraphs"
-      :key="virtualParagraph._id">
     <div
-      class="virtual-picture-container"
-      ref="virtualPic"
-      v-bind:class="{ virtualPicActive: isVirtualPicActive }"
+      class="virtual-container-2"
+      v-for="programmesParagraph in programmesParagraphs"
+      :key="programmesParagraph._id"
     >
-      <div class="virtual-blur"></div>
-      <img src="../assets/virtual.png" alt="" class="virtual-img" />
-    </div>
-    <div class="virtual-text-container">
-      
-      <p
-        class="virtual-paragraph"
-        ref="virtualParagraph"
-        v-bind:class="{ virtualTextActive: isVirtualParActive }"
+      <div
+        class="virtual-picture-container"
+        ref="virtualPic"
+        v-bind:class="{ virtualPicActive: isVirtualPicActive }"
       >
-        {{virtualParagraph.virtualParagraphOne}}
-        <br>
-        <br>
-        {{virtualParagraph.virtualParagraphTwo}}
-        <br>
-        <br>
-        {{virtualParagraph.virtualParagraphThree}}
-      </p>
-    </div>
+        <div class="virtual-blur"></div>
+        <img src="../assets/virtual.png" alt="" class="virtual-img" />
+      </div>
+      <div class="virtual-text-container">
+        <p
+          class="virtual-paragraph"
+          ref="virtualParagraph"
+          v-bind:class="{ virtualTextActive: isVirtualParActive }"
+        >
+          {{ programmesParagraph.programmesParagraphThree }}
+          <br />
+          <br />
+          {{ programmesParagraph.programmesParagraphFour }}
+          <br />
+          <br />
+          {{ programmesParagraph.programmesParagraphFive }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
 import sanity from "../client";
 
-const queryVirtual = `*[_type == "virtualParagraph"]{
-_id,
-virtualParagraphOne,
-virtualParagraphTwo,
-virtualParagraphThree
+const queryProgrammes = `*[_type == "programmesContent"]{
+  _id,
+  programmesParagraphThree,
+  programmesParagraphFour,
+  programmesParagraphFive,
 }[0...50]`;
 
 import { gsap } from "gsap/dist/gsap";
@@ -53,7 +54,7 @@ export default {
     isVirtualPicActive: true,
     isVirtualTitleActive: true,
     isVirtualParActive: true,
-    virtualParagraphs: []
+    programmesParagraphs: [],
   }),
   mounted() {
     ScrollTrigger.create({
@@ -85,24 +86,24 @@ export default {
       onLeaveBack: (self) => self.disable(),
     });
   },
-   created() {
-  this.fetchDataVirtual();
+  created() {
+    this.fetchDataVirtual();
   },
   methods: {
     fetchDataVirtual() {
-      this.error = this.virtualParagraph = null;
+      this.error = this.programmesParagraph = null;
       this.loading = true;
-      sanity.fetch(queryVirtual).then(
-        (virtualParagraphs) => {
+      sanity.fetch(queryProgrammes).then(
+        (programmesParagraphs) => {
           this.loading = false;
-          this.virtualParagraphs = virtualParagraphs;
+          this.programmesParagraphs = programmesParagraphs;
         },
         (error) => {
           this.error = error;
         }
       );
     },
-  
+
     timelineVirtual() {
       this.isVirtualTitleActive = true;
 

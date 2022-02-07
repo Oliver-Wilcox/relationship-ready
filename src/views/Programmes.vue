@@ -9,11 +9,7 @@
       <br />{{ programmesContent.programmesTitleTwo }}
     </h1>
     <p class="our-programmes-paragraph" ref="programmesParagraph">
-      The passion and drive of our program is to help you show up to
-      relationships as the most natural version of you. We help you understand
-      the thoughts behind your relationship patterns in a way that you can move
-      past them and turn up to your dating life with more ease, confidence and
-      enjoyment. The understanding we will give you will allow you to:
+      {{ programmesContent.programmesParagraphOne }}
     </p>
   </div>
   <div class="programmes-arrow">
@@ -32,7 +28,8 @@ import sanity from "../client";
 const queryProgrammes = `*[_type == "programmesContent"]{
   _id,
   programmesTitleOne,
-  programmesTitleTwo
+  programmesTitleTwo,
+  programmesParagraphOne
 
 }[0...50]`;
 

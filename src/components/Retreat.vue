@@ -1,18 +1,16 @@
 <template>
-  <div class="retreat-container">
-    <div
-      class="retreat-text-container"
-     v-for="retreatPage in retreatPageText"
-      :key="retreatPage._id"
-    >
-      <h1 class="retreat-title" ref="retreatTitle">
-      
-      </h1>
+  <div
+    class="retreat-container"
+    v-for="programmesPage in programmesPageText"
+    :key="programmesPage._id"
+  >
+    <div class="retreat-text-container">
+      <h1 class="retreat-title" ref="retreatTitle"></h1>
       <p
         class="retreat-paragraph"
         v-bind:class="{ retreatParagraphActive: isRetreatParagraphActive }"
       >
-  {{retreatPage.retreatParagraph}}
+        {{ programmesPage.programmesParagraphTwo }}
       </p>
     </div>
     <div
@@ -31,8 +29,7 @@
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
       <p class="checkbox-paragraph 1">
-        Be able to share the most at ease natural version of yourself with your
-        date so they can really get to know who you are.
+        {{ programmesPage.programmesCheckboxOne }}
       </p>
     </div>
     <div
@@ -44,8 +41,7 @@
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
       <p class="checkbox-paragraph 2">
-        Be able to understand and enjoy others more deeply allowing you to find
-        a more natural connection.
+        {{ programmesPage.programmesCheckboxTwo }}
       </p>
     </div>
     <div
@@ -57,8 +53,7 @@
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
       <p class="checkbox-paragraph 3">
-        Be able to date with a deeper confidence and trust in your intuition,
-        taking the work out of double guessing yourself.
+        {{ programmesPage.programmesCheckboxThree }}
       </p>
     </div>
     <div
@@ -70,9 +65,7 @@
         <img src="../assets/checkbox.svg" class="checkbox-img" />
       </div>
       <p class="checkbox-paragraph 4">
-        Have a foundation of understanding that will inform and guide you, not
-        just finding a meaningful relationship, but the skills to maintain and
-        enjoy a rich and loving partnership.
+        {{ programmesPage.programmesCheckboxFour }}
       </p>
     </div>
   </div>
@@ -80,13 +73,16 @@
 <script>
 import sanity from "../client";
 
-const queryRetreat = `*[_type == "retreatPage"]{
+const queryProgrammes = `*[_type == "programmesContent"]{
   _id,
-  retreatParagraph
 
+  programmesParagraphTwo,
+  programmesCheckboxOne,
+  programmesCheckboxTwo,
+  programmesCheckboxThree,
+  programmesCheckboxFour,
 
 }[0...50]`;
-
 
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -103,11 +99,10 @@ export default {
     isCheckTwoActive: true,
     isCheckThreeActive: true,
     isCheckFourActive: true,
-    retreatPageText: []
-
+    programmesPageText: [],
   }),
   created() {
-  this.fetchDataRetreatText();
+    this.fetchDataRetreatText();
   },
   mounted() {
     /*
@@ -179,23 +174,22 @@ export default {
     });
     */
   },
-  
-  methods: {
 
-        fetchDataRetreatText() {
-      this.error = this.retreatPage = null;
+  methods: {
+    fetchDataRetreatText() {
+      this.error = this.programmesPage = null;
       this.loading = true;
-      sanity.fetch(queryRetreat).then(
-        (retreatPageText) => {
+      sanity.fetch(queryProgrammes).then(
+        (programmesPageText) => {
           this.loading = false;
-          this.retreatPageText = retreatPageText;
+          this.programmesPageText = programmesPageText;
         },
         (error) => {
           this.error = error;
         }
       );
     },
-  
+
     timelineRetreat() {
       this.$refs.retreatTitle.style.opacity = "1";
       let tl = gsap.timeline(),
@@ -217,8 +211,6 @@ export default {
         "+=0"
       );
     },
-  
-    
   },
 };
 </script>
