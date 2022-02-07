@@ -1,13 +1,13 @@
 <template>
-  <div class="cursor" ref="cursor" v-bind:class="{cursorActive:hover}"></div>
-  <div class="cursorHover" ref="cursorHover" ></div>
+  <div class="cursor" ref="cursor" v-bind:class="{ cursorActive: hover }"></div>
+  <div class="cursorHover" ref="cursorHover"></div>
 </template>
 
 <script>
 export default {
-    props: {
-   hover: Boolean
-    },
+  props: {
+    hover: Boolean,
+  },
   mounted() {
     const cursor = this.$refs.cursor;
     const cursorHover = this.$refs.cursorHover;
@@ -18,34 +18,31 @@ export default {
     let aimY = 0;
     let speed = 0.2;
 
-    const animate = function (){
-        currentX += (aimX - currentX) * speed
-        currentY += (aimY - currentY) * speed
+    const animate = function() {
+      currentX += (aimX - currentX) * speed;
+      currentY += (aimY - currentY) * speed;
 
-        cursor.style.left = currentX + -7 + "px"
-        cursor.style.top = currentY + -7 + "px"
-          cursorHover.style.left = currentX + 0 + "px"
-        cursorHover.style.top = currentY + 0 + "px"
+      cursor.style.left = currentX + -7 + "px";
+      cursor.style.top = currentY + -7 + "px";
+      cursorHover.style.left = currentX + 0 + "px";
+      cursorHover.style.top = currentY + 0 + "px";
 
+      requestAnimationFrame(animate);
+    };
 
-        requestAnimationFrame(animate)
-    }
+    animate();
 
-    animate()
-
-   document.addEventListener("mousemove", function(event){
-       aimX = event.pageX;
-       aimY = event.pageY;
-   })
+    document.addEventListener("mousemove", function(event) {
+      aimX = event.clientX;
+      aimY = event.clientY;
+    });
   },
-
-
 };
 </script>
 
 <style>
 .cursor {
-  position: absolute;
+  position: fixed;
   background: white;
   height: 12px;
   width: 12px;
@@ -54,18 +51,13 @@ export default {
   pointer-events: none;
 }
 
-
-.cursorActive{
-  transform: scale(1.5)
-
- 
+.cursorActive {
+  transform: scale(1.5);
 }
 
 @media (max-aspect-ratio: 200/200) {
-.cursor{
+  .cursor {
     display: none;
+  }
 }
-}
-
-
 </style>

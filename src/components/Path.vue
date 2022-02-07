@@ -1,9 +1,10 @@
 <template>
   <div
     class="path-container"
-    v-for="pathsTitle in pathsTitles"
-    :key="pathsTitle._id"
+    ref="pathcont"
   >
+  <div class="path-cont-2" v-for="pathsTitle in pathsTitles"
+    :key="pathsTitle._id">
     <div
       class="path-picture-container"
       ref="pathPic"
@@ -11,7 +12,7 @@
     >
       <img src="../assets/pathPic.png" alt="" class="path-pic" />
     </div>
-    <h1 class="path-text">{{ pathsTitle.pathTitle }}</h1>
+    <h1 class="path-text" v-on:click="refresh">{{ pathsTitle.pathTitle }}</h1>
     <p
     v-for="pathParagraph in pathParagraphs"
     :key="pathParagraph._id"
@@ -26,6 +27,7 @@
       {{pathParagraph.pathParagraphTwo}}
     </p>
     <button class="path-btn" v-on:click="prog">LEARN ABOUT OUR PROGRAMS</button>
+    </div>
   </div>
 </template>
 
@@ -43,7 +45,7 @@ pathParagraphOne,
 pathParagraphTwo
 }[0...50]`;
 
-import { gsap } from "gsap/dist/gsap";
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import { SplitText } from "gsap/dist/SplitText";
@@ -55,27 +57,36 @@ export default {
     isPathPicActive: false,
     isParagraphActive: false,
     pathsTitles: [],
-    pathParagraphs: []
+    pathParagraphs: [],
+    scrollTriggerPic: null
   }),
   mounted() {
     ScrollTrigger.create({
-      trigger: ".path-paragraph",
-
-
+      trigger: ".path-container",
       toggleActions: "play none none none",
+      start: () => "top " + window.innerHeight * 0.6,
       onEnter: () => (this.isParagraphActive = true),
     });
-    ScrollTrigger.create({
+
+  
+
+   
+
+
+    this.scrollTriggerPic = ScrollTrigger.create({
       trigger: ".path-container",
-            markers: true,
+          
         
+         start: () => "top " + window.innerHeight * 0.75,
       toggleActions: "play none none none",
       onEnter: () => (this.isPathPicActive = true),
     });
   },
+
   created() {
     this.fetchDataPath();
     this.fetchDataPathParagraph();
+setTimeout(function(){ ScrollTrigger.refresh() }, 50);
   },
   methods: {
     fetchDataPath() {
@@ -90,6 +101,9 @@ export default {
           this.error = error;
         }
       );
+    },
+    refresh() {
+ScrollTrigger.refresh();
     },
      fetchDataPathParagraph() {
       this.error = this.pathParagraph = null;
@@ -118,12 +132,13 @@ export default {
   margin-top: -4vw;
   width: 100vw;
   height: 50vw;
+overflow: hidden;
 
 }
 
 .path-text {
   position: relative;
-  top: 15vw;
+  top: 5vw;
   text-align: left;
   margin-left: 11vw;
   line-height: 5.8vw;
@@ -133,7 +148,7 @@ export default {
 
 .path-paragraph {
   position: relative;
-  margin-top: 16.5vw;
+  margin-top: 6.5vw;
   text-align: left;
   margin-left: 11vw;
   transition: 1s;
@@ -168,7 +183,7 @@ export default {
 
   width: 32vw;
   height: 40vw;
-  top: 60%;
+  top: 50%;
   transform: translateY(-50%);
   right: -20vw;
   overflow: hidden;
@@ -191,7 +206,7 @@ export default {
   }
 
   .path-text {
-    top: 24vw;
+    top: 18vw;
     line-height: 10.8vw;
     font-size: 11.25vw;
     width: 85vw;
@@ -199,7 +214,7 @@ export default {
   }
 
   .path-paragraph {
-    margin-top: 30vw;
+    margin-top: 24vw;
     font-size: 3.8vw;
     width: 75vw;
     margin-left: 6vw;

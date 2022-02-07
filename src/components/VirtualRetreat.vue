@@ -1,5 +1,7 @@
 <template>
   <div class="virtual-container">
+    <div class="virtual-container-2"  v-for="virtualParagraph in virtualParagraphs"
+      :key="virtualParagraph._id">
     <div
       class="virtual-picture-container"
       ref="virtualPic"
@@ -9,30 +11,36 @@
       <img src="../assets/virtual.png" alt="" class="virtual-img" />
     </div>
     <div class="virtual-text-container">
-      <h1
-        class="virtual-title"
-        ref="virtualTitle"
-        v-bind:class="{ virtualTextActive: isVirtualTitleActive }"
-      >
-        VIRTUAL RETREAT
-      </h1>
+      
       <p
         class="virtual-paragraph"
         ref="virtualParagraph"
         v-bind:class="{ virtualTextActive: isVirtualParActive }"
       >
-        Our Virtual Retreat programme is designed for you to get a fundamental
-        understanding of how your mind is affecting how you show up to your
-        romantic life. The retreat is in a small group format, is always relaxed
-        and informal. The focus of these few days is to start the journey in
-        seeing what it looks and feels like to show up as the most natural and
-        intuitive version of you on dates and in relationships.
+        {{virtualParagraph.virtualParagraphOne}}
+        <br>
+        <br>
+        {{virtualParagraph.virtualParagraphTwo}}
+        <br>
+        <br>
+        {{virtualParagraph.virtualParagraphThree}}
       </p>
+    </div>
     </div>
   </div>
 </template>
 
 <script>
+
+import sanity from "../client";
+
+const queryVirtual = `*[_type == "virtualParagraph"]{
+_id,
+virtualParagraphOne,
+virtualParagraphTwo,
+virtualParagraphThree
+}[0...50]`;
+
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -42,9 +50,10 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 export default {
   data: () => ({
-    isVirtualPicActive: false,
-    isVirtualTitleActive: false,
-    isVirtualParActive: false,
+    isVirtualPicActive: true,
+    isVirtualTitleActive: true,
+    isVirtualParActive: true,
+    virtualParagraphs: []
   }),
   mounted() {
     ScrollTrigger.create({
@@ -76,7 +85,24 @@ export default {
       onLeaveBack: (self) => self.disable(),
     });
   },
+   created() {
+  this.fetchDataVirtual();
+  },
   methods: {
+    fetchDataVirtual() {
+      this.error = this.virtualParagraph = null;
+      this.loading = true;
+      sanity.fetch(queryVirtual).then(
+        (virtualParagraphs) => {
+          this.loading = false;
+          this.virtualParagraphs = virtualParagraphs;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+  
     timelineVirtual() {
       this.isVirtualTitleActive = true;
 

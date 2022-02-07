@@ -1,42 +1,40 @@
 <template>
   <div id="app">
     <Burger />
-  <Cursor />
-  <router-view/>
+    <Cursor />
+    <router-view />
   </div>
 </template>
 <script>
 import Burger from "./components/Burger.vue";
-import Cursor from "./components/Cursor.vue"
+import Cursor from "./components/Cursor.vue";
 
 export default {
- components: {
+  components: {
     Burger,
-    Cursor
- }
-}
+    Cursor,
+  },
+};
 </script>
 <style>
-
-
-
 #app {
   font-family: BonVivant;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #544a3f;
-position: absolute;
+  position: absolute;
   font-weight: normal;
-height: 100vh;
-width: 100vw;
+  height: 100vh;
+  width: 100vw;
+  touch-action: manipulation;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.title-container:hover > .cursor{
+.title-container:hover > .cursor {
   display: none;
 }
 
@@ -44,25 +42,21 @@ body {
   background: #efebe6;
   padding: 0;
   margin: 0;
-
 }
 
-html{
-
+html {
 }
-
 
 .work-together-container {
   position: relative;
   background: none;
-top: 10vw;
-
+  top: 10vw;
 }
 .jessica-picture-container {
   position: relative;
   width: 38vw;
   height: 38vw;
-top: 5vw;
+  top: 5vw;
   left: calc(50% - 19vw);
   overflow: hidden;
 }
@@ -107,10 +101,11 @@ top: 5vw;
   position: relative;
   width: 54vw;
   height: 34vw;
-  background: grey;
+
   left: 50%;
   transform: translateX(-50%);
   margin-top: 7vw;
+  overflow: hidden;
 }
 
 .experience-2 {
@@ -124,6 +119,18 @@ top: 5vw;
   font-family: DM sans;
 }
 
+.lila-experience-2 {
+  position: relative;
+  width: 44vw;
+  text-align: left;
+  font-size: 1.2vw;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 7vw;
+  font-family: DM sans;
+  margin-bottom: 10vw;
+}
+
 .other-experiences-container {
   position: relative;
   width: 65vw;
@@ -131,6 +138,7 @@ top: 5vw;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 8vw;
+  margin-bottom: 15vw;
 }
 
 .experience-2-img-container {
@@ -226,8 +234,8 @@ top: 5vw;
 }
 
 @media (max-aspect-ratio: 200/200) {
-  .work-together-container{
-      margin-top: 50vw;
+  .work-together-container {
+    margin-top: 50vw;
   }
   .jessica-picture-container {
     position: relative;

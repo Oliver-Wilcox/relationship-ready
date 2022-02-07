@@ -1,34 +1,36 @@
 <template>
-  <div
-    class="lila-container"
-    v-for="lilaTitle in lilaTitleTexts"
-    :key="lilaTitle._id"
-  >
-    <div class="lila-text-container">
-      <h1
-        class="lila-title"
-        ref="lilaTitle"
-        v-bind:class="{ lilaTitleActive: isLilaTitleActive }"
-      >
-        {{ lilaTitle.lilaTitleText }}
-      </h1>
-      <p
-        class="lila-p"
-        ref="lilaP"
-        v-bind:class="{ lilaPActive: isLilaPActive }"
-      >
-        {{lilaTitle.lilaParagraphTextOne}}
-       
-        <br />
-        <br />
-{{lilaTitle.lilaParagraphTextTwo}}
-      </p>
-      <router-link to="aboutLila">
-      <button class="about-lila-btn">ABOUT LILA</button>
-      </router-link>
-    </div>
-    <div class="lila-picture-container">
-      <img src="../assets/Lila_1.png" class="lila-pic" />
+  <div class="lila-container">
+    <div
+      class="lila-container-2"
+      v-for="lilaTitle in lilaTitleTexts"
+      :key="lilaTitle._id"
+    >
+      <div class="lila-text-container">
+        <h1
+          class="lila-title"
+          ref="lilaTitle"
+          v-bind:class="{ lilaTitleActive: isLilaTitleActive }"
+        >
+          {{ lilaTitle.lilaTitleText }}
+        </h1>
+        <p
+          class="lila-p"
+          ref="lilaP"
+          v-bind:class="{ lilaPActive: isLilaPActive }"
+        >
+          {{ lilaTitle.lilaParagraphTextOne }}
+
+          <br />
+          <br />
+          {{ lilaTitle.lilaParagraphTextTwo }}
+        </p>
+        <router-link to="aboutLila">
+          <button class="about-lila-btn">ABOUT LILA</button>
+        </router-link>
+      </div>
+      <div class="lila-picture-container">
+        <img src="../assets/Lila_1.png" class="lila-pic" />
+      </div>
     </div>
   </div>
 </template>
@@ -59,25 +61,28 @@ export default {
   }),
   mounted() {
     ScrollTrigger.create({
-      trigger: ".lila-p",
+      trigger: ".lila-container",
       toggleActions: "play none none none",
       onEnter: () => this.timeLine(),
 
-      start: () => "top " + window.innerHeight * 0.95,
- 
+      start: () => "top " + window.innerHeight * 0.75,
+
       onLeaveBack: (self) => self.disable(),
     });
 
     ScrollTrigger.create({
-      trigger: ".lila-p",
+      trigger: ".lila-container",
       toggleActions: "play none none none",
-      start: () => "top " + window.innerHeight * 0.9,
+      start: () => "top " + window.innerHeight * 0.75,
       onEnter: () => (this.isLilaPActive = true),
       onLeaveBack: (self) => self.disable(),
     });
   },
   created() {
     this.fetchDataTitle();
+    setTimeout(function() {
+      ScrollTrigger.refresh();
+    }, 50);
   },
   methods: {
     timeLine() {

@@ -7,18 +7,19 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // We import object and document schemas
 import blockContent from './blockContent'
 import category from './category'
-import post from './post'
-import subTitle from './subTitle'
-import author from './author'
+import landing from './landing'
 import pathsTitle from './pathsTitle'
 import testimonialImages from './testimonialImages'
-import testimonialText from './testimonialText'
-import testimonialBtn from './testimonialBtn'
 import pathParagraph from './pathParagraph'
 import lilaTitle from './lilaTitle'
 import getInTouchText from './getInTouchText'
 import retreatPage from './retreatPage'
 import programmesContent from './programmesContent'
+import coachingContent from './coachingContent'
+import virtualParagraph from './virtualParagraph'
+import aboutLilaContent from './aboutLilaContent'
+
+
 
 
 
@@ -31,21 +32,21 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    post,
-    author,
+    landing,
+  
     category,
-    subTitle,
     testimonialImages,
-    testimonialText,
-    testimonialBtn,
     lilaTitle,
 pathsTitle,
 pathParagraph,
 getInTouchText,
 retreatPage,
 programmesContent,
+virtualParagraph,
+aboutLilaContent,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
+    coachingContent
   ]),
 })

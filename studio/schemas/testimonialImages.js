@@ -1,6 +1,6 @@
 export default {
     name: 'testimonialImages',
-    title: 'TestimonialImge',
+    title: 'Testimonial Section',
     type: 'document',
     fields: [
       {
@@ -9,6 +9,60 @@ export default {
         type: 'string',
         description: 'The title for the front page'
       },
+      {
+        name: 'textOne',
+        title: 'Testimonial Text One',
+        description: 'Text one out of three',
+        type: 'string',
+        options: {
+          maxLength: 200
+        }
+      },
+      {
+        name: 'textTwo',
+        title: 'Testimonial Text Two',
+        description: 'Text two out of three',
+        type: 'string',
+        options: {
+          maxLength: 200
+        }
+      },
+      {
+        name: 'textThree',
+        title: 'Testimonial Text Three',
+        description: 'Text three out of three',
+        type: 'string',
+        options: {
+          maxLength: 200
+        }
+      },
+      {
+        name: 'testimonialBtnOne',
+        title: 'Testimonial Button Name One',
+        description: 'Name 1 Out Of 3',
+        type: 'string',
+        options: {
+          maxLength: 20
+        }
+    },
+    {
+        name: 'testimonialBtnTwo',
+        title: 'Testimonial Button Name One',
+        description: 'Name 2 Out Of 3',
+        type: 'string',
+        options: {
+          maxLength: 20
+        }
+    },
+    {
+        name: 'testimonialBtnThree',
+        title: 'Testimonial Button Name One',
+        description: 'Name 3 Out Of 3',
+        type: 'string',
+        options: {
+          maxLength: 20
+        }
+    },
       {
         name: 'imageOne',
         title: 'TestimonialImg',

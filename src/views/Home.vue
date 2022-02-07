@@ -1,36 +1,29 @@
 <template>
-  <div class="apps" v-for="post in posts" :key="post._id"  >
+  <div class="apps" v-for="landing in landingItems" :key="landing._id">
     <div class="text-container">
       <div class="title-container">
         <h1 class="title">
           <span id="spans-container"
             ><span
-              
               class="natural"
               @mouseover="hover = true"
               @mouseleave="hover = false"
-              >{{post.titleOne}}</span
+              >{{ landing.titleOne }}</span
             ></span
           ><span id="spans-container"
-            ><span class="version" >
-              {{post.titleTwo}}
-             </span></span
+            ><span class="version">
+              {{ landing.titleTwo }}
+            </span></span
           ><span id="spans-container" class="the-upgrade"
-            ><span class="upgrade" 
-              >{{post.titleThree}}
-              
-            </span
-            ></span
+            ><span class="upgrade">{{ landing.titleThree }} </span></span
           >
         </h1>
       </div>
-      <div class="sub-title-container" v-for="subTitle in subTitles" :key="subTitle._id">
+      <div class="sub-title-container">
         <h3 class="sub-title">
-          <span class="we-specialize"
-            >{{subTitle.frontParagraphOne}}</span
-          ><span
-            >{{subTitle.frontParagraphTwo}}</span
-          ><span>{{subTitle.frontParagraphThree}}</span>
+          <span class="we-specialize">{{ landing.frontParagraphOne }}</span
+          ><span>{{ landing.frontParagraphTwo }}</span
+          ><span>{{ landing.frontParagraphThree }}</span>
         </h3>
       </div>
       <FrontButtons @mouseover="hover = true" @mouseleave="hover = false" />
@@ -47,16 +40,12 @@
 <script>
 import sanity from "../client.js";
 
-const queryPost = `*[_type == "post"]{
+const queryLanding = `*[_type == "landing"]{
   _id,
   titleOne,
   titleTwo,
-   titleThree
-}[0...50]`;
-
-const querySubtitle = `*[_type == "subTitle"]{
-  _id,
-  frontParagraphOne,
+   titleThree,
+    frontParagraphOne,
  frontParagraphTwo,
  frontParagraphThree,
 }[0...50]`;
@@ -73,8 +62,7 @@ export default {
   data: () => ({
     hover: false,
     loading: true,
-    posts: [],
-    subTitles: []
+    landingItems: [],
   }),
   components: {
     FrontButtons,
@@ -86,35 +74,18 @@ export default {
     WorkTogether,
   },
   created() {
-    this.fetchDataPost();
-      this.fetchDataSubtitle();
+    this.fetchDataLanding();
   },
-  computed: {
-  
-  },
+  computed: {},
   methods: {
-    fetchDataPost() {
-      this.error = this.post = null;
+    fetchDataLanding() {
+      this.error = this.landing = null;
       this.loading = true;
-      sanity.fetch(queryPost).then(
-        (posts) => {
+      sanity.fetch(queryLanding).then(
+        (landingItems) => {
           this.loading = false;
-          this.posts = posts;
-           this.blocks = posts.body;
-        },
-        (error) => {
-          this.error = error;
-        }
-      );
-    },
-     fetchDataSubtitle() {
-      this.error = this.subTitle = null;
-      this.loading = true;
-      sanity.fetch(querySubtitle).then(
-        (subTitles) => {
-          this.loading = false;
-          this.subTitles = subTitles;
-           this.blocks = subTitles.body;
+          this.landingItems = landingItems;
+          this.blocks = landingItems.body;
         },
         (error) => {
           this.error = error;
@@ -210,27 +181,6 @@ export default {
 .btns {
 }
 
-.video-container {
-  position: absolute;
-  right: 9.5vw;
-  width: 40vw;
-  height: 90vh;
-  top: 50%;
-  transform: translateY(-50%);
-
-  overflow: hidden;
-
-  filter: hue-rotate(190deg) saturate(50%);
-  opacity: 0.4;
-}
-
-#ocean {
-  min-width: 100%;
-
-  margin-left: -800px;
-  transform: rotate(90deg);
-}
-
 .sub-title-container {
   position: relative;
 
@@ -277,14 +227,9 @@ export default {
   .sub-title span {
     display: inline;
   }
-
-  .video-container {
-    top: 90px;
-    width: 75vw;
-    height: 90vw;
-  }
-  
 }
+
+/*
 
 @media (max-aspect-ratio: 200/200) and (min-width: 500px) {
   .text-container {
@@ -338,13 +283,9 @@ export default {
     width: 4vw;
   }
 }
+*/
 
 @media (max-aspect-ratio: 200/200) {
-  .video-container {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   .title-container {
     text-align: center;
   }

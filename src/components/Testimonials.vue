@@ -1,65 +1,83 @@
 <template>
-  <div class="section-two" v-for="testimonialImages in testImages" :key="testimonialImages._id">
-    <div class="pictures-container">
-      <div class="pictures-trigger"></div>
-      <div class="pictures">
-        <div
-          class="one-picture"
-          v-bind:class="{
-            pictureActive: isOnePictureActive,
-            pictureInactive: isOnePictureInactive,
-          }"
-        >
-          <img class="pic-one-img" v-if="testimonialImages.imageOne" :src="imageUrlFor(testimonialImages.imageOne)" />
+  <div class="section-two">
+    <div
+      class="test-cont-2"
+      v-for="testimonialImages in testImages"
+      :key="testimonialImages._id"
+    >
+      <div class="pictures-container">
+        <div class="pictures-trigger"></div>
+        <div class="pictures">
+          <div
+            class="one-picture"
+            v-bind:class="{
+              pictureActive: isOnePictureActive,
+              pictureInactive: isOnePictureInactive,
+            }"
+          >
+            <img
+              class="pic-one-img"
+              v-if="testimonialImages.imageOne"
+              :src="imageUrlFor(testimonialImages.imageOne)"
+            />
+          </div>
+          <div
+            class="two-picture"
+            v-bind:class="{
+              pictureActive: isTwoPictureActive,
+              twoPictureInactiveLeft: isTwoPictureInactiveLeft,
+              twoPictureInactiveRight: isTwoPictureInactiveRight,
+            }"
+          >
+            <img
+              class="pic-two-img"
+              v-if="testimonialImages.imageTwo"
+              :src="imageUrlFor(testimonialImages.imageTwo)"
+            />
+          </div>
+          <div
+            class="three-picture"
+            v-bind:class="{
+              pictureActive: isThreePictureActive,
+              threePictureInactive: isThreePictureInactive,
+            }"
+          >
+            <img
+              class="pic-three-img"
+              v-if="testimonialImages.imageThree"
+              :src="imageUrlFor(testimonialImages.imageThree)"
+            />
+          </div>
         </div>
-        <div
-          class="two-picture"
-          v-bind:class="{
-            pictureActive: isTwoPictureActive,
-            twoPictureInactiveLeft: isTwoPictureInactiveLeft,
-            twoPictureInactiveRight: isTwoPictureInactiveRight,
-          }"
-        >
-          <img class="pic-two-img"  v-if="testimonialImages.imageTwo" :src="imageUrlFor(testimonialImages.imageTwo)"  />
-        </div>
-        <div
-          class="three-picture"
-          v-bind:class="{
-            pictureActive: isThreePictureActive,
-            threePictureInactive: isThreePictureInactive,
-          }"
-        >
-          <img class="pic-three-img"  v-if="testimonialImages.imageThree" :src="imageUrlFor(testimonialImages.imageThree)" />
-        </div>
+        <h3 class="success-stories">
+          <span
+            class="success"
+            v-on:click="isOnePictureInactive = !isOnePictureInactive"
+            >Success</span
+          ><span class="success-line"></span
+          ><span class="stories">Stories</span>
+        </h3>
       </div>
-      <h3 class="success-stories">
-        <span
-          class="success"
-          v-on:click="isOnePictureInactive = !isOnePictureInactive"
-          >Success</span
-        ><span class="success-line"></span><span class="stories">Stories</span>
-      </h3>
+      <RightSection
+        v-bind:isOnePictureActive="isOnePictureActive"
+        v-bind:isOnePictureInactive="isOnePictureInactive"
+        v-bind:isTwoPictureActive="isTwoPictureActive"
+        v-bind:isTwoPictureInactiveRight="isTwoPictureInactiveRight"
+        v-bind:isTwoPictureInactiveLeft="isTwoPictureInactiveLeft"
+        v-bind:isThreePictureActive="isThreePictureActive"
+        v-bind:isThreePictureInactive="isThreePictureInactive"
+        v-on:onePictureActiveChange="updatePictureOne($event)"
+        v-on:twoPictureActiveChange="updatePictureTwo($event)"
+        v-on:threePictureActiveChange="updatePictureThree($event)"
+        v-on:onePictureActiveChangeFalse="updatePictureOneFalse($event)"
+        v-on:twoPictureActiveChangeFalse="updatePictureTwoFalse($event)"
+        v-on:threePictureActiveChangeFalse="updatePictureThreeFalse($event)"
+      />
     </div>
-    <RightSection
-      v-bind:isOnePictureActive="isOnePictureActive"
-      v-bind:isOnePictureInactive="isOnePictureInactive"
-      v-bind:isTwoPictureActive="isTwoPictureActive"
-      v-bind:isTwoPictureInactiveRight="isTwoPictureInactiveRight"
-      v-bind:isTwoPictureInactiveLeft="isTwoPictureInactiveLeft"
-      v-bind:isThreePictureActive="isThreePictureActive"
-      v-bind:isThreePictureInactive="isThreePictureInactive"
-      v-on:onePictureActiveChange="updatePictureOne($event)"
-      v-on:twoPictureActiveChange="updatePictureTwo($event)"
-      v-on:threePictureActiveChange="updatePictureThree($event)"
-      v-on:onePictureActiveChangeFalse="updatePictureOneFalse($event)"
-      v-on:twoPictureActiveChangeFalse="updatePictureTwoFalse($event)"
-      v-on:threePictureActiveChangeFalse="updatePictureThreeFalse($event)"
-    />
   </div>
 </template>
 
 <script>
-
 import sanity from "../client";
 import imageUrlBuilder from "@sanity/image-url";
 const imageBuilder = imageUrlBuilder(sanity);
@@ -74,9 +92,6 @@ imageThree
 
 }[0...50]`;
 
-
-
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -89,9 +104,7 @@ export default {
   components: {
     RightSection,
   },
-  props: {
-   
-  },
+  props: {},
   data: () => ({
     isOnePictureActive: false,
     isOnePictureInactive: false,
@@ -100,19 +113,28 @@ export default {
     isTwoPictureInactiveLeft: false,
     isThreePictureActive: false,
     isThreePictureInactive: false,
-    testImages: []
+    testImages: [],
   }),
   mounted() {
+    ScrollTrigger.create({
+      trigger: ".section-two",
 
+      toggleActions: "play none none none",
+      start: () => "top " + window.innerHeight * 0.75,
+      onEnter: () => (this.isOnePictureActive = true),
+    });
   },
   created() {
     this.fetchData();
+    setTimeout(function() {
+      ScrollTrigger.refresh();
+    }, 50);
   },
   methods: {
     imageUrlFor(source) {
       return imageBuilder.image(source);
     },
-     fetchData() {
+    fetchData() {
       this.error = this.testimonialImages = null;
       this.loading = true;
       sanity.fetch(query).then(
@@ -151,7 +173,7 @@ export default {
     updatePictureThreeFalse(updatedPictureThreeFalse) {
       this.isThreePictureInactive = updatedPictureThreeFalse;
     },
-      },
+  },
 };
 </script>
 

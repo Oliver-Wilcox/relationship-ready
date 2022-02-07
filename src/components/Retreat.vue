@@ -1,8 +1,9 @@
 <template>
-  <div class="retreat-container" >
+  <div class="retreat-container">
     <div
       class="retreat-text-container"
-    
+     v-for="retreatPage in retreatPageText"
+      :key="retreatPage._id"
     >
       <h1 class="retreat-title" ref="retreatTitle">
       
@@ -11,12 +12,7 @@
         class="retreat-paragraph"
         v-bind:class="{ retreatParagraphActive: isRetreatParagraphActive }"
       >
-        The passion and drive of this program is to help you show up to
-        relationships as the most natural version of you. We help you understand
-        the thoughts behind your relationship patterns in a way that you can
-        move past them and turn up to your dating life with more ease,
-        confidence and enjoyment. The understanding we will give you will allow
-        you to:
+  {{retreatPage.retreatParagraph}}
       </p>
     </div>
     <div
@@ -86,6 +82,7 @@ import sanity from "../client";
 
 const queryRetreat = `*[_type == "retreatPage"]{
   _id,
+  retreatParagraph
 
 
 }[0...50]`;
@@ -100,12 +97,12 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 export default {
   data: () => ({
-    isRetreatActive: false,
-    isRetreatParagraphActive: false,
-    isCheckOneActive: false,
-    isCheckTwoActive: false,
-    isCheckThreeActive: false,
-    isCheckFourActive: false,
+    isRetreatActive: true,
+    isRetreatParagraphActive: true,
+    isCheckOneActive: true,
+    isCheckTwoActive: true,
+    isCheckThreeActive: true,
+    isCheckFourActive: true,
     retreatPageText: []
 
   }),
@@ -113,6 +110,7 @@ export default {
   this.fetchDataRetreatText();
   },
   mounted() {
+    /*
     ScrollTrigger.create({
       trigger: ".retreat-title",
       toggleActions: "play none none none",
@@ -179,6 +177,7 @@ export default {
 
       onLeaveBack: (self) => self.disable(),
     });
+    */
   },
   
   methods: {
@@ -246,7 +245,7 @@ export default {
   position: relative;
   text-align: left;
   font-size: 6.25vw;
-  opacity: 0;
+  opacity: 1;
 }
 
 .retreat-paragraph {
@@ -292,7 +291,7 @@ export default {
   height: 8vw;
   width: 35vw;
   opacity: 0;
-  top: 32vw;
+  top: 18vw;
   transition: 1s;
 }
 
@@ -363,7 +362,7 @@ export default {
     width: 80vw;
   }
   .checkbox {
-    top: 90vw;
+    top: 65vw;
     left: 6vw;
     height: 25vw;
   }

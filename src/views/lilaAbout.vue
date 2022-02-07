@@ -1,58 +1,71 @@
 <template>
   <div class="jessica-experience">
+    <div class="lila-container-2"    v-for="aboutLilaContent in aboutLilaContents"
+      :key="aboutLilaContent._id">
     <div class="jessica-picture-container">
       <img src="../assets/Lila_1.png" alt="" class="jessica-img" />
     </div>
-    <h1 class="jessica-name">ABOUT LILA</h1>
+    <h1 class="jessica-name">{{aboutLilaContent.aboutLilaTitle}}</h1>
 
     <p class="experience-1">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-      viverra, est ac egestas tincidunt, est nunc lacinia magna, eu interdum
-      elit quam vel massa. Sed sed fermentum diam. Vivamus ut varius metus,
-      sagittis tempor tortor. Integer laoreet nibh et lobortis accumsan. Sed
-      euismod ligula condimentum vestibulum auctor. Vestibulum gravida nec
-      tellus et tempus. Nunc a ultricies nisl. Aliquam eu consequat arcu. Donec
-      euismod dui at massa tincidunt porttitor. Nullam sed ex non nunc finibus
-      pharetra a eu erat. Proin sem quam, auctor et tincidunt ut, varius id
-      metus. Proin scelerisque dolor sed malesuada eleifend. Nullam condimentum
-      quis nunc at aliquam.
+      {{aboutLilaContent.aboutLilaParagraphTextOne}}
     </p>
-    <div class="video"></div>
+    <div class="video">
+      <iframe width="100%" height="100%" :src="aboutLilaContent.vimeoUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+    </div>
 
-    <p class="experience-2">
-      Curabitur nulla sem, venenatis sed tortor vel, fermentum venenatis ipsum.
-      Mauris ac nisl et mauris condimentum malesuada eu sit amet ipsum.
-      Vestibulum fringilla pharetra laoreet. Aenean et tortor tincidunt, luctus
-      arcu vel, lacinia est. Pellentesque habitant morbi tristique senectus et
-      netus et malesuada fames ac turpis egestas. Nam sem lacus, posuere a enim
-      semper, ultrices cursus ante. Donec maximus, lacus vel fringilla
-      vestibulum, lectus ipsum fringilla ligula, nec tristique dolor lorem
-      accumsan orci. Nunc eget ornare neque, id dignissim lacus. Mauris lacus
-      nulla, consectetur aliquam blandit sit amet, viverra vitae eros. Donec
-      vulputate lacus eu purus tincidunt pharetra at eu dui.
+    <p class="lila-experience-2">
+      {{aboutLilaContent.aboutLilaParagraphTextTwo}}
       <br />
       <br />
 
-      Maecenas dapibus ex laoreet luctus eleifend. Donec maximus, nisi
-      ullamcorper venenatis malesuada, magna turpis congue mi, ut vulputate
-      magna eros hendrerit arcu. Donec dictum tristique risus vitae finibus.
-      Curabitur dignissim, ante ut ullamcorper pretium, purus neque porta nunc,
-      non varius lorem orci eu justo. Nulla a elit libero. Fusce dictum at diam
-      eget ullamcorper. Proin rutrum augue ligula, tristique lobortis ante
-      sodales at. Curabitur quis sollicitudin lacus. Vivamus id commodo enim,
-      pharetra fermentum sapien. Integer ultrices vitae metus nec mattis.
+       {{aboutLilaContent.aboutLilaParagraphTextThree}}
     </p>
   
       <WorkTogether />
+      </div>
   </div>
 </template>
 
 <script>
+import sanity from "../client";
+const queryAboutLila = `*[_type == "aboutLilaContent"]{
+  _id,
+  aboutLilaTitle,
+  aboutLilaParagraphTextOne,
+  vimeoUrl,
+  aboutLilaParagraphTextTwo,
+  aboutLilaParagraphTextThree
+
+
+}[0...50]`;
 import WorkTogether from "../components/WorkTogether.vue";
 export default {
   components: {
-   
     WorkTogether,
+  },
+   data: () => ({
+  
+   aboutLilaContents: []
+
+  }),
+  methods: {
+  fetchDataAboutLila() {
+      this.error = this.aboutLilaContent = null;
+      this.loading = true;
+      sanity.fetch(queryAboutLila).then(
+        (aboutLilaContents) => {
+          this.loading = false;
+          this.aboutLilaContents = aboutLilaContents;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+  },
+   created() {
+  this.fetchDataAboutLila();
   },
 };
 </script>

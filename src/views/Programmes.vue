@@ -1,7 +1,12 @@
 <template>
-  <div class="programmes-text-container" v-for="programmesContent in programmesText" :key="programmesContent._id">
+  <div
+    class="programmes-text-container"
+    v-for="programmesContent in programmesText"
+    :key="programmesContent._id"
+  >
     <h1 class="our-programmes-title" ref="programmes">
-      <span class="our">{{programmesContent.programmesTitleOne}}</span> <br />{{programmesContent.programmesTitleTwo}}
+      <span class="our">{{ programmesContent.programmesTitleOne }}</span>
+      <br />{{ programmesContent.programmesTitleTwo }}
     </h1>
     <p class="our-programmes-paragraph" ref="programmesParagraph">
       The passion and drive of our program is to help you show up to
@@ -22,7 +27,6 @@
 </template>
 
 <script>
-
 import sanity from "../client";
 
 const queryProgrammes = `*[_type == "programmesContent"]{
@@ -51,20 +55,18 @@ export default {
     WorkTogether,
   },
   data: () => ({
-    programmesText: []
+    programmesText: [],
   }),
   mounted() {
-this.timelineProgrammes1()
+    this.timelineProgrammes1();
 
-this.timelineProgrammes2()
-
-
+    this.timelineProgrammes2();
   },
   created() {
-  this.fetchDataProgrammes();
+    this.fetchDataProgrammes();
   },
   methods: {
-     fetchDataProgrammes() {
+    fetchDataProgrammes() {
       this.error = this.programmesContent = null;
       this.loading = true;
       sanity.fetch(queryProgrammes).then(
@@ -77,25 +79,50 @@ this.timelineProgrammes2()
         }
       );
     },
-      timelineProgrammes1(){
-  let tl = gsap.timeline(), 
-    mySplitText = new SplitText(this.$refs.programmes, {type:"lines"}), 
-    lines = mySplitText.lines; 
+    timelineProgrammes1() {
+      let tl = gsap.timeline(),
+        mySplitText = new SplitText(this.$refs.programmes, { type: "lines" }),
+        lines = mySplitText.lines;
 
-gsap.set(this.$refs.programmes, {perspective: 400});
+      gsap.set(this.$refs.programmes, { perspective: 400 });
 
-tl.from(lines, {y:40, opacity: 0, duration: 0.6, stagger: 0.1, rotationX:80, transformOrigin:"20% 0 0",}, "+=0");
-      },
-      timelineProgrammes2(){
-  let tl2 = gsap.timeline(), 
-    mySplitText2 = new SplitText(this.$refs.programmesParagraph, {type:"lines"}), 
-    lines = mySplitText2.lines; 
+      tl.from(
+        lines,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          rotationX: 80,
+          transformOrigin: "20% 0 0",
+        },
+        "+=0"
+      );
+    },
+    timelineProgrammes2() {
+      let tl2 = gsap.timeline(),
+        mySplitText2 = new SplitText(this.$refs.programmesParagraph, {
+          type: "lines",
+        }),
+        lines = mySplitText2.lines;
 
-gsap.set(this.$refs.programmesParagraph, {perspective: 400});
+      gsap.set(this.$refs.programmesParagraph, { perspective: 400 });
 
-tl2.from(lines, {y:40, opacity: 0, delay:0.25, duration: 0.6, stagger: 0.1, rotationX:80, transformOrigin:"20% 0 0",}, "+=0");
-      }
-  }
+      tl2.from(
+        lines,
+        {
+          y: 40,
+          opacity: 0,
+          delay: 0.25,
+          duration: 0.6,
+          stagger: 0.1,
+          rotationX: 80,
+          transformOrigin: "20% 0 0",
+        },
+        "+=0"
+      );
+    },
+  },
 };
 </script>
 

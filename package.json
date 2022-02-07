@@ -11,10 +11,10 @@
     "@sanity/client": "^2.19.0",
     "@sanity/image-url": "^1.0.1",
     "core-js": "^3.6.5",
-    "gsap": "npm:@gsap/shockingly@^3.7.1",
+    "gsap": "npm:@gsap/shockingly@^3.8.0",
     "sanity-blocks-vue-component": "^1.0.1",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -40,5 +40,9 @@
     },
     "rules": {}
   },
-  "browserslist": [ "> 1%", "last 2 versions", "not ie <= 8" ]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

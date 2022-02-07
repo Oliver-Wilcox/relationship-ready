@@ -9,13 +9,13 @@ export default {
         type: 'string',
         description: 'Content For The Repeat Section Of The Programmes Page'
       },
-      {
-      name: "retreatTitle",
-      title: "Retreat Title",
+    {
+      name: "retreatParagraph",
+      title: "Retreat Paragraph",
       type: "string",
-      description: 'Title For The Retreat Section',
+      description: 'Paragraph For The Retreat Section',
       options: {
-        maxLength: 40,
+        maxLength: 100,
       },
     },
 ]

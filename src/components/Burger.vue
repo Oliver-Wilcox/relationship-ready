@@ -28,11 +28,8 @@
             WHO ARE WE
           </h1></span
         >
-        <span class="faqs-cont"
-          ><h1 class="faqs" v-bind:class="{ menuTextActive: isBurgerActive }">
-            FAQS
-          </h1></span
-        >
+       
+        
         <span class="getintouch-cont"
           ><h1
             class="getintouch"
@@ -41,6 +38,33 @@
             GET IN TOUCH
           </h1></span
         >
+
+<div class="socials-cont">
+         <span class="email-burger-cont"
+          ><h1
+            class="email"
+            v-bind:class="{ menuTextActive: isBurgerActive }"
+          >
+            Email
+          </h1></span
+        >
+          <span class="insta-burger-cont"
+          ><h1
+            class="instagram"
+            v-bind:class="{ menuTextActive: isBurgerActive }"
+          >
+            Instagram
+          </h1></span
+        >
+          <span class="facebook-burger-cont"
+          ><h1
+            class="facebook"
+            v-bind:class="{ menuTextActive: isBurgerActive }"
+          >
+           Facebook
+          </h1></span
+        >
+        </div>
       </div>
     </div>
 
@@ -48,7 +72,7 @@
     <div class="burger-container">
       <div
         class="burger"
-        v-on:click="isBurgerActive = !isBurgerActive"
+        v-on:click="isBurgerActive = !isBurgerActive, burgerOn()"
         v-bind:class="{ burgerActive: isBurgerActive }"
       >
         <div
@@ -80,18 +104,28 @@ export default {
       isBurgerActive: false,
     };
   },
+
+  methods:{
+  burgerOn(){
+      if(this.isBurgerActive == true){
+      document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "visible";
+    }
+  }
+  }
 };
 </script>
 
 <style scoped>
 .bg-blur {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0);
-
+  
   pointer-events: none;
   transition: 0.4s;
   z-index: +2;
@@ -101,13 +135,27 @@ export default {
   position: relative;
   opacity: 0.7;
 
-  margin-top: -3vw;
+  margin-top: 0vw;
   margin-bottom: 4vw;
-  font-size: 1.6vw;
+  font-size: 1.4vw;
   margin-left: 5vw;
 
   text-align: left;
 }
+
+/*
+
+.home-cont{
+  background: blue;
+  height: 5vw;
+  width: 10vw;
+ overflow: hidden;
+ display: block;
+ line-height: 5vw;
+}
+
+*/
+
 
 .menu-items {
   position: absolute;
@@ -116,6 +164,7 @@ export default {
   opacity: 0;
   transition: 0.4s;
   transition-delay: 0.2s;
+
 }
 
 .navigation-container h1 {
@@ -123,6 +172,7 @@ export default {
   font-size: 3vw;
   text-align: left;
   margin-left: 5vw;
+    cursor: pointer;
 }
 
 .menuTextActive {
@@ -137,7 +187,7 @@ export default {
   position: fixed;
   left: 100%;
   height: 100vh;
-  width: 45vw;
+  width: 40vw;
   background: #efebe6;
   z-index: +2;
   transition: 0.4s ease-in-out;
@@ -147,7 +197,7 @@ margin: 0;
 }
 
 .navActive {
-  left: 55%;
+  left: 60%;
 }
 
 .logo {
@@ -158,7 +208,7 @@ margin: 0;
 }
 
 .burger-container {
-  position: absolute;
+  position: fixed;
 top: 0;
 margin: 0;
   right: 0;
@@ -193,45 +243,28 @@ margin: 0;
   transition: 0.5s;
 }
 
-@media (max-width: 1200px) {
-  .burger {
-    width: 48px;
-    height: 48px;
-  }
-
-  .line {
-    width: 27px;
-    left: calc(50% - 13.5px);
-  }
-
-  @media (max-width: 700px) {
-    .logo {
-      top: 4vw;
-      left: 4vw;
-      width: 14vw;
+.socials-cont{
+      margin-top: 3.5vw;
+      
     }
-  }
+      .socials-cont h1{
+font-size: 1.9vw;
+margin-top: 1vw;
+    }
 
-  @media (min-aspect-ratio: 201/200) and (max-width: 700px) {
-    .burger {
-      width: 30px;
-      height: 30px;
-      border: 3px solid #e1d6c2;
-    }
-    .line {
-      width: 18px;
-      margin: 4px 0;
-      top: calc(50% - 9px);
-      left: calc(50% - 9px);
-    }
-  }
+
+
 
 
 
   @media (max-aspect-ratio: 200/200) {
+    
+  
     .menu-items {
-        margin-top: -10vh;
-   
+        margin-top:0vh;
+     height: 130vw;
+    top: 70px;
+    transform: none;
     }
     .menu {
       opacity: 0.7;
@@ -286,8 +319,16 @@ margin: 0;
       top: calc(50% - 11px);
       left: calc(50% - 11px);
     }
+    .socials-cont{
+      margin-top: 10vw;
+      
+    }
+      .socials-cont h1{
+font-size: 6.5vw;
+
+    }
   }
-}
+
 
 .burgerActive {
   border: 0px solid #e1d6c2;
@@ -332,11 +373,5 @@ margin: 0;
   left: calc(50% - 7px);
 }
 
-@media (max-aspect-ratio: 200/200) and (min-width: 500px){
-.logo {
-      top: 3.5vw;
-      left: 4vw;
-      width: 18vw;
-    }
-  }
+
 </style>

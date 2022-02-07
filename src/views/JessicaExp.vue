@@ -77,5 +77,10 @@ export default {
 </script>
 
 <style scoped>
+.work-together-container {
+  position: relative;
+  background: none;
+top: 20vw;
 
+}
 </style>

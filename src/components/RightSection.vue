@@ -1,52 +1,55 @@
 <template>
-  <div class="right-section" v-for="testimonialText in testTexts" :key="testimonialText._id">
-   
+  <div
+    class="right-section"
+    v-for="testimonialImages in testImages"
+    :key="testimonialImages._id"
+  >
     <div class="testimonial-paragraph-container">
-      <p class="testimonial-paragraph-one" ref="paragraphOne" >
-     "{{testimonialText.textOne}}"
+      <p class="testimonial-paragraph-one" ref="paragraphOne">
+        "{{ testimonialImages.textOne }}"
       </p>
-       <p class="testimonial-paragraph-two" ref="paragraphTwo" >
-       "{{testimonialText.textTwo}}"
+      <p class="testimonial-paragraph-two" ref="paragraphTwo">
+        "{{ testimonialImages.textTwo }}"
       </p>
-      <p class="testimonial-paragraph-three" ref="paragraphThree"  >
-        "{{testimonialText.textThree}}"
+      <p class="testimonial-paragraph-three" ref="paragraphThree">
+        "{{ testimonialImages.textThree }}"
       </p>
     </div>
     <router-link v-bind:to="experience"
-      ><button class="jessica-btn"  v-for="testimonialBtn in testBtns" :key="testimonialBtn._id">
-        <span class="btn-text-cont"  v-if="count == 0" 
-          ><h3 ref="btnH3">HEAR {{ testimonialBtn.testimonialBtnOne }} EXPERIENCE</h3></span
+      ><button class="jessica-btn">
+        <span class="btn-text-cont" v-if="count == 0"
+          ><h3 ref="btnH3">
+            HEAR {{ testimonialImages.testimonialBtnOne }} EXPERIENCE
+          </h3></span
         >
-        <span class="btn-text-cont"  v-if="count == 1" 
-          ><h3 ref="btnH3">HEAR {{ testimonialBtn.testimonialBtnTwo }} EXPERIENCE</h3></span
+        <span class="btn-text-cont" v-if="count == 1"
+          ><h3 ref="btnH3">
+            HEAR {{ testimonialImages.testimonialBtnTwo }} EXPERIENCE
+          </h3></span
         >
-        <span class="btn-text-cont"  v-if="count == 2" 
-          ><h3 ref="btnH3">HEAR {{ testimonialBtn.testimonialBtnThree }} EXPERIENCE</h3></span
+        <span class="btn-text-cont" v-if="count == 2"
+          ><h3 ref="btnH3">
+            HEAR {{ testimonialImages.testimonialBtnThree }} EXPERIENCE
+          </h3></span
         >
       </button></router-link
     >
-     <div class="people-container">
+    <div class="people-container">
       <div
         class="person one"
         v-on:click="oneActive"
         v-bind:class="{ personActive: isPersonOneActive }"
-      >
-    
-      </div>
+      ></div>
       <div
         class="person two"
         v-on:click="twoActive"
         v-bind:class="{ personTwoActive: isPersonTwoActive }"
-      >
-       
-      </div>
+      ></div>
       <div
         class="person three"
         v-on:click="threeActive"
         v-bind:class="{ personThreeActive: isPersonThreeActive }"
-      >
-        
-      </div>
+      ></div>
     </div>
   </div>
 </template>
@@ -54,22 +57,16 @@
 <script>
 import sanity from "../client.js";
 
-const queryText = `*[_type == "testimonialText"]{
+const queryText = `*[_type == "testimonialImages"]{
   _id,
   textOne,
   textTwo,
   textThree,
-  
-}[0...50]`;
-
-const queryBtn = `*[_type == "testimonialBtn"]{
-  _id,
   testimonialBtnOne,
    testimonialBtnTwo,
    testimonialBtnThree
   
 }[0...50]`;
-
 
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -98,52 +95,35 @@ export default {
     tl: "",
     experienceText: "JESSICA'S",
     experience: "/JessicaExp",
-    testTexts: [],
-    testBtns: [],
+    testImages: [],
+
     secondary: [],
-    count: 0
+    count: 0,
   }),
   mounted() {
     this.timeLineOne();
     this.timeLineTwo();
     this.timeLineThree();
-  
-   
   },
   created() {
     this.fetchDataText();
-    this.fetchDataBtn();
-      
   },
   methods: {
     fetchDataText() {
-      this.error = this.testimonialText = null;
+      this.error = this.testimonialImages = null;
       this.loading = true;
       sanity.fetch(queryText).then(
-        (testTexts) => {
+        (testImages) => {
           this.loading = false;
-          this.testTexts = testTexts;
-           this.blocks = testTexts.body;
+          this.testImages = testImages;
+          this.blocks = testImages.body;
         },
         (error) => {
           this.error = error;
         }
       );
     },
-     fetchDataBtn() {
-      this.error = this.testimonialBtn = null;
-      this.loading = true;
-      sanity.fetch(queryBtn).then(
-        (testBtns) => {
-          this.loading = false;
-          this.testBtns = testBtns;
-           this.blocks = testBtns.body;
-        },
-        (error) => {
-          this.error = error;
-        }
-      );
-    },
+
     timeLineOne() {
       let tl = gsap.timeline(),
         mySplitText = new SplitText(this.$refs.paragraphOne, { type: "lines" }),
@@ -184,9 +164,11 @@ export default {
         "+=0"
       );
     },
-      timeLineThree() {
+    timeLineThree() {
       let tl = gsap.timeline(),
-        mySplitText = new SplitText(this.$refs.paragraphThree, { type: "lines" }),
+        mySplitText = new SplitText(this.$refs.paragraphThree, {
+          type: "lines",
+        }),
         lines = mySplitText.lines;
 
       gsap.set(this.$refs.paragraphThree, { perspective: 400 });
@@ -214,14 +196,14 @@ export default {
       this.experience = "/JessicaExp";
       this.experienceText = "JESSICA'S";
       var el = this.$refs.btnH3;
-  el.style.animation = 'none';
-  el.offsetHeight; /* trigger reflow */
-  el.style.animation = null; 
-  this.count = 0;
-  this.$refs.paragraphOne.style.opacity = "1";
-  
-  this.$refs.paragraphTwo.style.opacity = "0";
-  this.$refs.paragraphThree.style.opacity = "0";
+      el.style.animation = "none";
+      el.offsetHeight; /* trigger reflow */
+      el.style.animation = null;
+      this.count = 0;
+      this.$refs.paragraphOne.style.opacity = "1";
+
+      this.$refs.paragraphTwo.style.opacity = "0";
+      this.$refs.paragraphThree.style.opacity = "0";
     },
     twoActive() {
       this.$emit("twoPictureActiveChange", true);
@@ -232,14 +214,14 @@ export default {
       this.timeLineTwo();
       this.experience = "/maryExp";
       this.experienceText = "MARY'S";
-       var el = this.$refs.btnH3;
-  el.style.animation = 'none';
-  el.offsetHeight; /* trigger reflow */
-  el.style.animation = null; 
-  this.count = 1;
-   this.$refs.paragraphOne.style.opacity = "0";
-  this.$refs.paragraphTwo.style.opacity = "1";
-  this.$refs.paragraphThree.style.opacity = "0";
+      var el = this.$refs.btnH3;
+      el.style.animation = "none";
+      el.offsetHeight; /* trigger reflow */
+      el.style.animation = null;
+      this.count = 1;
+      this.$refs.paragraphOne.style.opacity = "0";
+      this.$refs.paragraphTwo.style.opacity = "1";
+      this.$refs.paragraphThree.style.opacity = "0";
     },
     threeActive() {
       this.$emit("threePictureActiveChange", true);
@@ -250,14 +232,14 @@ export default {
       this.experience = "/claudiaExp";
       this.experienceText = "CLAUDIA'S";
       this.timeLineThree();
-       var el = this.$refs.btnH3;
-  el.style.animation = 'none';
-  el.offsetHeight; /* trigger reflow */
-  el.style.animation = null; 
-  this.count = 2;
-     this.$refs.paragraphOne.style.opacity = "0";
-  this.$refs.paragraphTwo.style.opacity = "0";
-  this.$refs.paragraphThree.style.opacity = "1";
+      var el = this.$refs.btnH3;
+      el.style.animation = "none";
+      el.offsetHeight; /* trigger reflow */
+      el.style.animation = null;
+      this.count = 2;
+      this.$refs.paragraphOne.style.opacity = "0";
+      this.$refs.paragraphTwo.style.opacity = "0";
+      this.$refs.paragraphThree.style.opacity = "1";
     },
   },
 };
@@ -308,7 +290,7 @@ export default {
   left: 50%;
   width: 15vw;
   height: 2vw;
-  
+
   overflow: hidden;
   transform: translate(-50%, -50%);
 }
@@ -319,8 +301,8 @@ export default {
   height: 1.25vw;
   top: 1.5vw;
   overflow: hidden;
-  
- background: #544a3f;
+
+  background: #544a3f;
   cursor: pointer;
   transition: 0.25s;
   border-radius: 50%;
@@ -336,7 +318,6 @@ export default {
   width: 3vw;
   height: 3vw;
   overflow: hidden;
- 
 }
 
 .person img {
@@ -358,39 +339,32 @@ export default {
 }
 
 .personActive {
-
- background:  #d4c09e;
+  background: #d4c09e;
 }
 
 .personTwoActive {
- 
- background:  #d4c09e;
- 
+  background: #d4c09e;
 }
 
 .personThreeActive {
-
- background:  #d4c09e;
- 
+  background: #d4c09e;
 }
 
 .right-section p {
- 
- 
 }
 
-.testimonial-paragraph-one{
- position: absolute;
+.testimonial-paragraph-one {
+  position: absolute;
   left: 0;
   text-align: left;
   font-size: 2.6vw;
   width: 22vw;
   margin-top: 3.5vw;
-opacity: 1;
+  opacity: 1;
 }
 
-.testimonial-paragraph-two{
- position: absolute;
+.testimonial-paragraph-two {
+  position: absolute;
   left: 0;
   text-align: left;
   font-size: 2.6vw;
@@ -399,14 +373,14 @@ opacity: 1;
   opacity: 0;
 }
 
-.testimonial-paragraph-three{
- position: absolute;
+.testimonial-paragraph-three {
+  position: absolute;
   left: 0;
   text-align: left;
   font-size: 2.6vw;
   width: 22vw;
   margin-top: 3.5vw;
-opacity: 0;
+  opacity: 0;
 }
 
 .jessica-btn {
@@ -428,8 +402,8 @@ opacity: 0;
     height: 100vw;
   }
   .right-section p {
-    margin-top: 60vw;
-    position: relative;
+    margin-top: 80vw;
+    position: absolute;
 
     font-size: 7.5vw;
     width: 80vw;
@@ -438,27 +412,39 @@ opacity: 0;
   .jessica-btn {
     width: 50vw;
     height: 15vw;
-    font-size: 2.5vw;
+    margin-top: 118vw;
+
+    position: absolute;
     border: 0.5vw solid #d4c09e;
   }
+
+  .jessica-btn h3 {
+    font-size: 2.5vw;
+    width: 50vw;
+  }
   .people-container {
-    position: relative;
-    top: -14vw;
-    left: calc(100% - 40vw);
-    width: 44vw;
+    position: absolute;
+    top: 142vw;
+    left: calc(0vw);
+    width: 15vw;
     height: 16vw;
     z-index: +1;
   }
 
+  .btn-text-cont {
+    height: 5vw;
+    width: 50vw;
+  }
+
   .person {
     position: absolute;
-    width: 9.8vw;
-    height: 9.8vw;
-    top: 2.5vw;
+    width: 3.8vw;
+    height: 3.8vw;
+    top: 0.5vw;
 
     transform: rotate(45deg);
-    border: 0.3vw solid #d4c09e;
     cursor: pointer;
+    position: absolute;
   }
 
   .person div {
@@ -473,26 +459,21 @@ opacity: 0;
     overflow: hidden;
   }
 
-  .person img {
-    top: -2vw;
-    left: -2vw;
-  }
   .two {
-    left: calc(50% - 5.2vw);
+    left: 50%;
+  }
+
+  .three {
+    left: 100%;
   }
 
   .personActive {
-    border: 0.8vw solid #544a3f;
   }
 
   .personTwoActive {
-    border: 0.8vw solid #544a3f;
-    left: calc(50% - 6vw);
   }
 
   .personThreeActive {
-    border: 0.8vw solid #544a3f;
-    right: -0.16vw;
   }
 }
 </style>

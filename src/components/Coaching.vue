@@ -1,24 +1,20 @@
 <template>
-  <div class="coaching-container" v-for="testimonialText in testTexts" :key="testimonialText._id">
+  <div class="coaching-container"  v-for="coachingContent in coachingPageText"
+      :key="coachingContent._id">
     <div class="coaching-text-container">
       <h1
         class="coaching-title"
         ref="coachTitle"
         v-bind:class="{ coachTextActive: isCoachTitleActive }"
       >
-        COACHING PROGRAM
+        {{coachingContent.coachingTitleOne}}
       </h1>
       <p
         class="coaching-paragraph"
         ref="coachParagraph"
         v-bind:class="{ coachTextActive: isCoachParaActive }"
       >
-        If the timings and format of the retreats do not work for you, we have
-        designed a coaching program that can work around your schedule. Our
-        Relationship Ready coaching programme provides help, insight and support
-        for you to be able to find a more effortless way to find and be in a
-        relationship. The 1-2-1 coaching allows you to focus on what is
-        important to you and the outcomes you are working towards.
+        {{coachingContent.coachingParagraph}}
       </p>
     </div>
     <div
@@ -32,6 +28,14 @@
 </template>
 
 <script>
+import sanity from "../client";
+
+const queryCoaching = `*[_type == "coachingContent"]{
+_id,
+coachingTitleOne,
+coachingParagraph
+}[0...50]`;
+
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -44,7 +48,11 @@ export default {
     isCoachPicActive: false,
     isCoachTitleActive: false,
     isCoachParaActive: false,
+    coachingPageText: []
   }),
+  created() {
+  this.fetchDataCoachingText();
+  },
   mounted() {
     ScrollTrigger.create({
       trigger: this.$refs.coachTitle,
@@ -56,7 +64,7 @@ export default {
       onLeaveBack: (self) => self.disable(),
     });
 
-     ScrollTrigger.create({
+    ScrollTrigger.create({
       trigger: this.$refs.coachTitle,
       toggleActions: "play none none none",
       onEnter: () => this.timelineCoach(),
@@ -77,30 +85,43 @@ export default {
     });
   },
 
-  methods:{
-  timelineCoach() {
-    this.isCoachTitleActive = true;
+  methods: {
+    fetchDataCoachingText() {
+      this.error = this.coachingContent = null;
+      this.loading = true;
+      sanity.fetch(queryCoaching).then(
+        (coachingPageText) => {
+          this.loading = false;
+          this.coachingPageText = coachingPageText;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+    timelineCoach() {
+      this.isCoachTitleActive = true;
 
-    let tl = gsap.timeline(),
-      mySplitText = new SplitText(this.$refs.coachTitle, { type: "lines" }),
-      lines = mySplitText.lines;
+      let tl = gsap.timeline(),
+        mySplitText = new SplitText(this.$refs.coachTitle, { type: "lines" }),
+        lines = mySplitText.lines;
 
-    gsap.set(this.$refs.coachTitle, { perspective: 400 });
+      gsap.set(this.$refs.coachTitle, { perspective: 400 });
 
-    tl.from(
-      lines,
-      {
-        y: 40,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        rotationX: 80,
-        transformOrigin: "20% 0 0",
-      },
-      "+=0"
-    );
+      tl.from(
+        lines,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          rotationX: 80,
+          transformOrigin: "20% 0 0",
+        },
+        "+=0"
+      );
+    },
   },
-    }
 };
 </script>
 
@@ -112,6 +133,7 @@ export default {
   width: 100vw;
   height: 60vw;
   opacity: 1;
+  display: none;
 }
 
 .coaching-text-container {
@@ -185,11 +207,10 @@ export default {
   }
 
   .coachPicActive {
-  right: 6vw;
-  opacity: 1;
-  transform: rotate(4deg);
-}
-
+    right: 6vw;
+    opacity: 1;
+    transform: rotate(4deg);
+  }
 
   .coaching-blur {
     position: absolute;
