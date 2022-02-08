@@ -310,6 +310,5 @@ export default {
 }
 
 .work-together-container {
-  background: #f7f5f2;
 }
 </style>

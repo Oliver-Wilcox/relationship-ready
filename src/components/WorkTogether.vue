@@ -1,14 +1,28 @@
 <template>
-  <div class="work-together-container"  v-for="inTouchText in inTouchTexts"
-    :key="inTouchText._id">
-    <h1 class="work-together-title" ref="togetherTitle" v-bind:class="{togetherTextActive:isTogetherTitleActive}">{{inTouchText.inTouchTitle}}</h1>
-    <p class="work-together-paragraph"  ref="togetherParagraph" v-bind:class="{togetherTextActive:isTogetherParaActive}">{{inTouchText.inTouchParagraph}}</p>
+  <div
+    class="work-together-container"
+    v-for="inTouchText in inTouchTexts"
+    :key="inTouchText._id"
+  >
+    <h1
+      class="work-together-title"
+      ref="togetherTitle"
+      v-bind:class="{ togetherTextActive: isTogetherTitleActive }"
+    >
+      {{ inTouchText.inTouchTitle }}
+    </h1>
+    <p
+      class="work-together-paragraph"
+      ref="togetherParagraph"
+      v-bind:class="{ togetherTextActive: isTogetherParaActive }"
+    >
+      {{ inTouchText.inTouchParagraph }}
+    </p>
     <button class="work-together-button">BOOK A CALL</button>
   </div>
 </template>
 
 <script>
-
 import sanity from "../client";
 
 const queryInTouch = `*[_type == "inTouchText"]{
@@ -26,12 +40,12 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
 export default {
-   data: () => ({
-     isTogetherTitleActive: false,
- isTogetherParaActive: false,
- inTouchTexts: []
-     }),
-    mounted(){
+  data: () => ({
+    isTogetherTitleActive: false,
+    isTogetherParaActive: false,
+    inTouchTexts: [],
+  }),
+  mounted() {
     ScrollTrigger.create({
       trigger: this.$refs.togetherTitle,
       toggleActions: "play none none none",
@@ -45,21 +59,22 @@ export default {
       trigger: this.$refs.togetherParagraph,
       toggleActions: "play none none none",
       onEnter: () => (this.isTogetherParaActive = true),
-          start: () => "top " + window.innerHeight * 0.9,
+      start: () => "top " + window.innerHeight * 0.9,
 
       onLeaveBack: (self) => self.disable(),
     });
-    },
-    created() {
-    this.fetchDataInTouch();
-
   },
-   methods: {
-     timelineTogether() {
+  created() {
+    this.fetchDataInTouch();
+  },
+  methods: {
+    timelineTogether() {
       this.isTogetherTitleActive = true;
 
       let tl = gsap.timeline(),
-        mySplitText = new SplitText(this.$refs.togetherTitle, { type: "lines" }),
+        mySplitText = new SplitText(this.$refs.togetherTitle, {
+          type: "lines",
+        }),
         lines = mySplitText.lines;
 
       gsap.set(this.$refs.togetherTitle, { perspective: 400 });
@@ -90,7 +105,7 @@ export default {
         }
       );
     },
-   }
+  },
 };
 </script>
 
@@ -99,8 +114,11 @@ export default {
   position: relative;
   width: 100vw;
   height: 40vw;
- opacity: 1;
-  margin-top: -5vw;
+  opacity: 1;
+  margin-top: -10vw;
+  padding-top: 2vw;
+  background: #f7f5f2;
+  padding-bottom: 5vw;
 }
 
 .work-together-title {
@@ -116,34 +134,32 @@ export default {
   opacity: 0;
 }
 
-
 .work-together-paragraph {
   position: relative;
   left: 60%;
   transform: translateX(-50%);
   width: 40vw;
-text-align: left;
+  text-align: left;
   margin-top: -1vw;
   font-size: 1.3vw;
-opacity: 0;
+  opacity: 0;
   font-family: DM sans;
   transition: 1s;
-  
 }
 
-.togetherTextActive{
+.togetherTextActive {
   opacity: 1;
 }
 
-.work-together-button{
-     position: relative;
+.work-together-button {
+  position: relative;
   left: 46%;
   transform: translateX(-50%);
   margin-top: 3vw;
   width: 12vw;
   height: 4.5vw;
   display: block;
-  
+
   font-family: DM sans;
 
   font-size: 1vw;
@@ -153,38 +169,32 @@ opacity: 0;
 }
 
 @media (max-aspect-ratio: 200/200) {
-    .work-together-container{
-         margin-top: -10vw;
-         height: 140vw;
-      
-    }
-    .work-together-title{
-        font-size: 11.25vw;
-        line-height: 10.75vw;
-        width: 80%;
-        text-align: center;
-        left: 50%;
-    }
+  .work-together-container {
+    margin-top: -10vw;
+    height: 140vw;
+  }
+  .work-together-title {
+    font-size: 11.25vw;
+    line-height: 10.75vw;
+    width: 80%;
+    text-align: center;
+    left: 50%;
+  }
 
-    .work-together-paragraph{
-        font-size: 3.8vw;
-        width: 80%;
-        text-align: center;
-           left: 50%;
-    }
+  .work-together-paragraph {
+    font-size: 3.8vw;
+    width: 80%;
+    text-align: center;
+    left: 50%;
+  }
 
-    .work-together-button{
+  .work-together-button {
     margin-top: 8vw;
     left: 50%;
     width: 35vw;
     height: 15vw;
     font-size: 2.5vw;
     border: 0.5vw solid #d4c09e;
-    }
+  }
 }
-
-
-
-
-
 </style>
