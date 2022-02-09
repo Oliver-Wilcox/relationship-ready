@@ -93,19 +93,18 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 export default {
   data: () => ({
-    isRetreatActive: true,
-    isRetreatParagraphActive: true,
-    isCheckOneActive: true,
-    isCheckTwoActive: true,
-    isCheckThreeActive: true,
-    isCheckFourActive: true,
+    isRetreatActive: false,
+    isRetreatParagraphActive: false,
+    isCheckOneActive: false,
+    isCheckTwoActive: false,
+    isCheckThreeActive: false,
+    isCheckFourActive: false,
     programmesPageText: [],
   }),
   created() {
     this.fetchDataRetreatText();
   },
-  mounted() {
-    /*
+  updated() {
     ScrollTrigger.create({
       trigger: ".retreat-title",
       toggleActions: "play none none none",
@@ -172,8 +171,8 @@ export default {
 
       onLeaveBack: (self) => self.disable(),
     });
-    */
   },
+  mounted() {},
 
   methods: {
     fetchDataRetreatText() {
@@ -259,7 +258,7 @@ export default {
   width: 28vw;
   height: 42vw;
   transform: rotate(0deg);
-  top: -2vw;
+  top: 2vw;
   overflow: hidden;
   opacity: 0.2;
   transition: 1s;

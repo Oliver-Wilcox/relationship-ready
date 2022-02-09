@@ -62,6 +62,11 @@ export default {
   created() {
     this.fetchDataProgrammes();
   },
+  updated() {
+    this.timelineProgrammes1();
+
+    this.timelineProgrammes2();
+  },
   methods: {
     fetchDataProgrammes() {
       this.error = this.programmesContent = null;

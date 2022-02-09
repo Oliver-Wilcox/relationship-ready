@@ -51,35 +51,26 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 export default {
   data: () => ({
-    isVirtualPicActive: true,
-    isVirtualTitleActive: true,
-    isVirtualParActive: true,
+    isVirtualPicActive: false,
+    isVirtualTitleActive: false,
+    isVirtualParActive: false,
     programmesParagraphs: [],
   }),
-  mounted() {
-    ScrollTrigger.create({
-      trigger: this.$refs.virtualTitle,
-      toggleActions: "play none none none",
-      onEnter: () => (this.isVirtualPicActive = true),
-
-      start: () => "top " + window.innerHeight * 1,
-
-      onLeaveBack: (self) => self.disable(),
-    });
-    ScrollTrigger.create({
-      trigger: this.$refs.virtualTitle,
-      toggleActions: "play none none none",
-      onEnter: () => this.timelineVirtual(),
-
-      start: () => "top " + window.innerHeight * 0.9,
-
-      onLeaveBack: (self) => self.disable(),
-    });
-
+  mounted() {},
+  updated() {
     ScrollTrigger.create({
       trigger: this.$refs.virtualParagraph,
       toggleActions: "play none none none",
       onEnter: () => (this.isVirtualParActive = true),
+
+      start: () => "top " + window.innerHeight * 0.85,
+
+      onLeaveBack: (self) => self.disable(),
+    });
+    ScrollTrigger.create({
+      trigger: this.$refs.virtualParagraph,
+      toggleActions: "play none none none",
+      onEnter: () => (this.isVirtualPicActive = true),
 
       start: () => "top " + window.innerHeight * 0.85,
 
@@ -134,10 +125,11 @@ export default {
 .virtual-container {
   position: relative;
   left: 0;
-  margin-top: 10vw;
+  margin-top: 6vw;
   width: 100vw;
   height: 48vw;
   opacity: 1;
+  padding-bottom: 10vw;
 }
 
 .virtual-picture-container {

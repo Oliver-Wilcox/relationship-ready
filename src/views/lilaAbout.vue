@@ -1,29 +1,39 @@
 <template>
   <div class="jessica-experience">
-    <div class="lila-container-2"    v-for="aboutLilaContent in aboutLilaContents"
-      :key="aboutLilaContent._id">
-    <div class="jessica-picture-container">
-      <img src="../assets/Lila_1.png" alt="" class="jessica-img" />
-    </div>
-    <h1 class="jessica-name">{{aboutLilaContent.aboutLilaTitle}}</h1>
-
-    <p class="experience-1">
-      {{aboutLilaContent.aboutLilaParagraphTextOne}}
-    </p>
-    <div class="video">
-      <iframe width="100%" height="100%" :src="aboutLilaContent.vimeoUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
-    </div>
-
-    <p class="lila-experience-2">
-      {{aboutLilaContent.aboutLilaParagraphTextTwo}}
-      <br />
-      <br />
-
-       {{aboutLilaContent.aboutLilaParagraphTextThree}}
-    </p>
-  
-      <WorkTogether />
+    <div
+      class="lila-container-2"
+      v-for="aboutLilaContent in aboutLilaContents"
+      :key="aboutLilaContent._id"
+    >
+      <div class="jessica-picture-container">
+        <img src="../assets/Lila_1.png" alt="" class="jessica-img" />
       </div>
+      <h1 class="jessica-name">{{ aboutLilaContent.aboutLilaTitle }}</h1>
+
+      <p class="experience-1">
+        {{ aboutLilaContent.aboutLilaParagraphTextOne }}
+      </p>
+      <div class="video">
+        <iframe
+          width="100%"
+          height="100%"
+          :src="aboutLilaContent.vimeoUrl"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen=""
+        ></iframe>
+      </div>
+
+      <p class="lila-experience-2">
+        {{ aboutLilaContent.aboutLilaParagraphTextTwo }}
+        <br />
+        <br />
+
+        {{ aboutLilaContent.aboutLilaParagraphTextThree }}
+      </p>
+
+      <WorkTogether />
+    </div>
   </div>
 </template>
 
@@ -44,13 +54,13 @@ export default {
   components: {
     WorkTogether,
   },
-   data: () => ({
-  
-   aboutLilaContents: []
-
+  data: () => ({
+    aboutLilaContents: [],
   }),
+  mounted() {},
+  updated() {},
   methods: {
-  fetchDataAboutLila() {
+    fetchDataAboutLila() {
       this.error = this.aboutLilaContent = null;
       this.loading = true;
       sanity.fetch(queryAboutLila).then(
@@ -64,12 +74,19 @@ export default {
       );
     },
   },
-   created() {
-  this.fetchDataAboutLila();
+  created() {
+    this.fetchDataAboutLila();
   },
 };
 </script>
 
 <style scoped>
-
+.work-together-container {
+  position: relative;
+  background: none;
+  top: 20vw;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: -20vw;
+}
 </style>

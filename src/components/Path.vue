@@ -12,7 +12,14 @@
       >
         <img src="../assets/pathPic.png" alt="" class="path-pic" />
       </div>
-      <h1 class="path-text" v-on:click="refresh">{{ pathsTitle.pathTitle }}</h1>
+      <h1
+        class="path-text"
+        ref="pathTitle"
+        v-bind:class="{ pathTitleActive: isPathTitleActive }"
+        v-on:click="refresh"
+      >
+        {{ pathsTitle.pathTitle }}
+      </h1>
       <p
         class="path-paragraph"
         ref="para"
@@ -53,7 +60,7 @@ export default {
     isPathPicActive: false,
     isParagraphActive: false,
     pathsTitles: [],
-
+    isPathTitleActive: false,
     scrollTriggerPic: null,
   }),
   mounted() {
@@ -70,6 +77,15 @@ export default {
       start: () => "top " + window.innerHeight * 0.75,
       toggleActions: "play none none none",
       onEnter: () => (this.isPathPicActive = true),
+    });
+    ScrollTrigger.create({
+      trigger: ".path-container",
+      toggleActions: "play none none none",
+      onEnter: () => this.timeLine(),
+
+      start: () => "top " + window.innerHeight * 0.75,
+
+      onLeaveBack: (self) => self.disable(),
     });
   },
 
@@ -92,6 +108,25 @@ export default {
         (error) => {
           this.error = error;
         }
+      );
+    },
+    timeLine() {
+      this.isPathTitleActive = true;
+      let tl = gsap.timeline(),
+        mySplitText = new SplitText(this.$refs.pathTitle, { type: "lines" }),
+        lines = mySplitText.lines;
+      gsap.set(this.$refs.pathTitle, { perspective: 400 });
+      tl.from(
+        lines,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          rotationX: 80,
+          transformOrigin: "20% 0 0",
+        },
+        "+=0"
       );
     },
     refresh() {
@@ -123,6 +158,11 @@ export default {
   line-height: 5.8vw;
   font-size: 6.25vw;
   width: 50vw;
+  opacity: 0;
+}
+
+.pathTitleActive {
+  opacity: 1;
 }
 
 .path-paragraph {

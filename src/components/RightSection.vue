@@ -5,7 +5,11 @@
     :key="testimonialImages._id"
   >
     <div class="testimonial-paragraph-container">
-      <p class="testimonial-paragraph-one" ref="paragraphOne">
+      <p
+        class="testimonial-paragraph-one"
+        ref="paragraphOne"
+        v-bind:class="{ paraOneActive: isParaOneActive }"
+      >
         "{{ testimonialImages.textOne }}"
       </p>
       <p class="testimonial-paragraph-two" ref="paragraphTwo">
@@ -96,7 +100,7 @@ export default {
     experienceText: "JESSICA'S",
     experience: "/JessicaExp",
     testImages: [],
-
+    isparaOneActive: false,
     secondary: [],
     count: 0,
   }),
@@ -104,9 +108,22 @@ export default {
     this.timeLineOne();
     this.timeLineTwo();
     this.timeLineThree();
+
+    ScrollTrigger.create({
+      trigger: ".section-two",
+      toggleActions: "play none none none",
+      onEnter: () => this.timeLineOne(),
+
+      start: () => "top " + window.innerHeight * 1,
+
+      onLeaveBack: (self) => self.disable(),
+    });
   },
   created() {
     this.fetchDataText();
+    setTimeout(function() {
+      ScrollTrigger.refresh();
+    }, 50);
   },
   methods: {
     fetchDataText() {
@@ -125,6 +142,7 @@ export default {
     },
 
     timeLineOne() {
+      this.isParaOneActive = true;
       let tl = gsap.timeline(),
         mySplitText = new SplitText(this.$refs.paragraphOne, { type: "lines" }),
         lines = mySplitText.lines;
@@ -360,7 +378,7 @@ export default {
   font-size: 2.6vw;
   width: 22vw;
   margin-top: 3.5vw;
-  opacity: 1;
+  opacity: 0;
 }
 
 .testimonial-paragraph-two {
@@ -475,5 +493,9 @@ export default {
 
   .personThreeActive {
   }
+}
+
+.paraOneActive {
+  opacity: 1;
 }
 </style>

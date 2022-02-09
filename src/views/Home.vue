@@ -1,43 +1,50 @@
 <template>
-  <div class="apps" v-for="landing in landingItems" :key="landing._id">
-    <div class="text-container">
-      <div class="title-container">
-        <h1 class="title">
-          <span id="spans-container"
-            ><span
-              class="natural"
-              @mouseover="hover = true"
-              @mouseleave="hover = false"
-              >{{ landing.titleOne }}</span
-            ></span
-          ><span id="spans-container"
-            ><span class="version">
-              {{ landing.titleTwo }}
-            </span></span
-          ><span id="spans-container" class="the-upgrade"
-            ><span class="upgrade">{{ landing.titleThree }} </span></span
-          >
-        </h1>
-      </div>
-      <div class="sub-title-container">
-        <h3 class="sub-title">
-          <span class="we-specialize">{{ landing.frontParagraphOne }}</span
-          ><span>{{ landing.frontParagraphTwo }}</span
-          ><span>{{ landing.frontParagraphThree }}</span>
-        </h3>
-      </div>
-      <FrontButtons @mouseover="hover = true" @mouseleave="hover = false" />
-    </div>
-    <FrontVideo />
+  <div class="apps">
+    <div
+      class="sanity-container"
+      v-for="landing in landingItems"
+      :key="landing._id"
+    >
+      <div class="text-container">
+        <div class="title-container">
+          <h1 class="title" ref="homeTitle">
+            {{ landing.titleOne }}
+            <br />
+            {{ landing.titleTwo }}
+            <br />
+            <span id="spans-container" class="the-upgrade">
+              {{ landing.titleThree }}
+            </span>
+          </h1>
+        </div>
 
-    <Testimonials />
-    <Path />
-    <Lila />
-    <WorkTogether />
+        <div class="sub-title-container">
+          <h3 class="sub-title">
+            <span class="we-specialize">{{ landing.frontParagraphOne }}</span
+            ><span>{{ landing.frontParagraphTwo }}</span
+            ><span>{{ landing.frontParagraphThree }}</span>
+          </h3>
+        </div>
+        <FrontButtons @mouseover="hover = true" @mouseleave="hover = false" />
+      </div>
+      <FrontVideo />
+
+      <Testimonials />
+      <Path />
+      <Lila />
+      <WorkTogether />
+    </div>
   </div>
 </template>
 
 <script>
+import { gsap } from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+import { SplitText } from "gsap/dist/SplitText";
+gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
 import sanity from "../client.js";
 
 const queryLanding = `*[_type == "landing"]{
@@ -73,9 +80,14 @@ export default {
 
     WorkTogether,
   },
+
   created() {
     this.fetchDataLanding();
   },
+  updated() {
+    this.timeLine();
+  },
+
   computed: {},
   methods: {
     fetchDataLanding() {
@@ -90,6 +102,24 @@ export default {
         (error) => {
           this.error = error;
         }
+      );
+    },
+    timeLine() {
+      let tl = gsap.timeline(),
+        mySplitText = new SplitText(this.$refs.homeTitle, { type: "lines" }),
+        lines = mySplitText.lines;
+      gsap.set(this.$refs.homeTitle, { perspective: 400 });
+      tl.from(
+        lines,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          rotationX: 80,
+          transformOrigin: "20% 0 0",
+        },
+        "+=0"
       );
     },
   },

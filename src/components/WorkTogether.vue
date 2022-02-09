@@ -1,24 +1,26 @@
 <template>
-  <div
-    class="work-together-container"
-    v-for="inTouchText in inTouchTexts"
-    :key="inTouchText._id"
-  >
-    <h1
-      class="work-together-title"
-      ref="togetherTitle"
-      v-bind:class="{ togetherTextActive: isTogetherTitleActive }"
+  <div class="work-together-container">
+    <div
+      class="sanity-container"
+      v-for="inTouchText in inTouchTexts"
+      :key="inTouchText._id"
     >
-      {{ inTouchText.inTouchTitle }}
-    </h1>
-    <p
-      class="work-together-paragraph"
-      ref="togetherParagraph"
-      v-bind:class="{ togetherTextActive: isTogetherParaActive }"
-    >
-      {{ inTouchText.inTouchParagraph }}
-    </p>
-    <button class="work-together-button">BOOK A CALL</button>
+      <h1
+        class="work-together-title"
+        ref="togetherTitle"
+        v-bind:class="{ togetherTextActive: isTogetherTitleActive }"
+      >
+        {{ inTouchText.inTouchTitle }}
+      </h1>
+      <p
+        class="work-together-paragraph"
+        ref="togetherParagraph"
+        v-bind:class="{ togetherTextActive: isTogetherParaActive }"
+      >
+        {{ inTouchText.inTouchParagraph }}
+      </p>
+      <button class="work-together-button">BOOK A CALL</button>
+    </div>
   </div>
 </template>
 
@@ -47,7 +49,7 @@ export default {
   }),
   mounted() {
     ScrollTrigger.create({
-      trigger: this.$refs.togetherTitle,
+      trigger: ".work-together-container",
       toggleActions: "play none none none",
       onEnter: () => this.timelineTogether(),
 
@@ -66,6 +68,9 @@ export default {
   },
   created() {
     this.fetchDataInTouch();
+    setTimeout(function() {
+      ScrollTrigger.refresh();
+    }, 50);
   },
   methods: {
     timelineTogether() {
@@ -115,7 +120,7 @@ export default {
   width: 100vw;
   height: 40vw;
   opacity: 1;
-  margin-top: -10vw;
+  margin-top: -15vw;
   padding-top: 2vw;
   background: #f7f5f2;
   padding-bottom: 5vw;
