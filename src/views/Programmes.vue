@@ -200,6 +200,8 @@ export default {
     transform: none;
     width: 100vw;
     height: 95vw;
+
+    overflow-x: hidden;
   }
 
   .our-programmes-title {

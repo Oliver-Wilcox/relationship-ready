@@ -190,7 +190,7 @@ export default {
   }
   .virtual-text-container {
     left: 5vw;
-    width: 95vw;
+    width: 90vw;
 
     height: 80vw;
   }
@@ -203,7 +203,7 @@ export default {
   }
   .virtual-paragraph {
     font-size: 3.8vw;
-    width: 95vw;
+    width: 90vw;
   }
   .virtual-picture-container {
     width: 38vw;

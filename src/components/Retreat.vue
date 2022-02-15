@@ -314,6 +314,7 @@ export default {
   .retreat-container {
     margin-top: 18vw;
     height: 200vw;
+    overflow-x: hidden;
   }
 
   .retreat-picture-container {
@@ -341,7 +342,7 @@ export default {
 
   .retreat-text-container {
     left: 5vw;
-    width: 95vw;
+    width: 90vw;
 
     height: 80vw;
   }
@@ -351,7 +352,7 @@ export default {
   }
   .retreat-paragraph {
     font-size: 3.8vw;
-    width: 95vw;
+    width: 90vw;
   }
   .checkbox {
     top: 55vw;
