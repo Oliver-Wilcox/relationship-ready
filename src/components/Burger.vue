@@ -26,7 +26,7 @@
             ref="experienceText"
             v-bind:class="{ experienceTextActive: isBurgerActive }"
           >
-            <router-link to="/JessicaExp">EXPERIENCES</router-link>
+            <router-link to="/experience-one">EXPERIENCES</router-link>
           </h1></span
         >
         <span class="programs-cont"

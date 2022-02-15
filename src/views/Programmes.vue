@@ -227,5 +227,9 @@ export default {
     height: 6vw;
     width: 6vw;
   }
+
+  .work-together-container {
+    margin-top: 70vw;
+  }
 }
 </style>

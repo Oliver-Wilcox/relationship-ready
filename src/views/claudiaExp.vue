@@ -208,4 +208,10 @@ h1 {
 .experience-2 {
   margin: 0;
 }
+
+@media (max-aspect-ratio: 200/200) {
+  .work-together-container {
+    margin-top: 20vw;
+  }
+}
 </style>

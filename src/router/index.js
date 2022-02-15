@@ -9,8 +9,8 @@ const routes = [
     component: Home
   },
   {
-    path: '/jessicaExp',
-    name: 'JessicaExp',
+    path: '/experience-one',
+    name: 'experienceOne',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -25,16 +25,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Programmes.vue')
   },
   {
-    path: '/maryExp',
-    name: 'maryExp',
+    path: '/experience-two',
+    name: 'experienceTwo',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/maryExp.vue')
   },
   {
-    path: '/claudiaExp',
-    name: 'claudiaExp',
+    path: '/experience-three',
+    name: 'experienceThree',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

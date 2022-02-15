@@ -31,7 +31,7 @@
       </div>
 
       <p
-        class="lila-experience-2"
+        class="experience-2"
         ref="expTwo"
         v-bind:class="{ expActive: isLilaExpTwoActive }"
       >
@@ -184,15 +184,29 @@ export default {
   top: 20vw;
   padding-top: 0;
   padding-bottom: 0;
-  margin-top: -20vw;
 }
 .experience-1 {
   opacity: 0;
 }
-.lila-experience-2 {
+.experience-2 {
   opacity: 0;
 }
 .expActive {
   opacity: 1;
+}
+@media (max-aspect-ratio: 200/200) {
+  .experience-1 {
+    position: relative;
+    width: 84vw;
+    text-align: left;
+    font-size: 3.5vw;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 45vw;
+    font-family: DM sans;
+  }
+  .work-together-container {
+    margin-top: 10vw;
+  }
 }
 </style>

@@ -98,7 +98,7 @@ export default {
     isPersonThreeActive: false,
     tl: "",
     experienceText: "JESSICA'S",
-    experience: "/JessicaExp",
+    experience: "/experience-one",
     testImages: [],
     isparaOneActive: false,
     secondary: [],
@@ -230,7 +230,7 @@ export default {
       this.isPersonTwoActive = true;
       this.isPersonThreeActive = false;
       this.timeLineTwo();
-      this.experience = "/maryExp";
+      this.experience = "/experience-two";
       this.experienceText = "MARY'S";
       var el = this.$refs.btnH3;
       el.style.animation = "none";
@@ -247,7 +247,7 @@ export default {
       this.isPersonOneActive = false;
       this.isPersonTwoActive = false;
       this.isPersonThreeActive = true;
-      this.experience = "/claudiaExp";
+      this.experience = "/experience-three";
       this.experienceText = "CLAUDIA'S";
       this.timeLineThree();
       var el = this.$refs.btnH3;
