@@ -341,7 +341,7 @@ export default {
 
   .retreat-text-container {
     left: 5vw;
-    width: 90vw;
+    width: 95vw;
 
     height: 80vw;
   }
@@ -351,10 +351,10 @@ export default {
   }
   .retreat-paragraph {
     font-size: 3.8vw;
-    width: 90vw;
+    width: 95vw;
   }
   .checkbox {
-    top: 65vw;
+    top: 55vw;
     left: 6vw;
     height: 25vw;
   }
