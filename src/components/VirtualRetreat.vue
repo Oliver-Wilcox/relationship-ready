@@ -185,11 +185,11 @@ export default {
 @media (max-aspect-ratio: 200/200) {
   .virtual-container {
     height: 120vw;
-    margin-top: 20vw;
+    margin-top: 5vw;
   }
   .virtual-text-container {
-    right: 6vw;
-    width: 60vw;
+    left: 5vw;
+    width: 90vw;
 
     height: 80vw;
   }
@@ -202,7 +202,7 @@ export default {
   }
   .virtual-paragraph {
     font-size: 3.8vw;
-    width: 60vw;
+    width: 90vw;
   }
   .virtual-picture-container {
     width: 38vw;
@@ -211,6 +211,7 @@ export default {
     z-index: -1;
     top: -2vw;
     opacity: 1;
+    display: none;
   }
 
   .virtual-blur {

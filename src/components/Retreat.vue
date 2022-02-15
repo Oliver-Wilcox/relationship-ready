@@ -322,7 +322,8 @@ export default {
     right: 0vw;
     z-index: -1;
     top: -2vw;
-    opacity: 1;
+    opacity: 0.5;
+    display: none;
   }
 
   .retreat-blur {
@@ -339,8 +340,8 @@ export default {
   }
 
   .retreat-text-container {
-    left: 6vw;
-    width: 100vw;
+    left: 5vw;
+    width: 90vw;
 
     height: 80vw;
   }
@@ -350,7 +351,7 @@ export default {
   }
   .retreat-paragraph {
     font-size: 3.8vw;
-    width: 80vw;
+    width: 90vw;
   }
   .checkbox {
     top: 65vw;
