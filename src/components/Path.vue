@@ -40,7 +40,7 @@
 <script>
 import sanity from "../client";
 
-const queryPath = `*[_type == "pathsTitle"]{
+const queryPath = `*[_type == "pathPage"]{
 _id,
 pathTitle,
 pathParagraphOne,

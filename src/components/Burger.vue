@@ -17,7 +17,7 @@
             ref="homeText"
             v-bind:class="{ homeTextActive: isBurgerActive }"
           >
-            HOME
+            <router-link to="/">HOME </router-link>
           </h1></span
         >
         <span class="home-cont"
@@ -26,7 +26,7 @@
             ref="experienceText"
             v-bind:class="{ experienceTextActive: isBurgerActive }"
           >
-            EXPERIENCES
+            <router-link to="/JessicaExp">EXPERIENCES</router-link>
           </h1></span
         >
         <span class="programs-cont"
@@ -35,7 +35,7 @@
             ref="programText"
             v-bind:class="{ programsTextActive: isBurgerActive }"
           >
-            PROGRAMS
+            <router-link to="/programmes"> PROGRAMMES</router-link>
           </h1></span
         >
         <span class="whoarewe-cont"
@@ -44,7 +44,7 @@
             ref="whoText"
             v-bind:class="{ whoTextActive: isBurgerActive }"
           >
-            WHO ARE WE
+            <router-link to="/aboutLila">WHO ARE WE</router-link>
           </h1></span
         >
 
@@ -54,7 +54,9 @@
             ref="contactText"
             v-bind:class="{ contactTextActive: isBurgerActive }"
           >
-            GET IN TOUCH
+            <a href="https://relationship-ready.youcanbook.me" class="touchref"
+              >BOOK A CALL</a
+            >
           </h1></span
         >
 
@@ -64,7 +66,7 @@
               class="socials"
               v-bind:class="{ socialsActive: isBurgerActive }"
             >
-              SOCIALS
+              <a href="socialref" class="socialref">SOCIALS</a>
             </h3></span
           >
           <span class="email-burger-cont"
@@ -73,7 +75,7 @@
               ref="emailText"
               v-bind:class="{ emailTextActive: isBurgerActive }"
             >
-              Email
+              <a href="https://twitter.com/RelReady" class="emilref">Twitter</a>
             </h1></span
           >
           <span class="insta-burger-cont"
@@ -82,7 +84,11 @@
               ref="instaText"
               v-bind:class="{ instagramTextActive: isBurgerActive }"
             >
-              Instagram
+              <a
+                href="https://www.instagram.com/relationshipready/"
+                class="instaref"
+                >Instagram</a
+              >
             </h1></span
           >
           <span class="facebook-burger-cont"
@@ -91,7 +97,9 @@
               ref="fbText"
               v-bind:class="{ facebookTextActive: isBurgerActive }"
             >
-              Facebook
+              <a href="https://www.facebook.com/RelReady/" class="faceref"
+                >Facebook</a
+              >
             </h1></span
           >
         </div>
@@ -733,5 +741,9 @@ export default {
 .facebookTextActive {
   transition-delay: 0.4s;
   opacity: 1;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
 </style>

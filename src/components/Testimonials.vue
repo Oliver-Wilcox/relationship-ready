@@ -1,78 +1,80 @@
 <template>
-  <div class="section-two">
-    <div
-      class="test-cont-2"
-      v-for="testimonialImages in testImages"
-      :key="testimonialImages._id"
-    >
-      <div class="pictures-container">
-        <div class="pictures-trigger"></div>
-        <div class="pictures">
-          <div
-            class="one-picture"
-            v-bind:class="{
-              pictureActive: isOnePictureActive,
-              pictureInactive: isOnePictureInactive,
-            }"
-          >
-            <img
-              class="pic-one-img"
-              v-if="testimonialImages.imageOne"
-              :src="imageUrlFor(testimonialImages.imageOne)"
-            />
+  <div class="section-two" id="sectionTwo">
+    <div class="section-items">
+      <div
+        class="test-cont-2"
+        v-for="testimonialImages in testImages"
+        :key="testimonialImages._id"
+      >
+        <div class="pictures-container" id="picCont">
+          <div class="pictures-trigger"></div>
+          <div class="pictures">
+            <div
+              class="one-picture"
+              v-bind:class="{
+                pictureActive: isOnePictureActive,
+                pictureInactive: isOnePictureInactive,
+              }"
+            >
+              <img
+                class="pic-one-img"
+                v-if="testimonialImages.imageOne"
+                :src="imageUrlFor(testimonialImages.imageOne)"
+              />
+            </div>
+            <div
+              class="two-picture"
+              v-bind:class="{
+                pictureActive: isTwoPictureActive,
+                twoPictureInactiveLeft: isTwoPictureInactiveLeft,
+                twoPictureInactiveRight: isTwoPictureInactiveRight,
+              }"
+            >
+              <img
+                class="pic-two-img"
+                v-if="testimonialImages.imageTwo"
+                :src="imageUrlFor(testimonialImages.imageTwo)"
+              />
+            </div>
+            <div
+              class="three-picture"
+              v-bind:class="{
+                pictureActive: isThreePictureActive,
+                threePictureInactive: isThreePictureInactive,
+              }"
+            >
+              <img
+                class="pic-three-img"
+                v-if="testimonialImages.imageThree"
+                :src="imageUrlFor(testimonialImages.imageThree)"
+              />
+            </div>
           </div>
-          <div
-            class="two-picture"
-            v-bind:class="{
-              pictureActive: isTwoPictureActive,
-              twoPictureInactiveLeft: isTwoPictureInactiveLeft,
-              twoPictureInactiveRight: isTwoPictureInactiveRight,
-            }"
-          >
-            <img
-              class="pic-two-img"
-              v-if="testimonialImages.imageTwo"
-              :src="imageUrlFor(testimonialImages.imageTwo)"
-            />
-          </div>
-          <div
-            class="three-picture"
-            v-bind:class="{
-              pictureActive: isThreePictureActive,
-              threePictureInactive: isThreePictureInactive,
-            }"
-          >
-            <img
-              class="pic-three-img"
-              v-if="testimonialImages.imageThree"
-              :src="imageUrlFor(testimonialImages.imageThree)"
-            />
-          </div>
+          <h3 class="success-stories">
+            <span
+              class="success"
+              v-on:click="isOnePictureInactive = !isOnePictureInactive"
+              >Success</span
+            ><span class="success-line"></span
+            ><span class="stories">Stories</span>
+          </h3>
         </div>
-        <h3 class="success-stories">
-          <span
-            class="success"
-            v-on:click="isOnePictureInactive = !isOnePictureInactive"
-            >Success</span
-          ><span class="success-line"></span
-          ><span class="stories">Stories</span>
-        </h3>
+        <RightSection
+          v-bind:isOnePictureActive="isOnePictureActive"
+          v-bind:isOnePictureInactive="isOnePictureInactive"
+          v-bind:isTwoPictureActive="isTwoPictureActive"
+          v-bind:isTwoPictureInactiveRight="isTwoPictureInactiveRight"
+          v-bind:isTwoPictureInactiveLeft="isTwoPictureInactiveLeft"
+          v-bind:isThreePictureActive="isThreePictureActive"
+          v-bind:isThreePictureInactive="isThreePictureInactive"
+          v-on:onePictureActiveChange="updatePictureOne($event)"
+          v-on:twoPictureActiveChange="updatePictureTwo($event)"
+          v-on:threePictureActiveChange="updatePictureThree($event)"
+          v-on:onePictureActiveChangeFalse="updatePictureOneFalse($event)"
+          v-on:twoPictureActiveChangeFalse="updatePictureTwoFalse($event)"
+          v-on:threePictureActiveChangeFalse="updatePictureThreeFalse($event)"
+        />
       </div>
-      <RightSection
-        v-bind:isOnePictureActive="isOnePictureActive"
-        v-bind:isOnePictureInactive="isOnePictureInactive"
-        v-bind:isTwoPictureActive="isTwoPictureActive"
-        v-bind:isTwoPictureInactiveRight="isTwoPictureInactiveRight"
-        v-bind:isTwoPictureInactiveLeft="isTwoPictureInactiveLeft"
-        v-bind:isThreePictureActive="isThreePictureActive"
-        v-bind:isThreePictureInactive="isThreePictureInactive"
-        v-on:onePictureActiveChange="updatePictureOne($event)"
-        v-on:twoPictureActiveChange="updatePictureTwo($event)"
-        v-on:threePictureActiveChange="updatePictureThree($event)"
-        v-on:onePictureActiveChangeFalse="updatePictureOneFalse($event)"
-        v-on:twoPictureActiveChangeFalse="updatePictureTwoFalse($event)"
-        v-on:threePictureActiveChangeFalse="updatePictureThreeFalse($event)"
-      />
     </div>
   </div>
 </template>
@@ -181,9 +183,14 @@ export default {
 .section-two {
   position: relative;
   margin-bottom: 15vw;
-  margin-top: 15vw;
+  margin-top: 10vw;
   height: 45vw;
   width: 100vw;
+}
+
+.section-items {
+  position: relative;
+  top: 5vw;
 }
 
 .pictures-container {

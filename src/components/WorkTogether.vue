@@ -19,7 +19,11 @@
       >
         {{ inTouchText.inTouchParagraph }}
       </p>
-      <button class="work-together-button">BOOK A CALL</button>
+      <button class="work-together-button">
+        <a href="https://relationship-ready.youcanbook.me" class="touchref"
+          >BOOK A CALL</a
+        >
+      </button>
     </div>
   </div>
 </template>
@@ -123,7 +127,7 @@ export default {
   margin-top: -15vw;
   padding-top: 2vw;
   background: #f7f5f2;
-  padding-bottom: 5vw;
+  padding-bottom: 7.5vw;
 }
 
 .work-together-title {
@@ -201,5 +205,8 @@ export default {
     font-size: 2.5vw;
     border: 0.5vw solid #d4c09e;
   }
+}
+a {
+  color: inherit;
 }
 </style>

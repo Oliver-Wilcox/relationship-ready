@@ -14,6 +14,9 @@ import lilaTitle from './lilaTitle'
 import getInTouchText from './getInTouchText'
 import programmesContent from './programmesContent'
 import aboutLilaContent from './aboutLilaContent'
+import personOneExperience from './personOneExperience'
+import personTwoExperience from './personTwoExperience'
+import personThreeExperience from './personThreeExperience'
 
 
 
@@ -35,6 +38,9 @@ export default createSchema({
     getInTouchText,
     programmesContent,
     aboutLilaContent,
+    personOneExperience,
+    personTwoExperience,
+    personThreeExperience,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,

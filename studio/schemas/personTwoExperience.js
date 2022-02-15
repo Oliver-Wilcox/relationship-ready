@@ -1,6 +1,6 @@
 export default {
-    name: 'personOne',
-    title: 'Person One Experience',
+    name: 'personTwo',
+    title: 'Person Two Experience',
     type: 'document',
     fields: [
       {
@@ -10,22 +10,22 @@ export default {
 
       },
       {
-      name: "personOneTitle",
+      name: "personTwoTitle",
       title: "Title",
       type: "string",
-      description: 'Title For Person One Section',
-      options: {    
+      description: 'Title For Person Two Section',
+      options: {
         maxLength: 100,
       },
     },
     {
-        name: 'personOneImage',
-        title: 'Person One Image',
+        name: 'personTwoImage',
+        title: 'Person Two Image',
         description: 'Image 1 out of 1',
         type: 'image',
       },
     {
-        name: "personOneParagraphTextOne",
+        name: "personTwoParagraphTextOne",
         title: "Paragraph 1",
         type: "string",
         description: 'Paragraph 1 Out Of 3',
@@ -35,7 +35,7 @@ export default {
       },
     
       {
-        name: "personOneParagraphTextTwo",
+        name: "personTwoParagraphTextTwo",
         title: "Paragraph 2",
         type: "string",
         description: 'Paragraph 2 Out Of 3',
@@ -44,8 +44,8 @@ export default {
         },
       },
       {
-        name: "personOneParagraphTextThree",
-        title: "Paragraph 3",
+        name: "personTwoParagraphTextThree",
+        title: "Paragraph 2",
         type: "string",
         description: 'Paragraph 3 Out Of 3',
         options: {
@@ -53,26 +53,25 @@ export default {
         },
       },
       {
-        name: "personTwoName",
-        title: "Person 2 Name",
+        name: "personOneName",
+        title: "Person 1 Name",
         type: "string",
-        description: 'Paragraph 3 Out Of 3',
+        description: 'Person One Name',
         options: {
           maxLength: 100,
         },
       },
       {
-        name: 'personTwoImage',
-        title: 'Person Two Image',
+        name: 'personOneImage',
+        title: 'Person One Image',
         description: 'Image 2 out of 3',
         type: 'image',
       },
-     
       {
         name: "personThreeName",
         title: "Person 3 Name",
         type: "string",
-        description: 'Paragraph 3 Out Of 3',
+        description: 'Person Three Name',
         options: {
           maxLength: 100,
         },
@@ -83,7 +82,6 @@ export default {
         description: 'Image 3 out of 3',
         type: 'image',
       },
-   
       
 ]
 }

@@ -1,8 +1,10 @@
 <template>
   <div class="btns">
-    <button class="discover">
-      <h3>DISCOVER HOW</h3>
-    </button>
+    <a href="#sectionTwo" class="discoverref">
+      <button class="discover" id="discover">
+        <h3>DISCOVER HOW</h3>
+      </button>
+    </a>
     <div class="arrow">
       <img class="arrow-svg" src="arrow.svg" />
       <span class="arrow-circle"></span>
@@ -18,7 +20,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .discover {
   position: relative;
   display: block;

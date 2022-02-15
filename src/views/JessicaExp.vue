@@ -1,77 +1,194 @@
 <template>
-  <div class="jessica-experience">
+  <div
+    class="jessica-experience"
+    v-for="personOne in personOneExperiences"
+    :key="personOne._id"
+  >
     <div class="jessica-picture-container">
-      <img src="../assets/jessicaSample.png" alt="" class="jessica-img" />
+      <img
+        v-if="personOne.personOneImage"
+        :src="imageUrlFor(personOne.personOneImage)"
+        alt=""
+        class="jessica-img"
+      />
     </div>
-    <h1 class="jessica-name">JESSICA</h1>
+    <h1 class="jessica-name" ref="title">{{ personOne.personOneTitle }}</h1>
 
-    <p class="experience-1">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-      viverra, est ac egestas tincidunt, est nunc lacinia magna, eu interdum
-      elit quam vel massa. Sed sed fermentum diam. Vivamus ut varius metus,
-      sagittis tempor tortor. Integer laoreet nibh et lobortis accumsan. Sed
-      euismod ligula condimentum vestibulum auctor. Vestibulum gravida nec
-      tellus et tempus. Nunc a ultricies nisl. Aliquam eu consequat arcu. Donec
-      euismod dui at massa tincidunt porttitor. Nullam sed ex non nunc finibus
-      pharetra a eu erat. Proin sem quam, auctor et tincidunt ut, varius id
-      metus. Proin scelerisque dolor sed malesuada eleifend. Nullam condimentum
-      quis nunc at aliquam.
+    <p class="experience-1" ref="expOne">
+      {{ personOne.personOneParagraphTextOne }}
     </p>
     <div class="video"></div>
 
-    <p class="experience-2">
-      Curabitur nulla sem, venenatis sed tortor vel, fermentum venenatis ipsum.
-      Mauris ac nisl et mauris condimentum malesuada eu sit amet ipsum.
-      Vestibulum fringilla pharetra laoreet. Aenean et tortor tincidunt, luctus
-      arcu vel, lacinia est. Pellentesque habitant morbi tristique senectus et
-      netus et malesuada fames ac turpis egestas. Nam sem lacus, posuere a enim
-      semper, ultrices cursus ante. Donec maximus, lacus vel fringilla
-      vestibulum, lectus ipsum fringilla ligula, nec tristique dolor lorem
-      accumsan orci. Nunc eget ornare neque, id dignissim lacus. Mauris lacus
-      nulla, consectetur aliquam blandit sit amet, viverra vitae eros. Donec
-      vulputate lacus eu purus tincidunt pharetra at eu dui.
+    <p class="experience-2" ref="expTwo">
+      {{ personOne.personOneParagraphTextTwo }}
       <br />
       <br />
-
-      Maecenas dapibus ex laoreet luctus eleifend. Donec maximus, nisi
-      ullamcorper venenatis malesuada, magna turpis congue mi, ut vulputate
-      magna eros hendrerit arcu. Donec dictum tristique risus vitae finibus.
-      Curabitur dignissim, ante ut ullamcorper pretium, purus neque porta nunc,
-      non varius lorem orci eu justo. Nulla a elit libero. Fusce dictum at diam
-      eget ullamcorper. Proin rutrum augue ligula, tristique lobortis ante
-      sodales at. Curabitur quis sollicitudin lacus. Vivamus id commodo enim,
-      pharetra fermentum sapien. Integer ultrices vitae metus nec mattis.
+      {{ personOne.personOneParagraphTextThree }}
     </p>
     <div class="other-experiences-container">
       <div class="experience-2-container">
-        <h1 class="exp-name">MARY</h1>
-        <button class="mary-btn">HEAR MARY'S STORY</button>
+        <h1 class="exp-name">{{ personOne.personTwoName }}</h1>
+        <button class="mary-btn">
+          HEAR {{ personOne.personTwoName }}'S STORY
+        </button>
         <div class="experience-2-img-container">
-          <img src="../assets/marySample.png" alt="" class="experience-2-img" />
+          <img
+            v-if="personOne.personTwoImage"
+            :src="imageUrlFor(personOne.personTwoImage)"
+            alt=""
+            class="experience-2-img"
+          />
         </div>
       </div>
       <div class="experience-3-container">
-        <h1 class="exp-name">CLAUDIA</h1>
-        <button class="claudia-btn">HEAR CLAUDIA'S STORY</button>
+        <h1 class="exp-name">{{ personOne.personThreeName }}</h1>
+        <button class="claudia-btn">
+          HEAR {{ personOne.personThreeName }}'S STORY
+        </button>
         <div class="experience-3-img-container">
           <img
-            src="../assets/claudiaSample.png"
+            v-if="personOne.personThreeImage"
+            :src="imageUrlFor(personOne.personThreeImage)"
             alt=""
             class="experience-3-img"
           />
         </div>
       </div>
     </div>
-      <WorkTogether />
+    <WorkTogether />
   </div>
 </template>
 
 <script>
+import sanity from "../client";
+import imageUrlBuilder from "@sanity/image-url";
+import { gsap } from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+import { SplitText } from "gsap/dist/SplitText";
+gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
+const imageBuilder = imageUrlBuilder(sanity);
+const queryPersonOne = `*[_type == "personOne"]{
+  _id,
+  personOneTitle,
+  personOneImage,
+  personOneParagraphTextOne,
+  personOneParagraphTextTwo,
+  personOneParagraphTextThree,
+  personTwoName,
+  personTwoImage,
+  personThreeName,
+  personThreeImage
+
+
+}[0...100]`;
+
 import WorkTogether from "../components/WorkTogether.vue";
 export default {
   components: {
-   
     WorkTogether,
+  },
+  data: () => ({
+    personOneExperiences: [],
+    isExpOneActive: false,
+    isExpTwoActive: false,
+  }),
+  updated() {
+    this.timeLine();
+    ScrollTrigger.create({
+      trigger: ".experience-1",
+      toggleActions: "play none none none",
+      onEnter: () => this.timeLineExpOne(),
+
+      onLeaveBack: (self) => self.disable(),
+    });
+    ScrollTrigger.create({
+      trigger: ".experience-2",
+      toggleActions: "play none none none",
+      onEnter: () => this.timeLineExpTwo(),
+
+      onLeaveBack: (self) => self.disable(),
+    });
+  },
+  methods: {
+    fetchDataPersonOne() {
+      this.error = this.personOne = null;
+      this.loading = true;
+      sanity.fetch(queryPersonOne).then(
+        (personOneExperiences) => {
+          this.loading = false;
+          this.personOneExperiences = personOneExperiences;
+        },
+        (error) => {
+          this.error = error;
+        }
+      );
+    },
+    imageUrlFor(source) {
+      return imageBuilder.image(source);
+    },
+    timeLine() {
+      let tl = gsap.timeline(),
+        mySplitText = new SplitText(this.$refs.title, { type: "lines" }),
+        lines = mySplitText.lines;
+      gsap.set(this.$refs.title, { perspective: 400 });
+      tl.from(
+        lines,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          rotationX: 80,
+          transformOrigin: "20% 0 0",
+        },
+        "+=0"
+      );
+    },
+    timeLineExpOne() {
+      this.$refs.expOne.style.opacity = 1;
+      let tl = gsap.timeline(),
+        mySplitText = new SplitText(this.$refs.expOne, { type: "lines" }),
+        lines = mySplitText.lines;
+      gsap.set(this.$refs.expOne, { perspective: 400 });
+      tl.from(
+        lines,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.05,
+          rotationX: 80,
+          transformOrigin: "20% 0 0",
+        },
+        "+=0"
+      );
+    },
+    timeLineExpTwo() {
+      this.isExpTwoActive = true;
+      let tl = gsap.timeline(),
+        mySplitText = new SplitText(this.$refs.expTwo, { type: "lines" }),
+        lines = mySplitText.lines;
+      gsap.set(this.$refs.expTwo, { perspective: 400 });
+      tl.from(
+        lines,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.05,
+          rotationX: 80,
+          transformOrigin: "20% 0 0",
+        },
+        "+=0"
+      );
+    },
+  },
+
+  created() {
+    this.fetchDataPersonOne();
   },
 };
 </script>
@@ -80,7 +197,16 @@ export default {
 .work-together-container {
   position: relative;
   background: none;
-top: 20vw;
+  top: 20vw;
+}
 
+h1 {
+  text-transform: uppercase;
+}
+.video {
+  display: none;
+}
+.experience-2 {
+  margin: 0;
 }
 </style>
