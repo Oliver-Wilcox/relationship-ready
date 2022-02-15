@@ -30,9 +30,11 @@
         <br />
         {{ pathsTitle.pathParagraphTwo }}
       </p>
-      <button class="path-btn" v-on:click="prog">
-        LEARN ABOUT OUR PROGRAMS
-      </button>
+      <router-link to="/programmes">
+        <button class="path-btn">
+          LEARN ABOUT OUR PROGRAMS
+        </button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -133,10 +135,7 @@ export default {
       ScrollTrigger.refresh();
     },
 
-    prog() {
-      window.scrollTo(0, 0);
-      window.setTimeout(this.$router.push("/programmes"), 2000);
-    },
+    prog() {},
   },
 };
 </script>
