@@ -146,6 +146,7 @@ export default {
   margin-top: -4vw;
   width: 100vw;
   height: 50vw;
+  padding-bottom: 10vw;
   overflow: hidden;
 }
 

@@ -25,8 +25,7 @@ export default {
   color: #544a3f;
   position: absolute;
   font-weight: normal;
-  height: 100vh;
-  width: 100vw;
+
   touch-action: manipulation;
 }
 

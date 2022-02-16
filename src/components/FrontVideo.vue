@@ -20,8 +20,8 @@ export default {
   right: 9.5vw;
   width: 40vw;
   height: 90vh;
-  top: 0;
-  bottom: 0;
+  top: 5vh;
+
   margin: auto;
   background: #e2d8c5;
   overflow: hidden;
@@ -82,7 +82,7 @@ export default {
   }
 }
 
-@media (max-aspect-ratio: 200/200) and (max-width: 800px) {
+@media (max-aspect-ratio: 200/200) {
   .video-container {
     top: 90px;
     margin: 0;

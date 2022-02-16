@@ -125,7 +125,7 @@ export default {
   height: 40vw;
   opacity: 1;
   margin-top: -15vw;
-  padding-top: 2vw;
+  padding-top: 6vw;
   background: #f7f5f2;
   padding-bottom: 7.5vw;
 }

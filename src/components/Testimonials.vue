@@ -183,7 +183,7 @@ export default {
 .section-two {
   position: relative;
   margin-bottom: 15vw;
-  margin-top: 10vw;
+  margin-top: 8vw;
   height: 45vw;
   width: 100vw;
 }

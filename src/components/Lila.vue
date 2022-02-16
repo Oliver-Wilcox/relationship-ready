@@ -149,7 +149,7 @@ export default {
 .lila-container {
   position: relative;
   width: 100vw;
-  height: 75vw;
+  height: 65vw;
   background: #f7f5f2;
 }
 
@@ -157,7 +157,7 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  margin-top: 15vw;
+  margin-top: 10vw;
   margin-left: 7vw;
   width: 45vw;
   overflow: hidden;
@@ -173,7 +173,7 @@ export default {
   height: 46vw;
 
   right: 0;
-  top: 15vw;
+  top: 10vw;
 }
 
 .lila-title {
