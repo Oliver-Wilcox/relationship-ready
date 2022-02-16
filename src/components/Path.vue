@@ -152,7 +152,7 @@ export default {
 
 .path-text {
   position: relative;
-  top: 5vw;
+  top: 7vw;
   text-align: left;
   margin-left: 11vw;
   line-height: 5.8vw;
@@ -167,7 +167,7 @@ export default {
 
 .path-paragraph {
   position: relative;
-  margin-top: 6.5vw;
+  margin-top: 8.5vw;
   text-align: left;
   margin-left: 11vw;
   transition: 1s;
