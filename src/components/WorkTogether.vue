@@ -180,7 +180,8 @@ export default {
 @media (max-aspect-ratio: 200/200) {
   .work-together-container {
     margin-top: -10vw;
-    height: 140vw;
+    height: 110vw;
+    padding-top: 20vw;
   }
   .work-together-title {
     font-size: 11.25vw;

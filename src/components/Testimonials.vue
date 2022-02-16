@@ -317,7 +317,7 @@ img {
 
 @media (max-aspect-ratio: 200/200) {
   .section-two {
-    margin-top: 100vw;
+    margin-top: 15vw;
     height: 150vw;
     width: 100vw;
   }

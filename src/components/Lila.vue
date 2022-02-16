@@ -226,7 +226,7 @@ export default {
   .lila-container {
     top: 0;
     margin-top: -8vw;
-    height: 310vw;
+    height: 270vw;
   }
   .lila-text-container {
     position: relative;

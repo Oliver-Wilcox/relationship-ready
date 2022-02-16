@@ -235,7 +235,7 @@ export default {
   margin-left: 4vw;
 }
 
-@media (max-aspect-ratio: 200/200) and (max-width: 500px) {
+@media (max-aspect-ratio: 200/200) and (max-width: 800px) {
   .text-container {
     height: 90vw;
     top: 120px;

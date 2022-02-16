@@ -20,6 +20,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.btns {
+  position: relative;
+
+  height: 70vw;
+}
 .discover {
   position: relative;
   display: block;
@@ -80,7 +85,21 @@ export default {
   .discover h3 {
     font-size: 2.6vw;
   }
+}
 
+@media screen and (max-aspect-ratio: 200/200) and (min-width: 400px) {
+  .discover {
+    margin-top: calc(90px + 10vw);
+  }
+}
+
+@media screen and (max-aspect-ratio: 200/200) and (min-width: 600px) {
+  .discover {
+    margin-top: calc(90px + 20vw);
+  }
+}
+
+@media screen and (max-aspect-ratio: 200/200) and (max-width: 800px) {
   .arrow {
     margin-top: 20vw;
   }
