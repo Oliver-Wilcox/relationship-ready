@@ -221,7 +221,7 @@ export default {
 
 @media (max-aspect-ratio: 200/200) {
   .path-container {
-    height: 136vw;
+    height: 140vw;
   }
 
   .path-text {
@@ -251,7 +251,7 @@ export default {
   .path-picture-container {
     width: 72vw;
     height: 90vw;
-    top: 42%;
+    top: 41%;
     opacity: 0.2;
     right: -50vw;
   }
