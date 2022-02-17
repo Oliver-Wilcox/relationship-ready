@@ -89,5 +89,16 @@ export default {
     width: 300vw;
     left: -120vw;
   }
+
+  @keyframes scale-up-hor-right {
+    0% {
+      width: 0vw;
+      opacity: 0;
+    }
+    100% {
+      width: 75vw;
+      opacity: 1;
+    }
+  }
 }
 </style>
