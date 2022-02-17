@@ -181,7 +181,7 @@ export default {
 .work-together-container {
   position: relative;
   background: none;
-  top: 20vw;
+  top: 25vw;
   padding-top: 0;
   padding-bottom: 0;
 }

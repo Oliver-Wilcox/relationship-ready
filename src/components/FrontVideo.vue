@@ -38,8 +38,7 @@ export default {
   overflow: hidden;
 
   opacity: 0.4;
-  animation: scale-up-hor-right-mask 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
-    both;
+
   animation-delay: 0.5s;
   right: 0;
   top: 0;
@@ -69,16 +68,12 @@ export default {
 
 @keyframes scale-up-hor-right {
   0% {
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transform-origin: 100% 100%;
-    transform-origin: 100% 100%;
+    width: 0vw;
+    opacity: 0;
   }
   100% {
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-    -webkit-transform-origin: 100% 100%;
-    transform-origin: 100% 100%;
+    width: 40vw;
+    opacity: 1;
   }
 }
 

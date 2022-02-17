@@ -284,9 +284,10 @@ export default {
   position: relative;
   top: 0%;
   transform: translateY(-50%);
-  font-family: DM sans;
-  font-weight: normal;
-  font-size: 1vw;
+
+  font-size: 0.9vw;
+  color: #544a3f;
+
   animation: btn-anim 0.6s forwards;
   opacity: 0;
 }
@@ -297,7 +298,7 @@ export default {
     opacity: 0;
   }
   100% {
-    top: 0%;
+    top: 7%;
     opacity: 1;
   }
 }
@@ -308,7 +309,7 @@ export default {
   left: 50%;
   width: 15vw;
   height: 2vw;
-
+  font-weight: 700;
   overflow: hidden;
   transform: translate(-50%, -50%);
 }

@@ -197,7 +197,7 @@ export default {
 .work-together-container {
   position: relative;
   background: none;
-  top: 20vw;
+  top: 12.5vw;
 }
 
 h1 {

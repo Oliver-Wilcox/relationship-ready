@@ -29,9 +29,11 @@
     <div class="other-experiences-container">
       <div class="experience-2-container">
         <h1 class="exp-name">{{ personThree.personOneName }}</h1>
-        <button class="mary-btn">
-          HEAR {{ personThree.personOneName }}'S STORY
-        </button>
+        <router-link to="/experience-one">
+          <button class="mary-btn">
+            HEAR {{ personThree.personOneName }}'S STORY
+          </button>
+        </router-link>
         <div class="experience-2-img-container">
           <img
             v-if="personThree.personOneImage"
@@ -43,9 +45,11 @@
       </div>
       <div class="experience-3-container">
         <h1 class="exp-name">{{ personThree.personTwoName }}</h1>
-        <button class="claudia-btn">
-          HEAR {{ personThree.personTwoName }}'S STORY
-        </button>
+        <router-link to="/experience-two">
+          <button class="claudia-btn">
+            HEAR {{ personThree.personTwoName }}'S STORY
+          </button>
+        </router-link>
         <div class="experience-3-img-container">
           <img
             v-if="personThree.personTwoImage"
@@ -195,7 +199,7 @@ export default {
 .work-together-container {
   position: relative;
   background: none;
-  top: 20vw;
+  top: 12.5vw;
 }
 
 h1 {
