@@ -16,6 +16,7 @@
             class="home"
             ref="homeText"
             v-bind:class="{ homeTextActive: isBurgerActive }"
+            v-on:click="burgerOff()"
           >
             <router-link to="/">HOME </router-link>
           </h1></span
@@ -25,8 +26,9 @@
             class="experience"
             ref="experienceText"
             v-bind:class="{ experienceTextActive: isBurgerActive }"
+            v-on:click="burgerOff()"
           >
-            <router-link to="/experience-one">EXPERIENCES</router-link>
+            <router-link to="/experience-one">CLIENT EXPERIENCES</router-link>
           </h1></span
         >
         <span class="programs-cont"
@@ -34,6 +36,7 @@
             class="programs"
             ref="programText"
             v-bind:class="{ programsTextActive: isBurgerActive }"
+            v-on:click="burgerOff()"
           >
             <router-link to="/programmes"> PROGRAMMES</router-link>
           </h1></span
@@ -43,6 +46,7 @@
             class="whoarewe"
             ref="whoText"
             v-bind:class="{ whoTextActive: isBurgerActive }"
+            v-on:click="burgerOff()"
           >
             <router-link to="/aboutLila">WHO ARE WE</router-link>
           </h1></span
@@ -53,10 +57,9 @@
             class="getintouch"
             ref="contactText"
             v-bind:class="{ contactTextActive: isBurgerActive }"
+            v-on:click="burgerOff()"
           >
-            <a href="https://relationship-ready.youcanbook.me" class="touchref"
-              >BOOK A CALL</a
-            >
+            <router-link to="/work-together">GET IN TOUCH</router-link>
           </h1></span
         >
 
@@ -65,6 +68,7 @@
             ><h3
               class="socials"
               v-bind:class="{ socialsActive: isBurgerActive }"
+              v-on:click="burgerOff()"
             >
               <a href="socialref" class="socialref">SOCIALS</a>
             </h3></span
@@ -74,8 +78,9 @@
               class="email"
               ref="emailText"
               v-bind:class="{ emailTextActive: isBurgerActive }"
+              v-on:click="burgerOff()"
             >
-              <a href="https://twitter.com/RelReady" class="emilref">Twitter</a>
+              <a href="https://twitter.com/RelReady" class="emilref">Medium</a>
             </h1></span
           >
           <span class="insta-burger-cont"
@@ -83,6 +88,7 @@
               class="instagram"
               ref="instaText"
               v-bind:class="{ instagramTextActive: isBurgerActive }"
+              v-on:click="burgerOff()"
             >
               <a
                 href="https://www.instagram.com/relationshipready/"
@@ -96,6 +102,7 @@
               class="facebook"
               ref="fbText"
               v-bind:class="{ facebookTextActive: isBurgerActive }"
+              v-on:click="burgerOff()"
             >
               <a href="https://www.facebook.com/RelReady/" class="faceref"
                 >Facebook</a
@@ -166,6 +173,10 @@ export default {
       } else {
         document.body.style.overflow = "visible";
       }
+    },
+    burgerOff() {
+      document.body.style.overflow = "visible";
+      this.isBurgerActive = false;
     },
     timelineHome() {
       const tl = gsap.timeline();

@@ -5,7 +5,7 @@
     :key="programmesPage._id"
   >
     <div class="retreat-text-container">
-      <h1 class="retreat-title" ref="retreatTitle"></h1>
+      <h1 class="retreat-title" ref="retreatTitle">VIRTUAL RETREAT</h1>
       <p
         class="retreat-paragraph"
         v-bind:class="{ retreatParagraphActive: isRetreatParagraphActive }"
@@ -25,9 +25,10 @@
       v-bind:class="{ checkboxActive: isCheckOneActive }"
       ref="checkOne"
     >
-      <div class="checkbox-img-container">
-        <img src="../assets/checkbox.svg" class="checkbox-img" />
-      </div>
+      <div
+        class="checkbox-img-container"
+        v-bind:class="{ checkActive: isCheckOneActive }"
+      ></div>
       <p class="checkbox-paragraph 1">
         {{ programmesPage.programmesCheckboxOne }}
       </p>
@@ -37,9 +38,10 @@
       v-bind:class="{ checkboxActive: isCheckTwoActive }"
       ref="checkTwo"
     >
-      <div class="checkbox-img-container">
-        <img src="../assets/checkbox.svg" class="checkbox-img" />
-      </div>
+      <div
+        class="checkbox-img-container"
+        v-bind:class="{ checkActive: isCheckTwoActive }"
+      ></div>
       <p class="checkbox-paragraph 2">
         {{ programmesPage.programmesCheckboxTwo }}
       </p>
@@ -49,9 +51,10 @@
       v-bind:class="{ checkboxActive: isCheckThreeActive }"
       ref="checkThree"
     >
-      <div class="checkbox-img-container">
-        <img src="../assets/checkbox.svg" class="checkbox-img" />
-      </div>
+      <div
+        class="checkbox-img-container"
+        v-bind:class="{ checkActive: isCheckThreeActive }"
+      ></div>
       <p class="checkbox-paragraph 3">
         {{ programmesPage.programmesCheckboxThree }}
       </p>
@@ -61,9 +64,10 @@
       v-bind:class="{ checkboxActive: isCheckFourActive }"
       ref="checkFour"
     >
-      <div class="checkbox-img-container">
-        <img src="../assets/checkbox.svg" class="checkbox-img" />
-      </div>
+      <div
+        class="checkbox-img-container"
+        v-bind:class="{ checkActive: isCheckFourActive }"
+      ></div>
       <p class="checkbox-paragraph 4">
         {{ programmesPage.programmesCheckboxFour }}
       </p>
@@ -103,6 +107,9 @@ export default {
   }),
   created() {
     this.fetchDataRetreatText();
+    setTimeout(function() {
+      ScrollTrigger.refresh();
+    }, 50);
   },
   updated() {
     ScrollTrigger.create({
@@ -124,7 +131,7 @@ export default {
 
       onLeaveBack: (self) => self.disable(),
     });
-
+    /*
     ScrollTrigger.create({
       trigger: ".retreat-title",
       toggleActions: "play none none none",
@@ -134,6 +141,8 @@ export default {
 
       onLeaveBack: (self) => self.disable(),
     });
+
+    */
 
     ScrollTrigger.create({
       trigger: this.$refs.checkOne,
@@ -172,7 +181,6 @@ export default {
       onLeaveBack: (self) => self.disable(),
     });
   },
-  mounted() {},
 
   methods: {
     fetchDataRetreatText() {
@@ -236,7 +244,6 @@ export default {
   position: relative;
   text-align: left;
   font-size: 6.25vw;
-  opacity: 1;
 }
 
 .retreat-paragraph {
@@ -282,7 +289,7 @@ export default {
   height: 8vw;
   width: 35vw;
   opacity: 0;
-  top: 18vw;
+  top: 40vw;
   transition: 1s;
 }
 
@@ -292,8 +299,16 @@ export default {
 
 .checkbox-img-container {
   position: relative;
+  transition: 1s;
+  border-radius: 50vw;
+  background: #d4c09e;
+  width: 0.5vw;
+  height: 0.5vw;
+}
 
-  width: 3.2vw;
+.checkActive {
+  transform: scale(3);
+  display: block;
 }
 
 .checkbox-img {
@@ -313,7 +328,7 @@ export default {
 @media (max-aspect-ratio: 200/200) {
   .retreat-container {
     margin-top: 18vw;
-    height: 200vw;
+    height: 210vw;
     overflow-x: hidden;
   }
 
@@ -355,13 +370,9 @@ export default {
     width: 90vw;
   }
   .checkbox {
-    top: 55vw;
+    top: 105vw;
     left: 6vw;
     height: 25vw;
-  }
-  .checkbox-img-container {
-    position: relative;
-    width: 8vw;
   }
 
   .checkbox-paragraph {
@@ -372,6 +383,11 @@ export default {
 
   .retreatPicActive {
     right: 6vw;
+  }
+
+  .checkbox-img-container {
+    width: 1.5vw;
+    height: 1.5vw;
   }
 }
 </style>

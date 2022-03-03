@@ -15,7 +15,16 @@
     <p class="experience-1" ref="expOne">
       {{ personTwo.personTwoParagraphTextOne }}
     </p>
-    <div class="video"></div>
+    <div class="video">
+      <iframe
+        width="100%"
+        height="100%"
+        src="https://player.vimeo.com/video/18516782"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen=""
+      ></iframe>
+    </div>
 
     <p class="experience-2" ref="expTwo">
       {{ personTwo.personTwoParagraphTextTwo }}
@@ -205,10 +214,6 @@ h1 {
 }
 
 .video {
-  display: none;
-}
-.experience-2 {
-  margin: 0;
 }
 
 @media (max-aspect-ratio: 200/200) {

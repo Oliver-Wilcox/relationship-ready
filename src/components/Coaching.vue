@@ -1,20 +1,23 @@
 <template>
-  <div class="coaching-container"  v-for="coachingContent in coachingPageText"
-      :key="coachingContent._id">
+  <div
+    class="coaching-container"
+    v-for="coachingContent in coachingPageText"
+    :key="coachingContent._id"
+  >
     <div class="coaching-text-container">
       <h1
         class="coaching-title"
         ref="coachTitle"
         v-bind:class="{ coachTextActive: isCoachTitleActive }"
       >
-        {{coachingContent.coachingTitleOne}}
+        BESPOKE {{ coachingContent.coachingTitleOne }}
       </h1>
       <p
         class="coaching-paragraph"
         ref="coachParagraph"
         v-bind:class="{ coachTextActive: isCoachParaActive }"
       >
-        {{coachingContent.coachingParagraph}}
+        {{ coachingContent.coachingParagraph }}
       </p>
     </div>
     <div
@@ -48,10 +51,10 @@ export default {
     isCoachPicActive: false,
     isCoachTitleActive: false,
     isCoachParaActive: false,
-    coachingPageText: []
+    coachingPageText: [],
   }),
   created() {
-  this.fetchDataCoachingText();
+    this.fetchDataCoachingText();
   },
   mounted() {
     ScrollTrigger.create({
@@ -133,7 +136,7 @@ export default {
   width: 100vw;
   height: 60vw;
   opacity: 1;
-  display: none;
+  overflow-x: hidden;
 }
 
 .coaching-text-container {
@@ -173,8 +176,8 @@ export default {
   right: 0vw;
   width: 28vw;
   height: 42vw;
-
-  top: -2vw;
+  background: none;
+  top: 2vw;
   overflow: hidden;
   opacity: 0;
   transition: 1s;
@@ -188,12 +191,12 @@ export default {
 
 .coaching-picture {
   position: relative;
-  width: 100%;
+  width: 110%;
 }
 
 @media (max-aspect-ratio: 200/200) {
   .coaching-container {
-    margin-top: 18vw;
+    margin-top: 68vw;
     height: 120vw;
   }
 
@@ -204,6 +207,7 @@ export default {
     z-index: -1;
     top: -2vw;
     opacity: 1;
+    display: none;
   }
 
   .coachPicActive {
@@ -219,10 +223,11 @@ export default {
     left: -15vw;
     bottom: -0vw;
 
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(190, 32, 32, 0.6);
     filter: blur(8vw);
     transform: rotate(4deg);
     z-index: +5;
+    display: none;
   }
   .coaching-text-container {
     left: 6vw;
@@ -236,7 +241,7 @@ export default {
   }
   .coaching-paragraph {
     font-size: 3.8vw;
-    width: 80vw;
+    width: 90vw;
   }
 }
 </style>

@@ -1,16 +1,16 @@
 <template>
-  <div class="text-container">
-    <h1 class="title" ref="homeTitle">404</h1>
-    <p class="subtitle" ref="subtitle">
+  <div class="error-text-container">
+    <h1 class="error-title" ref="homeTitle">404</h1>
+    <p class="error-subtitle" ref="subtitle">
       WE COULDNT SEEM TO FIND THE PAGE YOU ARE LOOKING FOR.
     </p>
     <router-link to="/#">
-      <button class="go-back" id="go-back">
+      <button class="error-go-back" id="go-back">
         <h3>GO BACK TO HOME</h3>
       </button>
     </router-link>
   </div>
-  <div class="picture-container">
+  <div class="error-picture-container">
     <img src="../assets/pathPic.png" alt="" class="picture" />
   </div>
 </template>
@@ -53,22 +53,24 @@ export default {
 </script>
 
 <style scoped>
-.text-container {
+.error-text-container {
   position: absolute;
-  right: 0;
-  top: 0;
-  width: 60vw;
+  left: 0vw;
+  top: 0%;
+  width: 137.5vw;
   height: 100vh;
+
+  z-index: +10;
   animation: textanim 1s forwards;
 }
-.title {
+.error-title {
   font-size: 13vw;
   position: relative;
   margin: auto;
   margin-top: 45vh;
   transform: translateY(-50%);
 }
-.subtitle {
+.error-subtitle {
   margin: auto;
   margin-top: -8.5vw;
   font-size: 1.3vw;
@@ -77,7 +79,7 @@ export default {
   width: 20vw;
 }
 
-.go-back {
+.error-go-back {
   position: relative;
   display: block;
   width: 14vw;
@@ -91,13 +93,13 @@ export default {
   cursor: pointer;
 }
 
-.go-back h3 {
+.error-go-back h3 {
   font-size: 0.9vw;
   color: #544a3f;
   padding: 0.45vw;
 }
 
-.picture-container {
+.error-picture-container {
   position: absolute;
   left: 0;
   top: 0;
@@ -120,71 +122,63 @@ export default {
   }
 }
 
-@keyframes textanim {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @media (max-aspect-ratio: 270/200) {
-  .picture-container {
+  .error-picture-container {
     display: none;
   }
 
-  .title {
+  .error-title {
     font-size: 25vw;
     margin-top: calc(45vh);
   }
 
-  .text-container {
-    width: 100%;
-    left: 0;
+  .error-text-container {
+    width: 0vw;
+    left: 50%;
     animation: none;
   }
-  .subtitle {
+  .error-subtitle {
     font-size: 2.2vw;
     width: 45vw;
     margin-top: -16vw;
   }
 
-  .go-back {
+  .error-go-back {
     width: 20vw;
     margin-top: 5vw;
     height: 7.5vw;
     border: 0.3vw solid #d4c09e;
   }
-  .go-back h3 {
+  .error-go-back h3 {
     font-size: 1.2vw;
   }
 }
 @media (max-aspect-ratio: 200/200) and (max-width: 500px) {
-  .picture-container {
+  .error-picture-container {
     display: none;
   }
-  .text-container {
+  .error-text-container {
     width: 100%;
     left: 0;
     animation: none;
   }
-  .title {
+  .error-title {
     font-size: 38vw;
     margin-top: calc(38vh);
   }
-  .subtitle {
+  .error-subtitle {
     font-size: 3.2vw;
     width: 70vw;
     margin-top: -24vw;
   }
 
-  .go-back {
+  .error-go-back {
     width: 42vw;
     margin-top: 10vw;
     height: 15.5vw;
     border: 0.5vw solid #d4c09e;
   }
-  .go-back h3 {
+  .error-go-back h3 {
     font-size: 2.6vw;
   }
 }

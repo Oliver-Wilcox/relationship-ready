@@ -14,6 +14,7 @@
         <img src="../assets/virtual.png" alt="" class="virtual-img" />
       </div>
       <div class="virtual-text-container">
+        <div class="virtual-title">COACHING PROGRAM</div>
         <p
           class="virtual-paragraph"
           ref="virtualParagraph"
@@ -125,9 +126,9 @@ export default {
 .virtual-container {
   position: relative;
   left: 0;
-  margin-top: 6vw;
+  margin-top: 20vw;
   width: 100vw;
-  height: 48vw;
+  height: 60vw;
   opacity: 1;
   padding-bottom: 10vw;
 }
@@ -164,13 +165,13 @@ export default {
   position: relative;
   text-align: left;
   font-size: 6.25vw;
-  opacity: 0;
+  opacity: 1;
 }
 
 .virtual-paragraph {
   position: relative;
   text-align: left;
-  margin-top: -3vw;
+  margin-top: 2vw;
   transition: 1s;
   opacity: 0;
   font-family: DM sans;
@@ -186,7 +187,7 @@ export default {
   .virtual-container {
     height: 120vw;
 
-    margin-top: -10vw;
+    margin-top: 30vw;
   }
   .virtual-text-container {
     left: 5vw;
@@ -198,12 +199,14 @@ export default {
   .virtual-title {
     font-size: 11.25vw;
     width: 30vw;
-    left: 15vw;
-    text-align: right;
+    left: 0vw;
+
+    text-align: left;
   }
   .virtual-paragraph {
     font-size: 3.8vw;
     width: 90vw;
+    margin-top: 5vw;
   }
   .virtual-picture-container {
     width: 38vw;

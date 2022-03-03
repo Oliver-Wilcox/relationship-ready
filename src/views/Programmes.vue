@@ -231,7 +231,7 @@ export default {
   }
 
   .work-together-container {
-    margin-top: 20vw;
+    margin-top: -30vw;
   }
 }
 </style>

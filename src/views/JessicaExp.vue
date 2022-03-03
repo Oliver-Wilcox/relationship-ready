@@ -17,7 +17,16 @@
     <p class="experience-1" ref="expOne">
       {{ personOne.personOneParagraphTextOne }}
     </p>
-    <div class="video"></div>
+    <div class="video">
+      <iframe
+        width="100%"
+        height="100%"
+        frameborder="0"
+        src="https://player.vimeo.com/video/18516782"
+        allow="autoplay; encrypted-media"
+        allowfullscreen=""
+      ></iframe>
+    </div>
 
     <p class="experience-2" ref="expTwo">
       {{ personOne.personOneParagraphTextTwo }}
@@ -28,9 +37,11 @@
     <div class="other-experiences-container">
       <div class="experience-2-container">
         <h1 class="exp-name">{{ personOne.personTwoName }}</h1>
-        <button class="mary-btn">
-          HEAR {{ personOne.personTwoName }}'S STORY
-        </button>
+        <router-link to="/experience-two">
+          <button class="mary-btn">
+            HEAR {{ personOne.personTwoName }}'S STORY
+          </button>
+        </router-link>
         <div class="experience-2-img-container">
           <img
             v-if="personOne.personTwoImage"
@@ -42,9 +53,11 @@
       </div>
       <div class="experience-3-container">
         <h1 class="exp-name">{{ personOne.personThreeName }}</h1>
-        <button class="claudia-btn">
-          HEAR {{ personOne.personThreeName }}'S STORY
-        </button>
+        <router-link to="/experience-three">
+          <button class="claudia-btn">
+            HEAR {{ personOne.personThreeName }}'S STORY
+          </button>
+        </router-link>
         <div class="experience-3-img-container">
           <img
             v-if="personOne.personThreeImage"
@@ -204,10 +217,6 @@ h1 {
   text-transform: uppercase;
 }
 .video {
-  display: none;
-}
-.experience-2 {
-  margin: 0;
 }
 
 @media (max-aspect-ratio: 200/200) {

@@ -32,6 +32,7 @@
       <Testimonials />
       <Path />
       <Lila />
+      <WhatWeDoSection />
       <WorkTogether />
     </div>
   </div>
@@ -62,6 +63,7 @@ import FrontVideo from "../components/FrontVideo.vue";
 import Testimonials from "../components/Testimonials.vue";
 import Path from "../components/Path.vue";
 import Lila from "../components/Lila.vue";
+import WhatWeDoSection from "../components/whatWeDoSection.vue";
 import WorkTogether from "../components/WorkTogether.vue";
 
 export default {
@@ -77,7 +79,7 @@ export default {
     Path,
     Testimonials,
     Lila,
-
+    WhatWeDoSection,
     WorkTogether,
   },
 
