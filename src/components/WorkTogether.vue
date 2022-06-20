@@ -338,7 +338,7 @@ button {
 	width: 18vw;
 	height: 4.5vw;
 	display: block;
-
+	color: #544a3f;
 	font-family: DM sans;
 	top: -2vw;
 	text-transform: uppercase;
@@ -523,6 +523,7 @@ input[type="checkbox"]:checked::before {
 		border: 0.5vw solid #d4c09e;
 		font-size: 2.6vw;
 		margin-top: 3vw;
+		color: #544a3f;
 	}
 
 	input {

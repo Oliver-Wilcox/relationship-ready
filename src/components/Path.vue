@@ -218,8 +218,13 @@ export default {
 	font-weight: bold;
 	cursor: pointer;
 	font-family: DM sans;
-	text-decoration: underline;
+	color: rgb(255, 255, 255);
 	text-decoration-color: #d4c09e;
+	text-decoration: underline;
+}
+
+p {
+	text-decoration: none;
 }
 
 .path-picture-container {

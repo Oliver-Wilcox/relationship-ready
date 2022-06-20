@@ -29,7 +29,15 @@ export default {
 	touch-action: manipulation;
 }
 
+button {
+	text-decoration: none;
+}
+
 a {
+	text-decoration: none;
+}
+
+router-link {
 	text-decoration: none;
 }
 
