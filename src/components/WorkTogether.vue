@@ -528,7 +528,7 @@ input[type="checkbox"]:checked::before {
 
 	input {
 		border-bottom: 0.5vw solid #d4c09e;
-
+		border-radius: 0;
 		height: 10vw;
 		font-size: 4.4vw;
 	}
