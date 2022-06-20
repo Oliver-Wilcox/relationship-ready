@@ -43,7 +43,7 @@ export default {
 	cursor: pointer;
 	height: 4vw;
 	width: 3vw;
-	left: 50%;
+	left: 40%;
 	transform: translateX(-50%);
 	margin-top: -2.8vw;
 }

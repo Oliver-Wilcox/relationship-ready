@@ -139,14 +139,14 @@
 					<span class="insta-burger-cont"
 						><h1
 							class="instagram"
-							ref="instaText"
+							ref="bluText"
 							v-bind:class="{
 								instagramTextActive: isBurgerActive
 							}"
 							v-on:click="burgerOff()"
 						>
 							<a
-								href="https://www.instagram.com/relationshipready/"
+								href="https://publish.blubrry.com/ "
 								class="instaref"
 								>Blubrry</a
 							>
@@ -155,14 +155,14 @@
 					<span class="insta-burger-cont"
 						><h1
 							class="facebook"
-							ref="fbText"
+							ref="appleText"
 							v-bind:class="{
 								facebookTextActive: isBurgerActive
 							}"
 							v-on:click="burgerOff()"
 						>
 							<a
-								href="https://www.instagram.com/relationshipready/"
+								href="https://podcasts.apple.com/no/podcast/becoming-relationship-ready/id1565011414"
 								class="instaref"
 								>Apple</a
 							>
@@ -171,7 +171,7 @@
 					<span class="insta-burger-cont"
 						><h1
 							class="youtube"
-							ref="youtubeText"
+							ref="googleText"
 							v-bind:class="{
 								youtubeTextActive: isBurgerActive
 							}"
@@ -241,7 +241,10 @@ export default {
 			setTimeout(this.timelineEmail, 300);
 			setTimeout(this.timelineInsta, 350);
 			setTimeout(this.timelineFb, 400);
-			setTimeout(this.timelineYoutube, 400);
+			setTimeout(this.timelineYoutube, 450);
+			setTimeout(this.timelineBlu, 350);
+			setTimeout(this.timelineApple, 400);
+			setTimeout(this.timelineGoogle, 450);
 
 			if (this.isBurgerActive == true) {
 				document.body.style.overflow = "hidden";
@@ -428,6 +431,69 @@ export default {
 			});
 			const lines = mySplitText.lines;
 			gsap.set(this.$refs.youtubeText, { perspective: 400 });
+			tl.from(
+				lines,
+				{
+					y: 50,
+					delay: 0.2,
+					opacity: 0,
+					duration: 0.8,
+					stagger: 0.1,
+					rotationX: 80,
+					transformOrigin: "20% 0 0"
+				},
+				"+=0"
+			);
+		},
+		timelineBlu() {
+			const tl = gsap.timeline();
+			const mySplitText = new SplitText(this.$refs.bluText, {
+				type: "lines"
+			});
+			const lines = mySplitText.lines;
+			gsap.set(this.$refs.bluText, { perspective: 400 });
+			tl.from(
+				lines,
+				{
+					y: 50,
+					delay: 0.2,
+					opacity: 0,
+					duration: 0.8,
+					stagger: 0.1,
+					rotationX: 80,
+					transformOrigin: "20% 0 0"
+				},
+				"+=0"
+			);
+		},
+		timelineApple() {
+			const tl = gsap.timeline();
+			const mySplitText = new SplitText(this.$refs.appleText, {
+				type: "lines"
+			});
+			const lines = mySplitText.lines;
+			gsap.set(this.$refs.appleText, { perspective: 400 });
+			tl.from(
+				lines,
+				{
+					y: 50,
+					delay: 0.2,
+					opacity: 0,
+					duration: 0.8,
+					stagger: 0.1,
+					rotationX: 80,
+					transformOrigin: "20% 0 0"
+				},
+				"+=0"
+			);
+		},
+		timelineGoogle() {
+			const tl = gsap.timeline();
+			const mySplitText = new SplitText(this.$refs.googleText, {
+				type: "lines"
+			});
+			const lines = mySplitText.lines;
+			gsap.set(this.$refs.googleText, { perspective: 400 });
 			tl.from(
 				lines,
 				{
@@ -666,7 +732,8 @@ export default {
 }
 
 .podcasts-cont {
-	margin-top: 3.5vw;
+	margin-top: -12.5vw;
+	margin-left: 10vw;
 }
 .podcasts-cont h1 {
 	font-size: 1.8vw;
@@ -675,8 +742,8 @@ export default {
 
 @media (max-aspect-ratio: 200/200) {
 	.menu-items {
-		margin-top: calc(9.5vh);
-		height: 126vw;
+		margin-top: calc(13.5vh);
+		height: 156vw;
 		background: none;
 		top: 0px;
 		transform: none;

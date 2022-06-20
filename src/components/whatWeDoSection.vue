@@ -102,7 +102,7 @@ export default {
 <style scoped>
 .what-we-do-section-container {
 	padding-top: 8vw;
-	padding-bottom: 10vw;
+	padding-bottom: 15vw;
 	width: 100vw;
 	background: #f7f5f2;
 
@@ -125,6 +125,7 @@ export default {
 	margin-top: -25vw;
 	left: calc(100% - 46.5vw);
 	background: rgb(255, 255, 255);
+	overflow: hidden;
 }
 .what-we-do-pic {
 	width: 100%;
