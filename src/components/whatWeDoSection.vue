@@ -190,5 +190,8 @@ export default {
 		font-size: 2.5vw;
 		border: 0.5vw solid #d4c09e;
 	}
+	.what-we-do-section-container {
+		padding-bottom: 25vw;
+	}
 }
 </style>
