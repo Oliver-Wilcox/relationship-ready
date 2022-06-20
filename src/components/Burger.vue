@@ -104,7 +104,7 @@
 							v-on:click="burgerOff()"
 						>
 							<a
-								href="https://www.instagram.com/relationshipready/"
+								href="https://www.facebook.com/RelReady/"
 								class="instaref"
 								>Facebook</a
 							>
@@ -120,7 +120,7 @@
 							}"
 						>
 							<a
-								href="https://www.instagram.com/relationshipready/"
+								href="https://www.youtube.com/channel/UCGKoOxjzyT_QVJIcm6Ciy3A"
 								class="instaref"
 								>Youtube</a
 							>
@@ -177,7 +177,7 @@
 							}"
 						>
 							<a
-								href="https://www.instagram.com/relationshipready/"
+								href="https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5ibHVicnJ5LmNvbS9mZWVkcy9iZWNvbWluZ3JlbGF0aW9uc2hpcHJlYWR5LnhtbA"
 								class="instaref"
 								>Google</a
 							>
