@@ -73,7 +73,7 @@ export default {};
 }
 
 .intro {
-	font-family: Bon Vivant Serif;
+	font-family: BonVivant;
 	text-transform: uppercase;
 	font-size: 2.7vw;
 	font-weight: normal;
