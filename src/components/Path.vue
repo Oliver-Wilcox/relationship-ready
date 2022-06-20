@@ -203,6 +203,7 @@ export default {
 	background: none;
 	border: 0.2vw solid #d4c09e;
 	cursor: pointer;
+	color: black;
 }
 
 .path-in-touch-text {

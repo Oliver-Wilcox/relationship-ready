@@ -208,7 +208,7 @@ export default {
 	display: block;
 	top: 0;
 	font-family: DM sans;
-
+	color: black;
 	font-size: 1vw;
 	background: none;
 	border: 0.2vw solid #d4c09e;
