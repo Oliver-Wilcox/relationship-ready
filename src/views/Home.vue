@@ -1,41 +1,43 @@
 <template>
-  <div class="apps">
-    <div
-      class="sanity-container"
-      v-for="landing in landingItems"
-      :key="landing._id"
-    >
-      <div class="text-container">
-        <div class="title-container">
-          <h1 class="title" ref="homeTitle">
-            {{ landing.titleOne }}
-            <br />
-            {{ landing.titleTwo }}
-            <br />
-            <span id="spans-container" class="the-upgrade">
-              {{ landing.titleThree }}
-            </span>
-          </h1>
-        </div>
+	<div class="apps">
+		<div
+			class="sanity-container"
+			v-for="landing in landingItems"
+			:key="landing._id"
+		>
+			<div class="text-container">
+				<div class="title-container">
+					<h1 class="title" ref="homeTitle">
+						{{ landing.titleOne }}
+						<br />
+						{{ landing.titleTwo }}
+						<br />
+						<span id="spans-container" class="the-upgrade">
+							{{ landing.titleThree }}
+						</span>
+					</h1>
+				</div>
 
-        <div class="sub-title-container">
-          <h3 class="sub-title">
-            <span class="we-specialize">{{ landing.frontParagraphOne }}</span
-            ><span>{{ landing.frontParagraphTwo }}</span
-            ><span>{{ landing.frontParagraphThree }}</span>
-          </h3>
-        </div>
-        <FrontButtons @mouseover="hover = true" @mouseleave="hover = false" />
-      </div>
-      <FrontVideo />
+				<div class="sub-title-container">
+					<h3 class="sub-title">
+						{{ landing.frontParagraphOne }}
+					</h3>
+				</div>
+				<FrontButtons
+					@mouseover="hover = true"
+					@mouseleave="hover = false"
+				/>
+			</div>
+			<FrontVideo />
 
-      <Testimonials />
-      <Path />
-      <Lila />
-      <WhatWeDoSection />
-      <WorkTogether />
-    </div>
-  </div>
+			<Testimonials />
+			<Path />
+			<Lila />
+			<LilaLetter />
+			<WhatWeDoSection />
+			<WorkTogether />
+		</div>
+	</div>
 </template>
 
 <script>
@@ -65,200 +67,181 @@ import Path from "../components/Path.vue";
 import Lila from "../components/Lila.vue";
 import WhatWeDoSection from "../components/whatWeDoSection.vue";
 import WorkTogether from "../components/WorkTogether.vue";
+import LilaLetter from "../components/LilaLetter.vue";
 
 export default {
-  name: "Home",
-  data: () => ({
-    hover: false,
-    loading: true,
-    landingItems: [],
-  }),
-  components: {
-    FrontButtons,
-    FrontVideo,
-    Path,
-    Testimonials,
-    Lila,
-    WhatWeDoSection,
-    WorkTogether,
-  },
+	name: "Home",
+	data: () => ({
+		hover: false,
+		loading: true,
+		landingItems: []
+	}),
+	components: {
+		FrontButtons,
+		FrontVideo,
+		Path,
+		Testimonials,
+		Lila,
+		LilaLetter,
+		WhatWeDoSection,
+		WorkTogether
+	},
 
-  created() {
-    this.fetchDataLanding();
-  },
-  updated() {
-    this.timeLine();
-  },
+	created() {
+		this.fetchDataLanding();
+	},
+	updated() {
+		this.timeLine();
+	},
 
-  computed: {},
-  methods: {
-    fetchDataLanding() {
-      this.error = this.landing = null;
-      this.loading = true;
-      sanity.fetch(queryLanding).then(
-        (landingItems) => {
-          this.loading = false;
-          this.landingItems = landingItems;
-          this.blocks = landingItems.body;
-        },
-        (error) => {
-          this.error = error;
-        }
-      );
-    },
-    timeLine() {
-      let tl = gsap.timeline(),
-        mySplitText = new SplitText(this.$refs.homeTitle, { type: "lines" }),
-        lines = mySplitText.lines;
-      gsap.set(this.$refs.homeTitle, { perspective: 400 });
-      tl.from(
-        lines,
-        {
-          y: 40,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          rotationX: 80,
-          transformOrigin: "20% 0 0",
-        },
-        "+=0"
-      );
-    },
-  },
+	computed: {},
+	methods: {
+		fetchDataLanding() {
+			this.error = this.landing = null;
+			this.loading = true;
+			sanity.fetch(queryLanding).then(
+				(landingItems) => {
+					this.loading = false;
+					this.landingItems = landingItems;
+					this.blocks = landingItems.body;
+				},
+				(error) => {
+					this.error = error;
+				}
+			);
+		},
+		timeLine() {
+			let tl = gsap.timeline(),
+				mySplitText = new SplitText(this.$refs.homeTitle, {
+					type: "lines"
+				}),
+				lines = mySplitText.lines;
+			gsap.set(this.$refs.homeTitle, { perspective: 400 });
+			tl.from(
+				lines,
+				{
+					y: 40,
+					opacity: 0,
+					duration: 0.6,
+					stagger: 0.1,
+					rotationX: 80,
+					transformOrigin: "20% 0 0"
+				},
+				"+=0"
+			);
+		}
+	}
 };
 </script>
 
 <style scoped>
 @font-face {
-  font-family: "BonVivant";
-  src: url("/fonts/BonVivantSerif/font.woff2") format("woff");
-  font-weight: bold;
+	font-family: "BonVivant";
+	src: url("/fonts/BonVivantSerif/font.woff2") format("woff");
+	font-weight: bold;
 }
 
 @font-face {
-  font-family: "BonVivant";
-  src: url("/fonts/BonVivantSerif/font.woff") format("woff");
-  font-weight: normal;
+	font-family: "BonVivant";
+	src: url("/fonts/BonVivantSerif/font.woff") format("woff");
+	font-weight: normal;
 }
 
 .text-container {
-  position: relative;
-  left: 10vw;
-  display: table-cell;
-
-  height: 100vh;
-  margin: 0;
-
-  vertical-align: middle;
+	position: relative;
+	left: 8vw;
+	display: table-cell;
+	width: 92vw;
+	height: 100vh;
+	margin: 0;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 .title-container {
-  position: relative;
-  text-align: left;
-  z-index: +1;
-  margin-top: 6vw;
+	position: relative;
+	text-align: left;
+	z-index: +1;
+	margin-top: 8vw;
 }
 
 .natural {
-  position: relative;
-  display: block;
-  margin-top: 10px;
-  top: 10vw;
-  animation: titleanim 0.7s forwards ease-in-out;
+	position: relative;
+	display: block;
+	margin-top: 10px;
+	top: 10vw;
+	animation: titleanim 0.7s forwards ease-in-out;
 }
 
 .version {
-  position: relative;
-  display: block;
-  margin-top: 10px;
-  top: 10vw;
-  animation: titleanim 0.7s forwards ease-in-out;
-  animation-delay: 0.15s;
+	position: relative;
+	display: block;
+	margin-top: 10px;
+	top: 10vw;
+	animation: titleanim 0.7s forwards ease-in-out;
+	animation-delay: 0.15s;
 }
 
 .upgrade {
-  position: relative;
-  display: block;
-  margin-top: 10px;
-  top: 10vw;
-  animation: titleanim 0.7s forwards ease-in-out;
-  animation-delay: 0.3s;
+	position: relative;
+	display: block;
+	margin-top: 10px;
+	top: 10vw;
+	animation: titleanim 0.7s forwards ease-in-out;
+	animation-delay: 0.3s;
 }
 
 .title {
-  line-height: 6vw;
-  font-size: 6.25vw;
+	line-height: 5.5vw;
+	font-size: 5.7vw;
 }
 
 #spans-container {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  margin-top: -0.5vw;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	margin-top: -0.5vw;
 }
 
 @keyframes titleanim {
-  0% {
-    top: 10vw;
-  }
-  100% {
-    top: 0.2vw;
-  }
+	0% {
+		top: 10vw;
+	}
+	100% {
+		top: 0.2vw;
+	}
 }
 
 .the-upgrade {
-  margin-left: 18vw;
+	margin-left: 12vw;
 }
 
 .btns {
 }
 
 .sub-title-container {
-  position: relative;
+	position: relative;
 
-  margin-top: -2vw;
-  top: 0;
-  font-size: 1.3vw;
-  text-align: left;
-  z-index: +1;
-  font-family: "DM Sans", sans-serif;
+	margin-top: -3vw;
+	top: 0;
+	font-size: 1.3vw;
+	text-align: left;
+	z-index: +1;
+	width: 40vw;
+	font-family: "DM Sans", sans-serif;
 }
 
 .sub-title {
-  font-weight: normal;
+	font-weight: normal;
 }
 
 .sub-title span {
-  position: relative;
-  display: block;
+	position: relative;
+	display: block;
 }
 
 .we-specialize {
-  margin-left: 4vw;
-}
-
-@media (max-aspect-ratio: 200/200) {
-  .text-container {
-    height: 90vw;
-    top: 120px;
-  }
-
-  .title {
-    line-height: 10vw;
-    font-size: 11vw;
-  }
-
-  .sub-title-container {
-    text-align: center;
-    font-size: 3.2vw;
-    width: 80vw;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .sub-title span {
-    display: inline;
-  }
+	margin-left: 4vw;
 }
 
 /*
@@ -316,31 +299,48 @@ export default {
   }
 }
 */
-
 @media (max-aspect-ratio: 200/200) {
-  .title-container {
-    text-align: center;
-  }
-  .the-upgrade {
-    margin-left: 0;
-  }
-  .sub-title-container {
-    text-align: center;
-  }
-  .we-specialize {
-    margin-left: 0;
-  }
-  .text-container {
-    left: 0%;
-    width: 100vw;
+	.text-container {
+		height: 90vw;
+		top: 90px;
+	}
 
-    margin: 0;
-  }
-  .sub-title-container {
-    margin-top: -5vw;
-  }
-}
+	.title {
+		line-height: 10vw;
+		font-size: 11vw;
+	}
 
-.work-together-container {
+	.sub-title-container {
+		font-size: 3.2vw;
+		width: 80vw;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.sub-title span {
+		display: inline;
+	}
+
+	.title-container {
+		text-align: center;
+	}
+	.the-upgrade {
+		margin-left: 0;
+	}
+	.sub-title-container {
+		text-align: center;
+	}
+	.we-specialize {
+		margin-left: 0;
+	}
+	.text-container {
+		left: 0%;
+		width: 100vw;
+
+		margin: 0;
+	}
+	.sub-title-container {
+		margin-top: -5vw;
+	}
 }
 </style>

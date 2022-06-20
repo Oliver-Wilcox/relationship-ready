@@ -1,49 +1,50 @@
 {
-  "name": "relationship-ready",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "@sanity/client": "^2.19.0",
-    "@sanity/image-url": "^1.0.1",
-    "core-js": "^3.6.5",
-    "gsap": "npm:@gsap/shockingly@^3.8.0",
-    "sanity-blocks-vue-component": "^1.0.1",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.11"
-  },
-  "devDependencies": {
-    "@sanity/cli": "^2.26.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-router": "^4.5.13",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+	"name": "relationship-ready",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint"
+	},
+	"dependencies": {
+		"@sanity/client": "^2.19.0",
+		"@sanity/image-url": "^1.0.1",
+		"core-js": "^3.6.5",
+		"gsap": "npm:@gsap/shockingly@^3.8.0",
+		"sanity-blocks-vue-component": "^1.0.1",
+		"vue": "^3.0.0",
+		"vue-router": "^4.0.11"
+	},
+	"devDependencies": {
+		"@sanity/cli": "^2.26.0",
+		"@vue/cli-plugin-babel": "~4.5.0",
+		"@vue/cli-plugin-eslint": "~4.5.0",
+		"@vue/cli-plugin-router": "^4.5.13",
+		"@vue/cli-service": "~4.5.0",
+		"@vue/compiler-sfc": "^3.0.0",
+		"babel-eslint": "^10.1.0",
+		"eslint": "^6.7.2",
+		"eslint-plugin-vue": "^7.0.0",
+		"prettier": "^2.7.1"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true
+		},
+		"extends": [
+			"plugin:vue/vue3-essential",
+			"eslint:recommended"
+		],
+		"parserOptions": {
+			"parser": "babel-eslint"
+		},
+		"rules": {}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 8"
+	]
 }

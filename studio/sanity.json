@@ -1,29 +1,27 @@
 {
-  "root": true,
-  "project": {
-    "name": "relationship-ready"
-  },
-  "api": {
-    "projectId": "ixqp7l39",
-    "dataset": "production"
-  },
-  "plugins": [
-    "@sanity/base",
-    "@sanity/default-layout",
-    "@sanity/default-login",
-    "@sanity/desk-tool"
-  ],
-  "env": {
-    "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
-    }
-  },
-  "parts": [
-    { 
-      "name": "part:@sanity/base/schema",
-      "path": "./schemas/schema"
-    }
-  ]
+	"root": true,
+	"project": {
+		"name": "relationship-ready"
+	},
+	"api": {
+		"projectId": "ixqp7l39",
+		"dataset": "production"
+	},
+	"plugins": [
+		"@sanity/base",
+		"@sanity/default-layout",
+		"@sanity/default-login",
+		"@sanity/desk-tool"
+	],
+	"env": {
+		"development": {
+			"plugins": ["@sanity/vision"]
+		}
+	},
+	"parts": [
+		{
+			"name": "part:@sanity/base/schema",
+			"path": "./schemas/schema"
+		}
+	]
 }
