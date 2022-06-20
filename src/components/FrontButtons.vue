@@ -86,6 +86,7 @@ export default {
 
 	.arrow {
 		margin-top: 20vw;
+		left: 50%;
 	}
 
 	.arrow-svg {
