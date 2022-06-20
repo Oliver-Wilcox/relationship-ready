@@ -64,6 +64,7 @@ export default {};
 	font-family: Bon Vivant Serif;
 	text-transform: uppercase;
 	font-size: 2.7vw;
+	font-weight: normal;
 }
 
 @media (max-aspect-ratio: 200/200) {

@@ -21,7 +21,7 @@
 			v-bind:class="{ retreatActive: isRetreatActive }"
 		>
 			<div class="retreat-blur"></div>
-			<img src="../assets/retreat.png" class="retreat-picture" />
+			<img src="../assets/retreat.jpg" class="retreat-picture" />
 		</div>
 
 		<div

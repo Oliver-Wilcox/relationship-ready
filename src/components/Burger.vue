@@ -12,14 +12,6 @@
 				class="menu-items"
 				v-bind:class="{ menuTextActive: isBurgerActive }"
 			>
-				<span class="menu-cont"
-					><h3
-						class="menu"
-						v-bind:class="{ menuActive: isBurgerActive }"
-					>
-						MENU
-					</h3></span
-				>
 				<span class="home-cont"
 					><h1
 						class="home"
@@ -83,7 +75,7 @@
 							v-bind:class="{ socialsActive: isBurgerActive }"
 							v-on:click="burgerOff()"
 						>
-							<a href="socialref" class="socialref">MORE</a>
+							<a href="socialref" class="socialref">SOCIALS</a>
 						</h3></span
 					>
 					<span class="insta-burger-cont"
@@ -104,10 +96,10 @@
 					>
 					<span class="insta-burger-cont"
 						><h1
-							class="instagram"
-							ref="instaText"
+							class="facebook"
+							ref="fbText"
 							v-bind:class="{
-								instagramTextActive: isBurgerActive
+								facebookTextActive: isBurgerActive
 							}"
 							v-on:click="burgerOff()"
 						>
@@ -118,19 +110,31 @@
 							>
 						</h1></span
 					>
-					<span class="email-burger-cont"
+
+					<span class="insta-burger-cont"
 						><h1
-							class="email"
-							ref="emailText"
-							v-bind:class="{ emailTextActive: isBurgerActive }"
-							v-on:click="burgerOff()"
+							class="youtube"
+							ref="youtubeText"
+							v-bind:class="{
+								youtubeTextActive: isBurgerActive
+							}"
 						>
 							<a
-								href="https://twitter.com/RelReady"
-								class="emilref"
-								>Podcasts</a
+								href="https://www.instagram.com/relationshipready/"
+								class="instaref"
+								>Youtube</a
 							>
 						</h1></span
+					>
+				</div>
+				<div class="podcasts-cont">
+					<span class="podcast-cont"
+						><h3
+							class="podcasts"
+							v-bind:class="{ socialsActive: isBurgerActive }"
+						>
+							PODCASTS
+						</h3></span
 					>
 					<span class="insta-burger-cont"
 						><h1
@@ -144,7 +148,38 @@
 							<a
 								href="https://www.instagram.com/relationshipready/"
 								class="instaref"
-								>Youtube</a
+								>Blubrry</a
+							>
+						</h1></span
+					>
+					<span class="insta-burger-cont"
+						><h1
+							class="facebook"
+							ref="fbText"
+							v-bind:class="{
+								facebookTextActive: isBurgerActive
+							}"
+							v-on:click="burgerOff()"
+						>
+							<a
+								href="https://www.instagram.com/relationshipready/"
+								class="instaref"
+								>Apple</a
+							>
+						</h1></span
+					>
+					<span class="insta-burger-cont"
+						><h1
+							class="youtube"
+							ref="youtubeText"
+							v-bind:class="{
+								youtubeTextActive: isBurgerActive
+							}"
+						>
+							<a
+								href="https://www.instagram.com/relationshipready/"
+								class="instaref"
+								>Google</a
 							>
 						</h1></span
 					>
@@ -206,6 +241,7 @@ export default {
 			setTimeout(this.timelineEmail, 300);
 			setTimeout(this.timelineInsta, 350);
 			setTimeout(this.timelineFb, 400);
+			setTimeout(this.timelineYoutube, 400);
 
 			if (this.isBurgerActive == true) {
 				document.body.style.overflow = "hidden";
@@ -384,6 +420,27 @@ export default {
 				},
 				"+=0"
 			);
+		},
+		timelineYoutube() {
+			const tl = gsap.timeline();
+			const mySplitText = new SplitText(this.$refs.youtubeText, {
+				type: "lines"
+			});
+			const lines = mySplitText.lines;
+			gsap.set(this.$refs.youtubeText, { perspective: 400 });
+			tl.from(
+				lines,
+				{
+					y: 50,
+					delay: 0.2,
+					opacity: 0,
+					duration: 0.8,
+					stagger: 0.1,
+					rotationX: 80,
+					transformOrigin: "20% 0 0"
+				},
+				"+=0"
+			);
 		}
 	}
 };
@@ -424,6 +481,9 @@ export default {
 .instagram {
 	opacity: 0;
 }
+.youtube {
+	opacity: 0;
+}
 .facebook {
 	opacity: 0;
 }
@@ -458,14 +518,34 @@ export default {
 	height: 2vw;
 	background: none;
 	display: block;
-	margin-bottom: 2vw;
+	margin-bottom: 1.2vw;
 	margin-left: 5vw;
 
-	margin-top: 0vw;
+	margin-top: -1.55vw;
 	overflow: hidden;
 }
 
 .socials {
+	position: relative;
+	opacity: 0.7;
+	position: relative;
+	top: 2vw;
+	font-size: 1.4vw;
+	text-align: left;
+}
+.podcast-cont {
+	width: 12vw;
+	height: 2vw;
+	background: none;
+	display: block;
+	margin-bottom: 1.2vw;
+	margin-left: 5vw;
+
+	margin-top: -1.55vw;
+	overflow: hidden;
+}
+
+.podcasts {
 	position: relative;
 	opacity: 0.7;
 	position: relative;
@@ -581,7 +661,15 @@ export default {
 	margin-top: 3.5vw;
 }
 .socials-cont h1 {
-	font-size: 1.9vw;
+	font-size: 1.8vw;
+	margin-top: 1vw;
+}
+
+.podcasts-cont {
+	margin-top: 3.5vw;
+}
+.podcasts-cont h1 {
+	font-size: 1.8vw;
 	margin-top: 1vw;
 }
 
@@ -637,7 +725,30 @@ export default {
 		height: 5vw;
 		background: none;
 		display: block;
-		margin-bottom: 6.5vw;
+		margin-bottom: 5.5vw;
+		margin-left: 10vw;
+		top: 10vw;
+		overflow: hidden;
+		margin-top: -2vw;
+	}
+
+	.podcasts {
+		opacity: 0.7;
+
+		margin-bottom: 0vw;
+		font-size: 4.4vw;
+		margin-left: 0vw;
+		transform: none;
+		text-align: left;
+		top: 10vw;
+	}
+
+	.podcast-cont {
+		width: 26vw;
+		height: 5vw;
+
+		display: block;
+		margin-bottom: 5.5vw;
 		margin-left: 10vw;
 		top: 10vw;
 		overflow: hidden;
@@ -696,10 +807,19 @@ export default {
 		left: calc(50% - 11px);
 	}
 	.socials-cont {
-		margin-top: 10vw;
+		margin-top: 8vw;
 	}
 	.socials-cont h1 {
 		font-size: 6.5vw;
+		margin-top: -0.5vw;
+	}
+	.podcasts-cont {
+		margin-top: -42.5vw;
+		margin-left: 35vw;
+	}
+	.podcasts-cont h1 {
+		font-size: 6.5vw;
+		margin-top: -0.5vw;
 	}
 }
 
@@ -792,6 +912,10 @@ export default {
 }
 .instagramTextActive {
 	transition-delay: 0.35s;
+	opacity: 1;
+}
+.youtubeTextActive {
+	transition-delay: 0.45s;
 	opacity: 1;
 }
 .facebookTextActive {

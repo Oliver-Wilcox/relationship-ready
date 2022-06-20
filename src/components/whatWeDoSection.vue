@@ -6,7 +6,9 @@
 			your relationships never seem to work and help you have a new
 			experience of dating, putting your love life on a fresh path.
 		</p>
-		<div class="picture-container"></div>
+		<div class="picture-container">
+			<img src="../assets/whatwedo.jpg" alt="" class="what-we-do-pic" />
+		</div>
 		<router-link to="/what-we-do">
 			<button class="what-we-do-btn">LEARN ABOUT WHAT WE DO</button>
 		</router-link>
@@ -100,7 +102,7 @@ export default {
 <style scoped>
 .what-we-do-section-container {
 	padding-top: 8vw;
-	padding-bottom: 15vw;
+	padding-bottom: 10vw;
 	width: 100vw;
 	background: #f7f5f2;
 
@@ -123,6 +125,10 @@ export default {
 	margin-top: -25vw;
 	left: calc(100% - 46.5vw);
 	background: rgb(255, 255, 255);
+}
+.what-we-do-pic {
+	width: 100%;
+	position: relative;
 }
 .paragraph {
 	position: relative;
