@@ -45,6 +45,18 @@ export default {};
 </script>
 
 <style>
+@font-face {
+	font-family: "BonVivant";
+	src: url("/fonts/BonVivantSerif/font.woff2") format("woff");
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: "BonVivant";
+	src: url("/fonts/BonVivantSerif/font.woff") format("woff");
+	font-weight: normal;
+}
+
 .letter-container {
 	background: #f7f5f2;
 	text-align: left;
