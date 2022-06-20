@@ -434,7 +434,7 @@ export default {
 		width: 90vw;
 	}
 	.checkbox {
-		top: 110vw;
+		top: 115vw;
 		left: 6vw;
 	}
 
@@ -464,7 +464,7 @@ export default {
 	}
 
 	.full-program {
-		margin-top: 78vw;
+		margin-top: 83vw;
 		margin-left: 5vw;
 		font-size: 3.8vw;
 		width: 80vw;
