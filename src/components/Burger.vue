@@ -54,6 +54,16 @@
 						<router-link to="/aboutLila">WHO ARE WE</router-link>
 					</h1></span
 				>
+				<span class="whatwedo-cont"
+					><h1
+						class="whatwedo"
+						ref="whatText"
+						v-bind:class="{ whatTextActive: isBurgerActive }"
+						v-on:click="burgerOff()"
+					>
+						<router-link to="/what-we-do">WHAT WE DO</router-link>
+					</h1></span
+				>
 
 				<span class="getintouch-cont"
 					><h1
@@ -239,14 +249,15 @@ export default {
 			setTimeout(this.timelineExperience, 100);
 			setTimeout(this.timelineProgram, 150);
 			setTimeout(this.timelineWho, 200);
-			setTimeout(this.timelineContact, 250);
-			setTimeout(this.timelineEmail, 300);
-			setTimeout(this.timelineInsta, 350);
-			setTimeout(this.timelineFb, 400);
-			setTimeout(this.timelineYoutube, 450);
-			setTimeout(this.timelineBlu, 350);
-			setTimeout(this.timelineApple, 400);
-			setTimeout(this.timelineGoogle, 450);
+			setTimeout(this.timelineWhat, 250);
+			setTimeout(this.timelineContact, 300);
+			setTimeout(this.timelineEmail, 350);
+			setTimeout(this.timelineInsta, 400);
+			setTimeout(this.timelineFb, 450);
+			setTimeout(this.timelineYoutube, 500);
+			setTimeout(this.timelineBlu, 400);
+			setTimeout(this.timelineApple, 450);
+			setTimeout(this.timelineGoogle, 500);
 
 			if (this.isBurgerActive == true) {
 				document.body.style.overflow = "hidden";
@@ -328,6 +339,27 @@ export default {
 			});
 			const lines = mySplitText.lines;
 			gsap.set(this.$refs.whoText, { perspective: 400 });
+			tl.from(
+				lines,
+				{
+					y: 50,
+					delay: 0.2,
+					opacity: 0,
+					duration: 0.8,
+					stagger: 0.1,
+					rotationX: 80,
+					transformOrigin: "20% 0 0"
+				},
+				"+=0"
+			);
+		},
+		timelineWhat() {
+			const tl = gsap.timeline();
+			const mySplitText = new SplitText(this.$refs.whatText, {
+				type: "lines"
+			});
+			const lines = mySplitText.lines;
+			gsap.set(this.$refs.whatText, { perspective: 400 });
 			tl.from(
 				lines,
 				{
@@ -538,6 +570,9 @@ export default {
 	opacity: 0;
 }
 .whoarewe {
+	opacity: 0;
+}
+.whatwedo {
 	opacity: 0;
 }
 .getintouch {
@@ -971,16 +1006,20 @@ export default {
 	transition-delay: 0.2s;
 	opacity: 1;
 }
-.contactTextActive {
+.whatTextActive {
 	transition-delay: 0.25s;
 	opacity: 1;
 }
-.emailTextActive {
+.contactTextActive {
 	transition-delay: 0.3s;
 	opacity: 1;
 }
-.instagramTextActive {
+.emailTextActive {
 	transition-delay: 0.35s;
+	opacity: 1;
+}
+.instagramTextActive {
+	transition-delay: 0.4s;
 	opacity: 1;
 }
 .youtubeTextActive {

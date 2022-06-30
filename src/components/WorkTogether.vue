@@ -438,6 +438,7 @@ input[type="checkbox"] {
 	transform: translateY(-0.075em);
 	display: grid;
 	place-content: center;
+	cursor: pointer;
 }
 
 input[type="checkbox"]::before {

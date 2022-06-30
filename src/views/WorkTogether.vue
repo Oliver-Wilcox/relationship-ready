@@ -22,41 +22,47 @@
 			<a href="https://relationship-ready.youcanbook.me" class="touchref">
 				<button class="work-together-button">BOOK A CALL</button>
 			</a>
-			<div class="email-contact social-contact-info">
-				<div class="icon-container">
-					<img
-						src="../assets/email-img.png"
-						alt=""
-						class="socials-img"
-					/>
+			<a href="mailto: lila@relationship-ready.co.uk">
+				<div class="email-contact social-contact-info">
+					<div class="icon-container">
+						<img
+							src="../assets/email-img.png"
+							alt=""
+							class="socials-img"
+						/>
+					</div>
+					<h3 class="info-social-title">email us</h3>
+					<h2 class="info-social-contact">
+						lila@relationship-ready.co.uk
+					</h2>
 				</div>
-				<h3 class="info-social-title">email us</h3>
-				<h2 class="info-social-contact">
-					lila@relationship-ready.co.uk
-				</h2>
-			</div>
-			<div class="insta-contact social-contact-info">
-				<div class="icon-container">
-					<img
-						src="../assets/ig-img.png"
-						alt=""
-						class="socials-img"
-					/>
+			</a>
+			<a href="https://www.instagram.com/relationshipready/?hl=en">
+				<div class="insta-contact social-contact-info">
+					<div class="icon-container">
+						<img
+							src="../assets/ig-img.png"
+							alt=""
+							class="socials-img"
+						/>
+					</div>
+					<h3 class="info-social-title">connect on instagram</h3>
+					<h2 class="info-social-contact">@relationshipready</h2>
 				</div>
-				<h3 class="info-social-title">connect on instagram</h3>
-				<h2 class="info-social-contact">@relationshipready</h2>
-			</div>
-			<div class="facebook-contact social-contact-info">
-				<div class="icon-container">
-					<img
-						src="../assets/fb-img.png"
-						alt=""
-						class="socials-img"
-					/>
+			</a>
+			<a href="https://www.facebook.com/RelReady/">
+				<div class="facebook-contact social-contact-info">
+					<div class="icon-container">
+						<img
+							src="../assets/fb-img.png"
+							alt=""
+							class="socials-img"
+						/>
+					</div>
+					<h3 class="info-social-title">find us on facebook</h3>
+					<h2 class="info-social-contact">@RelReady</h2>
 				</div>
-				<h3 class="info-social-title">find us on facebook</h3>
-				<h2 class="info-social-contact">@RelReady</h2>
-			</div>
+			</a>
 		</div>
 	</div>
 </template>
