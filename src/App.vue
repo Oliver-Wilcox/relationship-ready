@@ -37,6 +37,10 @@ a {
 	text-decoration: none;
 }
 
+button {
+	color: #544a3f;
+}
+
 router-link {
 	text-decoration: none;
 }
@@ -154,7 +158,7 @@ html {
 	top: 0;
 	left: 0;
 	position: absolute;
-	background: blue;
+	background: none;
 	height: 30vw;
 	width: 30vw;
 	overflow: hidden;
@@ -163,7 +167,7 @@ html {
 	top: 0;
 	right: 0;
 	position: absolute;
-	background: blue;
+	background: none;
 	height: 30vw;
 	width: 30vw;
 	overflow: hidden;
@@ -342,7 +346,7 @@ html {
 		top: 0;
 		left: 0;
 		position: absolute;
-		background: blue;
+		background: none;
 		height: 84vw;
 		width: 84vw;
 		margin-top: 8vw;
