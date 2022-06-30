@@ -66,12 +66,13 @@ html {
 	top: 5vw;
 	left: calc(50% - 19vw);
 	overflow: hidden;
+	background: none;
 }
 
 .jessica-img {
 	position: absolute;
 	width: 100%;
-	top: -4vw;
+	top: -10svw;
 	left: 50%;
 	transform: translateX(-50%);
 	opacity: 0.8;
@@ -257,9 +258,9 @@ html {
 	.jessica-img {
 		position: absolute;
 		width: 100%;
-		top: 50%;
+		top: -10vw;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translateX(50%);
 		opacity: 0.8;
 	}
 
