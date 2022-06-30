@@ -11,7 +11,7 @@
 				v-bind:class="{ virtualPicActive: isVirtualPicActive }"
 			>
 				<div class="virtual-blur"></div>
-				<img src="../assets/virtual.png" alt="" class="virtual-img" />
+				<img src="../assets/virtual.jpg" alt="" class="virtual-img" />
 			</div>
 			<div class="virtual-text-container">
 				<div class="virtual-title">

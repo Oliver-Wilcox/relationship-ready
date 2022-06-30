@@ -19,13 +19,9 @@
 			>
 				{{ inTouchText.inTouchParagraph }}
 			</p>
-			<button class="work-together-button">
-				<a
-					href="https://relationship-ready.youcanbook.me"
-					class="touchref"
-					>BOOK A CALL</a
-				>
-			</button>
+			<a href="https://relationship-ready.youcanbook.me" class="touchref">
+				<button class="work-together-button">BOOK A CALL</button>
+			</a>
 			<div class="email-contact social-contact-info">
 				<div class="icon-container">
 					<img
@@ -96,7 +92,7 @@ export default {
 
 			start: () => "top " + window.innerHeight * 0.85,
 
-			onLeaveBack: self => self.disable()
+			onLeaveBack: (self) => self.disable()
 		});
 		ScrollTrigger.create({
 			trigger: this.$refs.togetherParagraph,
@@ -104,12 +100,12 @@ export default {
 			onEnter: () => (this.isTogetherParaActive = true),
 			start: () => "top " + window.innerHeight * 0.9,
 
-			onLeaveBack: self => self.disable()
+			onLeaveBack: (self) => self.disable()
 		});
 	},
 	created() {
 		this.fetchDataInTouch();
-		setTimeout(function() {
+		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	},
@@ -142,11 +138,11 @@ export default {
 			this.error = this.inTouchTitle = null;
 			this.loading = true;
 			sanity.fetch(queryInTouch).then(
-				inTouchTexts => {
+				(inTouchTexts) => {
 					this.loading = false;
 					this.inTouchTexts = inTouchTexts;
 				},
-				error => {
+				(error) => {
 					this.error = error;
 				}
 			);

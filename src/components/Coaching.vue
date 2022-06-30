@@ -19,7 +19,13 @@
 					v-bind:class="{ coachTextActive: isCoachParaActive }"
 				>
 					{{ programmesContent.bespokeParagraph }}
-					<span class="underline">inquire here</span> to find out more
+					<a
+						href="https://relationship-ready.youcanbook.me"
+						class="inquire"
+					>
+						<span class="underline">inquire here</span></a
+					>
+					to find out more
 				</p>
 			</div>
 			<div
@@ -59,7 +65,7 @@ export default {
 	}),
 	created() {
 		this.fetchDataCoachingText();
-		setTimeout(function() {
+		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	},
@@ -71,7 +77,7 @@ export default {
 
 			start: () => "top " + window.innerHeight * 1,
 
-			onLeaveBack: self => self.disable()
+			onLeaveBack: (self) => self.disable()
 		});
 		/*
     ScrollTrigger.create({
@@ -92,7 +98,7 @@ export default {
 
 			start: () => "top " + window.innerHeight * 0.85,
 
-			onLeaveBack: self => self.disable()
+			onLeaveBack: (self) => self.disable()
 		});
 	},
 
@@ -101,11 +107,11 @@ export default {
 			this.error = this.programmesContent = null;
 			this.loading = true;
 			sanity.fetch(queryCoaching).then(
-				coachingParagraphs => {
+				(coachingParagraphs) => {
 					this.loading = false;
 					this.coachingParagraphs = coachingParagraphs;
 				},
-				error => {
+				(error) => {
 					this.error = error;
 				}
 			);
@@ -155,6 +161,10 @@ export default {
 	height: 40vw;
 	width: 30vw;
 	top: 0;
+}
+
+a {
+	color: #544a3f;
 }
 
 .coaching-title {

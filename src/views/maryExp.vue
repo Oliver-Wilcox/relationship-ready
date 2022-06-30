@@ -6,6 +6,7 @@
 	>
 		<div class="jessica-picture-container">
 			<img
+				class="jessica-img"
 				v-if="personTwo.personTwoImage"
 				:src="imageUrlFor(personTwo.personTwoImage)"
 			/>

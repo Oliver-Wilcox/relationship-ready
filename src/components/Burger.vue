@@ -75,7 +75,9 @@
 							v-bind:class="{ socialsActive: isBurgerActive }"
 							v-on:click="burgerOff()"
 						>
-							<a href="socialref" class="socialref">SOCIALS</a>
+							<span href="socialref" class="socialref"
+								>SOCIALS</span
+							>
 						</h3></span
 					>
 					<span class="insta-burger-cont"
@@ -177,9 +179,9 @@
 							}"
 						>
 							<a
-								href="https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5ibHVicnJ5LmNvbS9mZWVkcy9iZWNvbWluZ3JlbGF0aW9uc2hpcHJlYWR5LnhtbA"
+								href="https://open.spotify.com/show/10lxLTZnHGmpprFeZuDLFf "
 								class="instaref"
-								>Google</a
+								>Spotify</a
 							>
 						</h1></span
 					>

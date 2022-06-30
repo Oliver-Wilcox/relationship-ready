@@ -36,9 +36,9 @@
 			<router-link to="/programmes">
 				<button class="path-btn">LEARN ABOUT OUR PROGRAMS</button>
 			</router-link>
-			<p class="path-in-touch-text">
-				<router-link to="/work-together">Get In Touch.</router-link>
-			</p>
+			<router-link to="/work-together">
+				<p class="path-in-touch-text">Get In Touch.</p>
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -203,7 +203,7 @@ export default {
 	background: none;
 	border: 0.2vw solid #d4c09e;
 	cursor: pointer;
-	color: black;
+	color: #544a3f;
 }
 
 .path-in-touch-text {
@@ -219,13 +219,9 @@ export default {
 	font-weight: bold;
 	cursor: pointer;
 	font-family: DM sans;
-	color: rgb(255, 255, 255);
+	color: #544a3f;
 	text-decoration-color: #d4c09e;
 	text-decoration: underline;
-}
-
-p {
-	text-decoration: none;
 }
 
 .path-picture-container {
