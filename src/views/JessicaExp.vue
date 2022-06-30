@@ -120,14 +120,14 @@ export default {
 			toggleActions: "play none none none",
 			onEnter: () => this.timeLineExpOne(),
 
-			onLeaveBack: self => self.disable()
+			onLeaveBack: (self) => self.disable()
 		});
 		ScrollTrigger.create({
 			trigger: ".experience-2",
 			toggleActions: "play none none none",
 			onEnter: () => this.timeLineExpTwo(),
 
-			onLeaveBack: self => self.disable()
+			onLeaveBack: (self) => self.disable()
 		});
 	},
 	methods: {
@@ -135,11 +135,11 @@ export default {
 			this.error = this.personOne = null;
 			this.loading = true;
 			sanity.fetch(queryPersonOne).then(
-				personOneExperiences => {
+				(personOneExperiences) => {
 					this.loading = false;
 					this.personOneExperiences = personOneExperiences;
 				},
-				error => {
+				(error) => {
 					this.error = error;
 				}
 			);
@@ -213,7 +213,7 @@ export default {
 
 	created() {
 		this.fetchDataPersonOne();
-		setTimeout(function() {
+		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	}
@@ -225,6 +225,10 @@ export default {
 	position: relative;
 	background: none;
 	top: 12.5vw;
+}
+
+button {
+	color: #544a3f;
 }
 
 h1 {
