@@ -257,14 +257,15 @@ html {
 		margin-top: 20vw;
 		left: calc(50% - 42vw);
 		overflow: hidden;
+		background: none;
 	}
 
 	.jessica-img {
 		position: absolute;
 		width: 100%;
-		top: -10vw;
+		top: 0vw;
 		left: 50%;
-		transform: translateX(50%);
+		transform: translateX(-50%);
 		opacity: 0.8;
 	}
 
