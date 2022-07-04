@@ -136,45 +136,9 @@ export default {
 		},
 		timeLineExpOne() {
 			this.$refs.expOne.style.opacity = 1;
-			let tl = gsap.timeline(),
-				mySplitText = new SplitText(this.$refs.expOne, {
-					type: "lines"
-				}),
-				lines = mySplitText.lines;
-			gsap.set(this.$refs.expOne, { perspective: 400 });
-			tl.from(
-				lines,
-				{
-					y: 40,
-					opacity: 0,
-					duration: 0.6,
-					stagger: 0.05,
-					rotationX: 80,
-					transformOrigin: "20% 0 0"
-				},
-				"+=0"
-			);
 		},
 		timeLineExpTwo() {
-			this.isLilaExpTwoActive = true;
-			let tl = gsap.timeline(),
-				mySplitText = new SplitText(this.$refs.expTwo, {
-					type: "lines"
-				}),
-				lines = mySplitText.lines;
-			gsap.set(this.$refs.expTwo, { perspective: 400 });
-			tl.from(
-				lines,
-				{
-					y: 40,
-					opacity: 0,
-					duration: 0.6,
-					stagger: 0.05,
-					rotationX: 80,
-					transformOrigin: "20% 0 0"
-				},
-				"+=0"
-			);
+			this.$refs.expTwo.style.opacity = 1;
 		}
 	},
 	created() {
@@ -191,10 +155,10 @@ export default {
 	padding-top: 0;
 }
 .experience-1 {
-	opacity: 0;
+	opacity: 1;
 }
 .experience-2 {
-	opacity: 0;
+	opacity: 1;
 }
 .expActive {
 	opacity: 1;

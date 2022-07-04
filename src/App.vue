@@ -104,7 +104,7 @@ html {
 	text-align: left;
 	font-size: 1.2vw;
 	left: 50%;
-
+	opacity: 1;
 	transform: translateX(-50%);
 	margin-top: 15vw;
 	font-family: DM sans;
@@ -129,6 +129,7 @@ html {
 	left: 50%;
 	transform: translateX(-50%);
 	margin-top: 7vw;
+	opacity: 1;
 	font-family: DM sans;
 }
 

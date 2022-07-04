@@ -161,42 +161,9 @@ export default {
 		},
 		timeLineExpOne() {
 			this.$refs.expOne.style.opacity = 1;
-			let tl = gsap.timeline(),
-				mySplitText = new SplitText(this.$refs.expOne, {
-					type: "lines"
-				}),
-				lines = mySplitText.lines;
-			gsap.set(this.$refs.expOne, { perspective: 400 });
-			tl.from(
-				lines,
-				{
-					y: 0,
-					opacity: 0,
-					duration: 0.5,
-					transformOrigin: "20% 0 0"
-				},
-				"+=0"
-			);
 		},
 		timeLineExpTwo() {
-			this.isLilaExpTwoActive = true;
-			let tl = gsap.timeline(),
-				mySplitText = new SplitText(this.$refs.expTwo, {
-					type: "lines"
-				}),
-				lines = mySplitText.lines;
-			gsap.set(this.$refs.expTwo, { perspective: 400 });
-			tl.from(
-				lines,
-				{
-					y: 0,
-					opacity: 0,
-
-					duration: 0.5,
-					transformOrigin: "20% 0 0"
-				},
-				"+=0"
-			);
+			this.$refs.expTwo.style.opacity = 1;
 		}
 	},
 	created() {

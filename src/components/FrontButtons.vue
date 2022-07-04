@@ -30,6 +30,7 @@ export default {
 	left: 0;
 	margin-top: 4vw;
 	cursor: pointer;
+	overflow: hidden;
 }
 
 .discover h3 {
@@ -40,7 +41,7 @@ export default {
 
 .arrow {
 	position: absolute;
-	cursor: pointer;
+
 	height: 4vw;
 	width: 3vw;
 	left: 40%;

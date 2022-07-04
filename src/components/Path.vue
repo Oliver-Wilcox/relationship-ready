@@ -37,7 +37,7 @@
 				<button class="path-btn">LEARN ABOUT OUR PROGRAMS</button>
 			</router-link>
 			<router-link to="/work-together">
-				<p class="path-in-touch-text">Get In Touch.</p>
+				<h3 class="path-in-touch-text">Get In Touch.</h3>
 			</router-link>
 		</div>
 	</div>

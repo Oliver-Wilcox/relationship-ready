@@ -117,14 +117,14 @@ export default {
 			toggleActions: "play none none none",
 			onEnter: () => this.timeLineExpOne(),
 
-			onLeaveBack: self => self.disable()
+			onLeaveBack: (self) => self.disable()
 		});
 		ScrollTrigger.create({
 			trigger: ".experience-2",
 			toggleActions: "play none none none",
 			onEnter: () => this.timeLineExpTwo(),
 
-			onLeaveBack: self => self.disable()
+			onLeaveBack: (self) => self.disable()
 		});
 	},
 	methods: {
@@ -132,11 +132,11 @@ export default {
 			this.error = this.personThree = null;
 			this.loading = true;
 			sanity.fetch(queryPersonThree).then(
-				personThreeExperiences => {
+				(personThreeExperiences) => {
 					this.loading = false;
 					this.personThreeExperiences = personThreeExperiences;
 				},
-				error => {
+				(error) => {
 					this.error = error;
 				}
 			);
@@ -166,50 +166,14 @@ export default {
 		},
 		timeLineExpOne() {
 			this.$refs.expOne.style.opacity = 1;
-			let tl = gsap.timeline(),
-				mySplitText = new SplitText(this.$refs.expOne, {
-					type: "lines"
-				}),
-				lines = mySplitText.lines;
-			gsap.set(this.$refs.expOne, { perspective: 400 });
-			tl.from(
-				lines,
-				{
-					y: 40,
-					opacity: 0,
-					duration: 0.6,
-					stagger: 0.05,
-					rotationX: 80,
-					transformOrigin: "20% 0 0"
-				},
-				"+=0"
-			);
 		},
 		timeLineExpTwo() {
-			this.isLilaExpTwoActive = true;
-			let tl = gsap.timeline(),
-				mySplitText = new SplitText(this.$refs.expTwo, {
-					type: "lines"
-				}),
-				lines = mySplitText.lines;
-			gsap.set(this.$refs.expTwo, { perspective: 400 });
-			tl.from(
-				lines,
-				{
-					y: 40,
-					opacity: 0,
-					duration: 0.6,
-					stagger: 0.05,
-					rotationX: 80,
-					transformOrigin: "20% 0 0"
-				},
-				"+=0"
-			);
+			this.$refs.expOne.style.opacity = 2;
 		}
 	},
 	created() {
 		this.fetchDataPersonThree();
-		setTimeout(function() {
+		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	}
