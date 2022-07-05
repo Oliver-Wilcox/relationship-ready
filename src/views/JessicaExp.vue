@@ -1,7 +1,7 @@
 <template>
 	<div class="person-container" ref="personCont">
 		<div
-			class="jessica-1"
+			class="jessica-experience"
 			v-for="personOne in personOneExperiences"
 			:key="personOne._id"
 		>
@@ -79,13 +79,7 @@
 <script>
 import sanity from "../client";
 import imageUrlBuilder from "@sanity/image-url";
-import { gsap } from "gsap/dist/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
-import { SplitText } from "gsap/dist/SplitText";
-gsap.registerPlugin(ScrollToPlugin);
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(SplitText);
+
 const imageBuilder = imageUrlBuilder(sanity);
 const queryPersonOne = `*[_type == "personOne"]{
   _id,
@@ -103,7 +97,16 @@ const queryPersonOne = `*[_type == "personOne"]{
 
 }[0...100]`;
 
+import { gsap } from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+import { SplitText } from "gsap/dist/SplitText";
+gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
+
 import WorkTogether from "../components/WorkTogether.vue";
+
 export default {
 	components: {
 		WorkTogether
@@ -113,6 +116,12 @@ export default {
 		isExpOneActive: false,
 		isExpTwoActive: false
 	}),
+	created() {
+		this.fetchDataPersonOne();
+		setTimeout(function () {
+			ScrollTrigger.refresh();
+		}, 50);
+	},
 	updated() {
 		this.timeLine();
 		ScrollTrigger.create({
@@ -173,13 +182,6 @@ export default {
 		timeLineExpTwo() {
 			this.isExpTwoActive = true;
 		}
-	},
-
-	created() {
-		this.fetchDataPersonOne();
-		setTimeout(function () {
-			ScrollTrigger.refresh();
-		}, 50);
 	}
 };
 </script>
@@ -189,6 +191,11 @@ export default {
 	position: relative;
 	background: none;
 	top: 12.5vw;
+}
+
+.work-together-title {
+	opacity: 1;
+	display: block;
 }
 
 button {

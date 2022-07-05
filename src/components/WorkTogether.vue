@@ -140,7 +140,7 @@ export default {
 			trigger: this.$refs.togetherCont,
 			toggleActions: "play none none none",
 			onEnter: () => this.timelineTogether(),
-
+			markers: true,
 			start: () => "top " + window.innerHeight * 0.85,
 
 			onLeaveBack: (self) => self.disable()
@@ -158,7 +158,7 @@ export default {
 		this.fetchDataInTouch();
 		setTimeout(function () {
 			ScrollTrigger.refresh();
-		}, 1000);
+		}, 50);
 	},
 	methods: {
 		timelineTogether() {

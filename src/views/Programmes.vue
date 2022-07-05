@@ -54,11 +54,6 @@ export default {
 	data: () => ({
 		programmesText: []
 	}),
-	mounted() {
-		this.timelineProgrammes1();
-
-		this.timelineProgrammes2();
-	},
 	created() {
 		this.fetchDataProgrammes();
 		setTimeout(function () {
@@ -67,7 +62,6 @@ export default {
 	},
 	updated() {
 		this.timelineProgrammes1();
-
 		this.timelineProgrammes2();
 	},
 	methods: {
