@@ -76,7 +76,7 @@ html {
 .jessica-img {
 	position: absolute;
 	width: 100%;
-	top: -10svw;
+	top: 0vw;
 	left: 50%;
 	transform: translateX(-50%);
 	opacity: 0.8;

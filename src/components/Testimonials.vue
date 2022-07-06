@@ -254,8 +254,9 @@ export default {
 }
 
 img {
-	width: 150%;
-	margin-left: -25%;
+	box-sizing: inherit;
+	margin-left: 0%;
+	width: 100%;
 }
 
 .pictureActive {
