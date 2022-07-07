@@ -58,7 +58,7 @@ export default {
 			trigger: ".letter",
 			toggleActions: "play none none none",
 			onEnter: () => this.letterContOpacity(),
-			markers: true,
+
 			start: () => "top " + window.innerHeight * 0.85,
 
 			onLeaveBack: (self) => self.disable()
