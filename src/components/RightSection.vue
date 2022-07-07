@@ -218,7 +218,7 @@ export default {
 			this.isPersonTwoActive = false;
 			this.isPersonThreeActive = false;
 			this.timeLineOne();
-			this.experience = "/JessicaExp";
+			this.experience = "/experience-one";
 			this.experienceText = "JESSICA'S";
 			var el = this.$refs.btnH3;
 			el.style.animation = "none";
