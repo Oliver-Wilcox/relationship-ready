@@ -120,6 +120,7 @@ export default {
 			gsap.set(this.$refs.homeTitle, { perspective: 400 });
 			tl.from(
 				lines,
+
 				{
 					y: 40,
 					opacity: 0,
@@ -128,7 +129,10 @@ export default {
 					rotationX: 80,
 					transformOrigin: "20% 0 0"
 				},
-				"+=0"
+				"+=0",
+				(window.onresize = function () {
+					mySplitText.revert();
+				})
 			);
 		}
 	}

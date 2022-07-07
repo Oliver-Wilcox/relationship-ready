@@ -41,8 +41,8 @@
 				<div class="experience-2-container">
 					<h1 class="exp-name">{{ personOne.personTwoName }}</h1>
 					<router-link to="/experience-two">
-						<button class="mary-btn">
-							HEAR {{ personOne.personTwoName }}'S STORY
+						<button class="person-two-button person-button">
+							<h3>HEAR {{ personOne.personTwoName }}'S STORY</h3>
 						</button>
 					</router-link>
 					<div class="experience-2-img-container">
@@ -57,8 +57,10 @@
 				<div class="experience-3-container">
 					<h1 class="exp-name">{{ personOne.personThreeName }}</h1>
 					<router-link to="/experience-three">
-						<button class="claudia-btn">
-							HEAR {{ personOne.personThreeName }}'S STORY
+						<button class="person-three-button person-button">
+							<h3>
+								HEAR {{ personOne.personThreeName }}'S STORY
+							</h3>
 						</button>
 					</router-link>
 					<div class="experience-3-img-container">

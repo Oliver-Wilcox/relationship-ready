@@ -34,7 +34,9 @@
 				The natural version of you is the upgrade.
 			</p>
 			<router-link to="/programmes">
-				<button class="path-btn">LEARN ABOUT OUR PROGRAMS</button>
+				<button class="path-btn">
+					<h3>LEARN ABOUT OUR PROGRAMS</h3>
+				</button>
 			</router-link>
 			<router-link to="/work-together">
 				<h3 class="path-in-touch-text">Get In Touch.</h3>
@@ -197,13 +199,16 @@ export default {
 	height: 4.5vw;
 	display: block;
 	margin-left: 11vw;
-	font-family: DM sans;
 	top: -2vw;
-	font-size: 1vw;
 	background: none;
 	border: 0.2vw solid #d4c09e;
 	cursor: pointer;
+}
+
+.path-btn h3 {
+	font-size: 0.9vw;
 	color: #544a3f;
+	padding: 0.45vw;
 }
 
 .path-in-touch-text {
@@ -273,9 +278,15 @@ export default {
 		margin-left: 6vw;
 		width: 50vw;
 		height: 15vw;
-		font-size: 2.5vw;
+
 		border: 0.5vw solid #d4c09e;
 		top: -6vw;
+	}
+
+	.path-btn h3 {
+		font-size: 2.5vw;
+		color: #544a3f;
+		padding: 0.45vw;
 	}
 
 	.path-picture-container {

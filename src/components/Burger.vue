@@ -779,7 +779,7 @@ export default {
 
 @media (max-aspect-ratio: 200/200) {
 	.menu-items {
-		margin-top: calc(13.5vh);
+		margin-top: 20vw;
 		height: 156vw;
 		background: none;
 		top: 0px;
@@ -986,10 +986,6 @@ export default {
 }
 
 @media screen and (min-aspect-ratio: 200/330) and (max-aspect-ratio: 200/200) {
-	.menu-items {
-		margin-top: calc(50vh - 0px);
-		transform: translateY(-50%);
-	}
 }
 .homeTextActive {
 	opacity: 1;

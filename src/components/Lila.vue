@@ -14,7 +14,7 @@
 					{{ lilaTitle.lilaTitleText }}
 				</h1>
 				<router-link to="aboutLila">
-					<button class="about-lila-btn">ABOUT LILA</button>
+					<button class="about-lila-btn"><h3>ABOUT LILA</h3></button>
 				</router-link>
 			</div>
 			<div class="lila-picture-container">
@@ -207,12 +207,18 @@ export default {
 	height: 4.5vw;
 	display: block;
 	top: 0;
-	font-family: DM sans;
+
 	color: black;
-	font-size: 1vw;
+
 	background: none;
 	border: 0.2vw solid #d4c09e;
 	cursor: pointer;
+}
+
+.about-lila-btn h3 {
+	font-size: 0.9vw;
+	color: #544a3f;
+	padding: 0.45vw;
 }
 
 @media (max-aspect-ratio: 200/200) {
@@ -253,8 +259,14 @@ export default {
 		left: 6vw;
 		width: 35vw;
 		height: 15vw;
-		font-size: 2.5vw;
+
 		border: 0.5vw solid #d4c09e;
+	}
+
+	.about-lila-btn h3 {
+		font-size: 2.5vw;
+		color: #544a3f;
+		padding: 0.45vw;
 	}
 }
 </style>

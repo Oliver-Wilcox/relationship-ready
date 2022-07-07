@@ -1,10 +1,9 @@
 <template>
 	<div class="btns">
-		<a href="#sectionTwo" class="discoverref">
-			<button class="discover" id="discover">
-				<h3>DISCOVER HOW</h3>
-			</button>
-		</a>
+		<button class="discover" id="discover" @click="scrollToTestimonials">
+			<h3>DISCOVER HOW</h3>
+		</button>
+
 		<div class="arrow">
 			<img class="arrow-svg" src="arrow.svg" />
 			<span class="arrow-circle"></span>
@@ -14,7 +13,17 @@
 
 <script>
 export default {
-	name: "FrontButtons"
+	name: "FrontButtons",
+	methods: {
+		scrollToTestimonials() {
+			const el = document.querySelector(".section-two");
+
+			if (el) {
+				// Use el.scrollIntoView() to instantly scroll to the element
+				el.scrollIntoView({ behavior: "smooth" });
+			}
+		}
+	}
 };
 </script>
 

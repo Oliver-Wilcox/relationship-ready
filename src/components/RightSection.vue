@@ -340,7 +340,7 @@ export default {
 	left: 50%;
 	width: 15vw;
 	height: 2vw;
-	font-weight: 700;
+
 	overflow: hidden;
 	transform: translate(-50%, -50%);
 }

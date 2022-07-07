@@ -256,7 +256,7 @@ export default {
 img {
 	box-sizing: inherit;
 	margin-left: 0%;
-	width: 100%;
+	width: 120%;
 }
 
 .pictureActive {

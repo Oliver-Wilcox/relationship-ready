@@ -10,7 +10,9 @@
 			<img src="../assets/whatwedo.jpg" alt="" class="what-we-do-pic" />
 		</div>
 		<router-link to="/what-we-do">
-			<button class="what-we-do-btn">LEARN ABOUT WHAT WE DO</button>
+			<button class="what-we-do-btn">
+				<h3>LEARN ABOUT WHAT WE DO</h3>
+			</button>
 		</router-link>
 	</div>
 </template>
@@ -151,13 +153,16 @@ export default {
 	height: 4.5vw;
 	display: block;
 	margin-left: 11vw;
-	font-family: DM sans;
 
-	font-size: 1vw;
 	background: none;
 	border: 0.2vw solid #d4c09e;
 	cursor: pointer;
-	color: black;
+}
+
+.what-we-do-btn h3 {
+	font-size: 0.9vw;
+	color: #544a3f;
+	padding: 0.45vw;
 }
 
 @media (max-aspect-ratio: 200/200) {
@@ -187,8 +192,14 @@ export default {
 		margin-left: 6vw;
 		width: 50vw;
 		height: 15vw;
-		font-size: 2.5vw;
+
 		border: 0.5vw solid #d4c09e;
+	}
+
+	.what-we-do-btn h3 {
+		font-size: 2.5vw;
+		color: #544a3f;
+		padding: 0.45vw;
 	}
 	.what-we-do-section-container {
 		padding-bottom: 25vw;

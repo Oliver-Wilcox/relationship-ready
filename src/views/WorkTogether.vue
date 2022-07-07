@@ -20,7 +20,9 @@
 				{{ inTouchText.inTouchParagraph }}
 			</p>
 			<a href="https://relationship-ready.youcanbook.me" class="touchref">
-				<button class="work-together-button">BOOK A CALL</button>
+				<button class="work-together-button">
+					<h3>BOOK A CALL</h3>
+				</button>
 			</a>
 			<a href="mailto: lila@relationship-ready.co.uk">
 				<div class="email-contact social-contact-info">
@@ -209,12 +211,15 @@ export default {
 	height: 4.5vw;
 	display: block;
 
-	font-family: DM sans;
-
-	font-size: 1vw;
 	background: none;
 	border: 0.2vw solid #d4c09e;
 	cursor: pointer;
+}
+
+.work-together-button h3 {
+	font-size: 0.9vw;
+	color: #544a3f;
+	padding: 0.45vw;
 }
 
 .social-contact-info {
@@ -299,8 +304,14 @@ export default {
 		left: 50%;
 		width: 35vw;
 		height: 15vw;
-		font-size: 2.5vw;
+
 		border: 0.5vw solid #d4c09e;
+	}
+
+	.work-together-button h3 {
+		font-size: 2.5vw;
+		color: #544a3f;
+		padding: 0.45vw;
 	}
 
 	.social-contact-info {

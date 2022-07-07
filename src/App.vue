@@ -221,7 +221,7 @@ html {
 	width: 30vw;
 }
 
-.mary-btn {
+.person-two-button {
 	position: absolute;
 	z-index: +1;
 	left: 50%;
@@ -234,7 +234,7 @@ html {
 	border: 0.2vw solid #d4c09e;
 }
 
-.claudia-btn {
+.person-three-button {
 	position: absolute;
 	z-index: +1;
 	left: 50%;
@@ -245,6 +245,12 @@ html {
 	height: 6vw;
 	font-size: 1.1vw;
 	border: 0.2vw solid #d4c09e;
+}
+
+.person-button h3 {
+	font-size: 0.9vw;
+	color: #544a3f;
+	padding: 0.45vw;
 }
 
 @media (max-aspect-ratio: 200/200) {
@@ -278,7 +284,7 @@ html {
 		transform: translateX(-50%);
 	}
 
-	.mary-btn {
+	.person-two-button {
 		position: absolute;
 		z-index: +1;
 		left: 50%;
@@ -291,7 +297,7 @@ html {
 		border: 0.5vw solid #d4c09e;
 	}
 
-	.claudia-btn {
+	.person-three-button {
 		position: absolute;
 		z-index: +1;
 		left: 50%;
@@ -401,6 +407,12 @@ html {
 		left: 50%;
 		transform: translateX(-50%);
 		text-align: center;
+	}
+
+	.person-button h3 {
+		font-size: 2.5vw;
+		color: #544a3f;
+		padding: 0.45vw;
 	}
 }
 </style>

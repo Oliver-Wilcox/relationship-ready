@@ -106,7 +106,9 @@
 						</p>
 					</div>
 				</div>
-				<button type="submit">SEND TO RELATIONSHIP READY</button>
+				<button type="submit" class="submit">
+					<h3>SEND TO RELATIONSHIP READY</h3>
+				</button>
 			</form>
 		</div>
 	</div>
@@ -140,7 +142,7 @@ export default {
 			trigger: this.$refs.togetherCont,
 			toggleActions: "play none none none",
 			onEnter: () => this.timelineTogether(),
-			markers: true,
+
 			start: () => "top " + window.innerHeight * 0.85,
 
 			onLeaveBack: (self) => self.disable()
@@ -255,12 +257,17 @@ export default {
 	height: 4.5vw;
 	display: block;
 	display: none;
-	font-family: DM sans;
 
 	font-size: 1vw;
 	background: none;
 	border: 0.2vw solid #d4c09e;
 	cursor: pointer;
+}
+
+.submit h3 {
+	font-size: 0.9vw;
+	color: #544a3f;
+	padding: 0.45vw;
 }
 
 .social-contact-info {
@@ -339,7 +346,7 @@ button {
 	height: 4.5vw;
 	display: block;
 	color: #544a3f;
-	font-family: DM sans;
+
 	top: -2vw;
 	text-transform: uppercase;
 	font-size: 1vw;
@@ -522,9 +529,14 @@ input[type="checkbox"]:checked::before {
 		width: 54vw;
 		height: 15.5vw;
 		border: 0.5vw solid #d4c09e;
-		font-size: 2.6vw;
+
 		margin-top: 3vw;
+	}
+
+	.submit h3 {
+		font-size: 2.5vw;
 		color: #544a3f;
+		padding: 0.45vw;
 	}
 
 	input {
@@ -561,15 +573,6 @@ input[type="checkbox"]:checked::before {
 		width: 80%;
 		text-align: center;
 		left: 50%;
-	}
-
-	.work-together-button {
-		margin-top: 8vw;
-		left: 50%;
-		width: 35vw;
-		height: 15vw;
-		font-size: 2.5vw;
-		border: 0.5vw solid #d4c09e;
 	}
 
 	.social-contact-info {
