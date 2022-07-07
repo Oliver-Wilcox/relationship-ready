@@ -76,26 +76,6 @@ export default {
 
 		timelinePara() {
 			this.$refs.title.style.opacity = "1";
-			let tl = gsap.timeline(),
-				mySplitText = new SplitText(this.$refs.paragraph, {
-					type: "lines"
-				}),
-				lines = mySplitText.lines;
-
-			gsap.set(this.$refs.paragraph, { perspective: 400 });
-
-			tl.from(
-				lines,
-				{
-					y: 40,
-					opacity: 0,
-					duration: 0.6,
-					stagger: 0.05,
-					rotationX: 80,
-					transformOrigin: "20% 0 0"
-				},
-				"+=0"
-			);
 		}
 	}
 };

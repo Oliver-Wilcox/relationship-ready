@@ -1,6 +1,6 @@
 <template>
 	<div class="letter-container">
-		<p class="letter">
+		<p class="letter" ref="letter">
 			<span class="intro">Hi I’m Lila. Lovely to meet you.</span>
 			<br />
 			<br />
@@ -41,7 +41,35 @@
 </template>
 
 <script>
-export default {};
+import { gsap } from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
+
+export default {
+	created() {
+		setTimeout(function () {
+			ScrollTrigger.refresh();
+		}, 50);
+	},
+	mounted() {
+		ScrollTrigger.create({
+			trigger: ".letter",
+			toggleActions: "play none none none",
+			onEnter: () => this.letterContOpacity(),
+			markers: true,
+			start: () => "top " + window.innerHeight * 0.85,
+
+			onLeaveBack: (self) => self.disable()
+		});
+	},
+	methods: {
+		letterContOpacity() {
+			this.$refs.letter.style.opacity = 1;
+		}
+	}
+};
 </script>
 
 <style>
@@ -62,14 +90,16 @@ export default {};
 	text-align: left;
 	padding-top: 0vw;
 	padding-bottom: 5vw;
+	opacity: 1;
 }
 .letter {
 	font-family: DM sans;
 	width: 80vw;
 	margin: auto;
 	margin-left: 7vw;
-
+	opacity: 0;
 	font-size: 1.4vw;
+	transition: 0.5s;
 }
 
 .intro {

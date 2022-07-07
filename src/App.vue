@@ -325,7 +325,7 @@ html {
 		position: relative;
 		width: 84vw;
 		height: 54vw;
-		background: grey;
+		background: none;
 		left: 50%;
 		transform: translateX(-50%);
 		margin-top: 15vw;
