@@ -1,24 +1,25 @@
 <template>
 	<div class="coaching-container">
-		<div
-			class="sanity-container"
-			v-for="programmesContent in coachingParagraphs"
-			:key="programmesContent._id"
-		>
+		<div class="sanity-container">
 			<div class="coaching-text-container">
 				<h1
 					class="coaching-title"
 					ref="coachTitle"
 					v-bind:class="{ coachTextActive: isCoachTitleActive }"
 				>
-					{{ programmesContent.bespokeTitle }}
+					BESPOKE PROGRAMME
 				</h1>
 				<p
 					class="coaching-paragraph"
 					ref="coachParagraph"
 					v-bind:class="{ coachTextActive: isCoachParaActive }"
 				>
-					{{ programmesContent.bespokeParagraph }}
+					This programme is for people who want to work with us
+					privately, over a longer period of time to achieve their
+					relationship goals – whether you are single or already in an
+					existing relationship. We create space for you to breathe
+					and learn at your own pace, mentoring and supporting you
+					over a six month period. Book a call here to find out more.
 					<a
 						href="https://relationship-ready.youcanbook.me"
 						class="inquire"
@@ -40,15 +41,6 @@
 </template>
 
 <script>
-import sanity from "../client";
-
-const queryCoaching = `*[_type == "programmesContent"]{
-_id,
-bespokeTitle,
-bespokeParagraph
-
-}[0...50]`;
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -64,12 +56,11 @@ export default {
 		coachingParagraphs: []
 	}),
 	created() {
-		this.fetchDataCoachingText();
 		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	},
-	updated() {
+	mounted() {
 		ScrollTrigger.create({
 			trigger: ".coaching-container",
 			toggleActions: "play none none none",
@@ -103,19 +94,6 @@ export default {
 	},
 
 	methods: {
-		fetchDataCoachingText() {
-			this.error = this.programmesContent = null;
-			this.loading = true;
-			sanity.fetch(queryCoaching).then(
-				(coachingParagraphs) => {
-					this.loading = false;
-					this.coachingParagraphs = coachingParagraphs;
-				},
-				(error) => {
-					this.error = error;
-				}
-			);
-		},
 		timelineCoach() {
 			this.isCoachTitleActive = true;
 

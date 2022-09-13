@@ -1,10 +1,6 @@
 <template>
 	<div class="virtual-container">
-		<div
-			class="virtual-container-2"
-			v-for="programmesParagraph in programmesParagraphs"
-			:key="programmesParagraph._id"
-		>
+		<div class="virtual-container-2">
 			<div
 				class="virtual-picture-container"
 				ref="virtualPic"
@@ -14,15 +10,21 @@
 				<img src="../assets/virtual.jpg" alt="" class="virtual-img" />
 			</div>
 			<div class="virtual-text-container">
-				<div class="virtual-title">
-					{{ programmesParagraph.coachingTitle }}
-				</div>
+				<div class="virtual-title">VIRTUAL RETREAT</div>
 				<p
 					class="virtual-paragraph"
 					ref="virtualParagraph"
 					v-bind:class="{ virtualTextActive: isVirtualParActive }"
 				>
-					{{ programmesParagraph.coachingParagraph }}
+					Our Virtual Retreat programme is designed to give you an
+					essential understanding of how your mind is affecting how
+					you show up in your love life. The retreat is run in a small
+					group format and is always relaxed and informal. The focus
+					of the two days we have together is to see what it looks and
+					feels like to forget all your past experiences and show up
+					as the most relaxed and intuitive version of you on your
+					dates, and in your relationships – imagine a world where the
+					book of crappy dates doesn't exist!
 				</p>
 				<p class="what-you-get-coaching">What you get:</p>
 				<div
@@ -35,7 +37,8 @@
 						v-bind:class="{ checkActive: isCheckOneActive }"
 					></div>
 					<p class="checkbox-paragraph 1">
-						{{ programmesParagraph.coachingCheckboxOne }}
+						a 30 minute intake call to understand what you are
+						looking to get from the retreat
 					</p>
 				</div>
 				<div
@@ -48,7 +51,8 @@
 						v-bind:class="{ checkActive: isCheckTwoActive }"
 					></div>
 					<p class="checkbox-paragraph 2">
-						{{ programmesParagraph.coachingCheckboxTwo }}
+						a 2 day retreat set over the afternoon and evenings (UK)
+						(suitable for USA hours)
 					</p>
 				</div>
 				<p class="cost-text">Cost:</p>
@@ -62,9 +66,7 @@
 						class="checkbox-img-container"
 						v-bind:class="{ checkActive: isCheckFourActive }"
 					></div>
-					<p class="checkbox-paragraph 5">
-						{{ programmesParagraph.coachingCheckboxThree }}
-					</p>
+					<p class="checkbox-paragraph 5">Cost: £474 (£395 + vat)</p>
 				</div>
 			</div>
 		</div>
@@ -72,18 +74,6 @@
 </template>
 
 <script>
-import sanity from "../client";
-
-const queryProgrammes = `*[_type == "programmesContent"]{
-  _id,
-  coachingTitle,
- coachingParagraph,
- coachingCheckboxOne,
- coachingCheckboxTwo,
- coachingCheckboxThree
-
-}[0...50]`;
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -96,13 +86,12 @@ export default {
 		isVirtualPicActive: false,
 		isVirtualTitleActive: false,
 		isVirtualParActive: false,
-		programmesParagraphs: [],
 		isCheckOneActive: false,
 		isCheckTwoActive: false,
 		isCheckFourActive: false
 	}),
-	mounted() {},
-	updated() {
+
+	mounted() {
 		ScrollTrigger.create({
 			trigger: this.$refs.checkOne,
 			toggleActions: "play none none none",
@@ -151,26 +140,11 @@ export default {
 		});
 	},
 	created() {
-		this.fetchDataVirtual();
 		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	},
 	methods: {
-		fetchDataVirtual() {
-			this.error = this.programmesParagraph = null;
-			this.loading = true;
-			sanity.fetch(queryProgrammes).then(
-				(programmesParagraphs) => {
-					this.loading = false;
-					this.programmesParagraphs = programmesParagraphs;
-				},
-				(error) => {
-					this.error = error;
-				}
-			);
-		},
-
 		timelineVirtual() {
 			this.isVirtualTitleActive = true;
 

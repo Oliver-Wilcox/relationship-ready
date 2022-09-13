@@ -1,15 +1,17 @@
 <template>
-	<div
-		class="programmes-text-container"
-		v-for="programmesContent in programmesText"
-		:key="programmesContent._id"
-	>
+	<div class="programmes-text-container">
 		<h1 class="our-programmes-title" ref="programmes">
-			<span class="our">{{ programmesContent.programmesTitleOne }}</span>
-			<br />{{ programmesContent.programmesTitleTwo }}
+			<span class="our">OUR PROGRAMMES</span>
 		</h1>
 		<p class="our-programmes-paragraph" ref="programmesParagraph">
-			{{ programmesContent.programmesParagraphOne }}
+			The passion and drive of our program is to help you show up to your
+			relationship life as the most natural version of you because the
+			natural version of you is the upgrade. We help you understand the
+			thoughts behind your relationship patterns in a way that you can
+			move past them and turn up to your dating life with more ease,
+			confidence and enjoyment.
+			<br />
+			We offer three ways that you can work with us.
 		</p>
 	</div>
 	<div class="programmes-arrow">
@@ -23,16 +25,6 @@
 </template>
 
 <script>
-import sanity from "../client";
-
-const queryProgrammes = `*[_type == "programmesContent"]{
-  _id,
-  programmesTitleOne,
-  programmesTitleTwo,
-  programmesParagraphOne
-
-}[0...50]`;
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -51,33 +43,17 @@ export default {
 		Coaching,
 		WorkTogether
 	},
-	data: () => ({
-		programmesText: []
-	}),
+	data: () => ({}),
 	created() {
-		this.fetchDataProgrammes();
 		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	},
-	updated() {
+	mounted() {
 		this.timelineProgrammes1();
 		this.timelineProgrammes2();
 	},
 	methods: {
-		fetchDataProgrammes() {
-			this.error = this.programmesContent = null;
-			this.loading = true;
-			sanity.fetch(queryProgrammes).then(
-				(programmesText) => {
-					this.loading = false;
-					this.programmesText = programmesText;
-				},
-				(error) => {
-					this.error = error;
-				}
-			);
-		},
 		timelineProgrammes1() {
 			let tl = gsap.timeline(),
 				mySplitText = new SplitText(this.$refs.programmes, {

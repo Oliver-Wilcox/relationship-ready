@@ -1,42 +1,39 @@
 <template>
 	<div class="apps">
-		<div
-			class="sanity-container"
-			v-for="landing in landingItems"
-			:key="landing._id"
-		>
-			<div class="text-container">
-				<div class="title-container">
-					<h1 class="title" ref="homeTitle">
-						{{ landing.titleOne }}
-						<br />
-						{{ landing.titleTwo }}
-						<br />
-						<span id="spans-container" class="the-upgrade">
-							{{ landing.titleThree }}
-						</span>
-					</h1>
-				</div>
-
-				<div class="sub-title-container">
-					<h3 class="sub-title">
-						{{ landing.frontParagraphOne }}
-					</h3>
-				</div>
-				<FrontButtons
-					@mouseover="hover = true"
-					@mouseleave="hover = false"
-				/>
+		<div class="text-container">
+			<div class="title-container">
+				<h1 class="title" ref="homeTitle">
+					DO YOU WONDER
+					<br />
+					WHY YOUR RELATIONSHIPS
+					<br />
+					<span id="spans-container" class="the-upgrade">
+						NEVER SEEM TO WORK?
+					</span>
+				</h1>
 			</div>
-			<FrontVideo />
 
-			<Testimonials />
-			<Path />
-			<Lila />
-			<LilaLetter />
-			<WhatWeDoSection />
-			<WorkTogether />
+			<div class="sub-title-container">
+				<h3 class="sub-title">
+					There is often the simplest reason. We will help you find
+					it. We can help you unravel your thought habits that create
+					your relationship patterns - there is one common
+					denominator, and it is you.
+				</h3>
+			</div>
+			<FrontButtons
+				@mouseover="hover = true"
+				@mouseleave="hover = false"
+			/>
 		</div>
+		<FrontVideo />
+
+		<Testimonials />
+		<Path />
+		<Lila />
+		<LilaLetter />
+		<WhatWeDoSection />
+		<WorkTogether />
 	</div>
 </template>
 
@@ -49,17 +46,6 @@ import { SplitText } from "gsap/dist/SplitText";
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
-import sanity from "../client.js";
-
-const queryLanding = `*[_type == "landing"]{
-  _id,
-  titleOne,
-  titleTwo,
-   titleThree,
-    frontParagraphOne,
- frontParagraphTwo,
- frontParagraphThree,
-}[0...50]`;
 
 import FrontButtons from "../components/FrontButtons.vue";
 import FrontVideo from "../components/FrontVideo.vue";
@@ -74,8 +60,7 @@ export default {
 	name: "Home",
 	data: () => ({
 		hover: false,
-		loading: true,
-		landingItems: []
+		loading: true
 	}),
 	components: {
 		FrontButtons,
@@ -88,29 +73,11 @@ export default {
 		WorkTogether
 	},
 
-	created() {
-		this.fetchDataLanding();
-	},
-	updated() {
+	mounted() {
 		this.timeLine();
 	},
 
-	computed: {},
 	methods: {
-		fetchDataLanding() {
-			this.error = this.landing = null;
-			this.loading = true;
-			sanity.fetch(queryLanding).then(
-				(landingItems) => {
-					this.loading = false;
-					this.landingItems = landingItems;
-					this.blocks = landingItems.body;
-				},
-				(error) => {
-					this.error = error;
-				}
-			);
-		},
 		timeLine() {
 			let tl = gsap.timeline(),
 				mySplitText = new SplitText(this.$refs.homeTitle, {

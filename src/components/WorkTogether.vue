@@ -4,24 +4,22 @@
 		id="work-together-cont"
 		ref="togetherCont"
 	>
-		<div
-			class="sanity-container"
-			v-for="inTouchText in inTouchTexts"
-			:key="inTouchText._id"
-		>
+		<div>
 			<h1
 				class="work-together-title"
 				ref="togetherTitle"
 				v-bind:class="{ togetherTextActive: isTogetherTitleActive }"
 			>
-				{{ inTouchText.inTouchTitle }}
+				LETS WORK TOGETHER
 			</h1>
 			<p
 				class="work-together-paragraph"
 				ref="togetherParagraph"
 				v-bind:class="{ togetherTextActive: isTogetherParaActive }"
 			>
-				{{ inTouchText.inTouchParagraph }}
+				We would love to hear your story and understand the changes you
+				are searching for in your romantic life. You can connect with us
+				here or you can just book a call to find out more.
 			</p>
 			<button class="work-together-button">
 				<a
@@ -115,14 +113,6 @@
 </template>
 
 <script>
-import sanity from "../client";
-
-const queryInTouch = `*[_type == "inTouchText"]{
-_id,
-inTouchTitle,
-inTouchParagraph
-}[0...50]`;
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -134,10 +124,9 @@ gsap.registerPlugin(SplitText);
 export default {
 	data: () => ({
 		isTogetherTitleActive: false,
-		isTogetherParaActive: false,
-		inTouchTexts: []
+		isTogetherParaActive: false
 	}),
-	updated() {
+	mounted() {
 		ScrollTrigger.create({
 			trigger: this.$refs.togetherCont,
 			toggleActions: "play none none none",
@@ -147,6 +136,7 @@ export default {
 
 			onLeaveBack: (self) => self.disable()
 		});
+
 		ScrollTrigger.create({
 			trigger: this.$refs.togetherCont,
 			toggleActions: "play none none none",
@@ -156,12 +146,7 @@ export default {
 			onLeaveBack: (self) => self.disable()
 		});
 	},
-	created() {
-		this.fetchDataInTouch();
-		setTimeout(function () {
-			ScrollTrigger.refresh();
-		}, 50);
-	},
+
 	methods: {
 		timelineTogether() {
 			this.isTogetherTitleActive = true;
@@ -185,19 +170,6 @@ export default {
 					transformOrigin: "20% 0 0"
 				},
 				"+=0"
-			);
-		},
-		fetchDataInTouch() {
-			this.error = this.inTouchTitle = null;
-			this.loading = true;
-			sanity.fetch(queryInTouch).then(
-				(inTouchTexts) => {
-					this.loading = false;
-					this.inTouchTexts = inTouchTexts;
-				},
-				(error) => {
-					this.error = error;
-				}
 			);
 		}
 	}

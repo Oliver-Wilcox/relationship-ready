@@ -1,45 +1,29 @@
 <template>
 	<div class="jessica-experience">
-		<div
-			class="lila-container-2"
-			v-for="aboutLilaContent in aboutLilaContents"
-			:key="aboutLilaContent._id"
-		>
+		<div class="lila-container-2">
 			<div class="jessica-picture-container">
 				<img src="../assets/Lila_1.png" alt="" class="jessica-img" />
 			</div>
-			<h1 class="jessica-name" ref="lilaTitle">
-				{{ aboutLilaContent.aboutLilaTitle }}
-			</h1>
+			<h1 class="jessica-name" ref="lilaTitle">LILA TURNER</h1>
 
 			<p
 				class="experience-1"
 				ref="expOne"
 				v-bind:class="{ expActive: isLilaExpOneActive }"
 			>
-				{{ aboutLilaContent.aboutLilaParagraphTextOne }}
-			</p>
-			<div class="video">
-				<iframe
-					width="100%"
-					height="100%"
-					:src="aboutLilaContent.vimeoUrl"
-					frameborder="0"
-					allow="autoplay; encrypted-media"
-					allowfullscreen=""
-				></iframe>
-			</div>
-
-			<p
-				class="experience-2"
-				ref="expTwo"
-				v-bind:class="{ expActive: isLilaExpTwoActive }"
-			>
-				{{ aboutLilaContent.aboutLilaParagraphTextTwo }}
-				<br />
-				<br />
-
-				{{ aboutLilaContent.aboutLilaParagraphTextThree }}
+				Lila learnt something that greatly impacted the quality of her
+				relationship. This enabled her to have a richer, more loving and
+				softer experience of her partner and herself. She founded
+				Relationship Ready in 2016 to help people feel and find love,
+				regardless whether they are single or in a relationship. She
+				believes that everyone deserves to be in a loving relationship
+				and sometimes it is the simplest of things that stands in the
+				way. Lila left a twenty-year career as a womenswear designer, to
+				join the One Thought team as a Partner and Director. She still
+				designs, develops and provides programs for organisations and
+				individuals, to address the ‘leaky bucket’ issues people face in
+				their lives and their organisations. Lila is a regular
+				conference speaker and presenter both in the UK and abroad.
 			</p>
 
 			<WorkTogether />
@@ -48,7 +32,6 @@
 </template>
 
 <script>
-import sanity from "../client";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -56,28 +39,17 @@ import { SplitText } from "gsap/dist/SplitText";
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
-const queryAboutLila = `*[_type == "aboutLilaContent"]{
-  _id,
-  aboutLilaTitle,
-  aboutLilaParagraphTextOne,
-  vimeoUrl,
-  aboutLilaParagraphTextTwo,
-  aboutLilaParagraphTextThree
 
-
-}[0...50]`;
 import WorkTogether from "../components/WorkTogether.vue";
 export default {
 	components: {
 		WorkTogether
 	},
 	data: () => ({
-		aboutLilaContents: [],
-
 		isLilaExpOneActive: false,
 		isLilaExpTwoActive: false
 	}),
-	updated() {
+	mounted() {
 		this.timeLine();
 		ScrollTrigger.create({
 			trigger: ".experience-1",
@@ -98,22 +70,8 @@ export default {
 			onLeaveBack: (self) => self.disable()
 		});
 	},
-	mounted() {},
 
 	methods: {
-		fetchDataAboutLila() {
-			this.error = this.aboutLilaContent = null;
-			this.loading = true;
-			sanity.fetch(queryAboutLila).then(
-				(aboutLilaContents) => {
-					this.loading = false;
-					this.aboutLilaContents = aboutLilaContents;
-				},
-				(error) => {
-					this.error = error;
-				}
-			);
-		},
 		timeLine() {
 			let tl = gsap.timeline(),
 				mySplitText = new SplitText(this.$refs.lilaTitle, {
@@ -140,9 +98,6 @@ export default {
 		timeLineExpTwo() {
 			this.$refs.expTwo.style.opacity = 1;
 		}
-	},
-	created() {
-		this.fetchDataAboutLila();
 	}
 };
 </script>

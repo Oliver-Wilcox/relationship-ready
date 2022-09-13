@@ -1,17 +1,13 @@
 <template>
 	<div class="lila-container">
-		<div
-			class="lila-container-2"
-			v-for="lilaTitle in lilaTitleTexts"
-			:key="lilaTitle._id"
-		>
+		<div class="lila-container-2">
 			<div class="lila-text-container">
 				<h1
 					class="lila-title"
 					ref="lilaTitle"
 					v-bind:class="{ lilaTitleActive: isLilaTitleActive }"
 				>
-					{{ lilaTitle.lilaTitleText }}
+					everyone deserves to be in a loving relationship
 				</h1>
 				<router-link to="aboutLila">
 					<button class="about-lila-btn"><h3>ABOUT LILA</h3></button>
@@ -25,16 +21,6 @@
 </template>
 
 <script>
-import sanity from "../client";
-
-const queryTitle = `*[_type == "lilaTitle"]{
-  _id,
-lilaTitleText,
-lilaParagraphTextOne,
-lilaParagraphTextTwo 
-
-}[0...50]`;
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -45,8 +31,7 @@ gsap.registerPlugin(SplitText);
 export default {
 	data: () => ({
 		isLilaTitleActive: false,
-		isLilaPActive: false,
-		lilaTitleTexts: []
+		isLilaPActive: false
 	}),
 	mounted() {
 		ScrollTrigger.create({
@@ -68,7 +53,6 @@ export default {
 		});
 	},
 	created() {
-		this.fetchDataTitle();
 		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
@@ -96,19 +80,6 @@ export default {
 					transformOrigin: "20% 0 0"
 				},
 				"+=0"
-			);
-		},
-		fetchDataTitle() {
-			this.error = this.lilaTitleText = null;
-			this.loading = true;
-			sanity.fetch(queryTitle).then(
-				(lilaTitleTexts) => {
-					this.loading = false;
-					this.lilaTitleTexts = lilaTitleTexts;
-				},
-				(error) => {
-					this.error = error;
-				}
 			);
 		},
 

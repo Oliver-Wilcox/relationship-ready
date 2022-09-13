@@ -1,23 +1,19 @@
 <template>
 	<div class="work-together-container">
-		<div
-			class="sanity-container"
-			v-for="inTouchText in inTouchTexts"
-			:key="inTouchText._id"
-		>
+		<div class="sanity-container">
 			<h1
 				class="work-together-title"
 				ref="togetherTitle"
 				v-bind:class="{ togetherTextActive: isTogetherTitleActive }"
 			>
-				{{ inTouchText.inTouchTitle }}
+				LETS WORK TOGETHER
 			</h1>
 			<p
 				class="work-together-paragraph"
 				ref="togetherParagraph"
 				v-bind:class="{ togetherTextActive: isTogetherParaActive }"
 			>
-				{{ inTouchText.inTouchParagraph }}
+				//
 			</p>
 			<a href="https://relationship-ready.youcanbook.me" class="touchref">
 				<button class="work-together-button">
@@ -70,14 +66,6 @@
 </template>
 
 <script>
-import sanity from "../client";
-
-const queryInTouch = `*[_type == "inTouchText"]{
-_id,
-inTouchTitle,
-inTouchParagraph
-}[0...50]`;
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -89,8 +77,7 @@ gsap.registerPlugin(SplitText);
 export default {
 	data: () => ({
 		isTogetherTitleActive: false,
-		isTogetherParaActive: false,
-		inTouchTexts: []
+		isTogetherParaActive: false
 	}),
 	mounted() {
 		ScrollTrigger.create({
@@ -112,7 +99,6 @@ export default {
 		});
 	},
 	created() {
-		this.fetchDataInTouch();
 		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
@@ -140,19 +126,6 @@ export default {
 					transformOrigin: "20% 0 0"
 				},
 				"+=0"
-			);
-		},
-		fetchDataInTouch() {
-			this.error = this.inTouchTitle = null;
-			this.loading = true;
-			sanity.fetch(queryInTouch).then(
-				(inTouchTexts) => {
-					this.loading = false;
-					this.inTouchTexts = inTouchTexts;
-				},
-				(error) => {
-					this.error = error;
-				}
 			);
 		}
 	}

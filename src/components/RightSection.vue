@@ -1,43 +1,34 @@
 <template>
-	<div
-		class="right-section"
-		v-for="testimonialImages in testImages"
-		:key="testimonialImages._id"
-	>
+	<div class="right-section">
 		<div class="testimonial-paragraph-container">
 			<p
 				class="testimonial-paragraph-one"
 				ref="paragraphOne"
 				v-bind:class="{ paraOneActive: isParaOneActive }"
 			>
-				"{{ testimonialImages.textOne }}"
+				You should come to this’, was all her email said. Included was a
+				link for a Relationship Ready retreat...
 			</p>
 			<p class="testimonial-paragraph-two" ref="paragraphTwo">
-				"{{ testimonialImages.textTwo }}"
+				My first job was as a secretary for an estate agent in
+				Lancashire. I’ve always been ambitious...
 			</p>
 			<p class="testimonial-paragraph-three" ref="paragraphThree">
-				"{{ testimonialImages.textThree }}"
+				I grew up in a small town in Concordia, Missouri. It was idyllic
+				living there but I was eager to get out and explore the world...
 			</p>
 		</div>
+
 		<router-link v-bind:to="experience"
 			><button class="jessica-btn">
 				<span class="btn-text-cont" v-if="count == 0"
-					><h3 ref="btnH3">
-						HEAR
-						{{ testimonialImages.testimonialBtnOne }} EXPERIENCE
-					</h3></span
+					><h3 ref="btnH3">HEAR CYNDIS EXPERIENCE</h3></span
 				>
 				<span class="btn-text-cont" v-if="count == 1"
-					><h3 ref="btnH3">
-						HEAR
-						{{ testimonialImages.testimonialBtnTwo }} EXPERIENCE
-					</h3></span
+					><h3 ref="btnH3">HEAR COLETTES EXPERIENCE</h3></span
 				>
 				<span class="btn-text-cont" v-if="count == 2"
-					><h3 ref="btnH3">
-						HEAR
-						{{ testimonialImages.testimonialBtnThree }} EXPERIENCE
-					</h3></span
+					><h3 ref="btnH3">HEAR JULIAS EXPERIENCE</h3></span
 				>
 			</button></router-link
 		>
@@ -62,19 +53,6 @@
 </template>
 
 <script>
-import sanity from "../client.js";
-
-const queryText = `*[_type == "testimonialImages"]{
-  _id,
-  textOne,
-  textTwo,
-  textThree,
-  testimonialBtnOne,
-   testimonialBtnTwo,
-   testimonialBtnThree
-  
-}[0...50]`;
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -102,7 +80,6 @@ export default {
 		tl: "",
 		experienceText: "JESSICA'S",
 		experience: "/experience-one",
-		testImages: [],
 		isparaOneActive: false,
 		secondary: [],
 		count: 0
@@ -123,27 +100,11 @@ export default {
 		});
 	},
 	created() {
-		this.fetchDataText();
 		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	},
 	methods: {
-		fetchDataText() {
-			this.error = this.testimonialImages = null;
-			this.loading = true;
-			sanity.fetch(queryText).then(
-				(testImages) => {
-					this.loading = false;
-					this.testImages = testImages;
-					this.blocks = testImages.body;
-				},
-				(error) => {
-					this.error = error;
-				}
-			);
-		},
-
 		timeLineOne() {
 			this.isParaOneActive = true;
 			let tl = gsap.timeline(),

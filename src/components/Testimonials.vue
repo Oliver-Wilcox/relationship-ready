@@ -1,11 +1,7 @@
 <template>
 	<div class="section-two" id="sectionTwo">
 		<div class="section-items">
-			<div
-				class="test-cont-2"
-				v-for="testimonialImages in testImages"
-				:key="testimonialImages._id"
-			>
+			<div class="test-cont-2">
 				<div class="pictures-container" id="picCont">
 					<div class="pictures-trigger"></div>
 					<div class="pictures">
@@ -18,8 +14,7 @@
 						>
 							<img
 								class="pic-one-img"
-								v-if="testimonialImages.imageOne"
-								:src="imageUrlFor(testimonialImages.imageOne)"
+								src="../assets/cyndi.jpg"
 							/>
 						</div>
 						<div
@@ -34,8 +29,7 @@
 						>
 							<img
 								class="pic-two-img"
-								v-if="testimonialImages.imageTwo"
-								:src="imageUrlFor(testimonialImages.imageTwo)"
+								src="../assets/colette.jpg"
 							/>
 						</div>
 						<div
@@ -47,8 +41,7 @@
 						>
 							<img
 								class="pic-three-img"
-								v-if="testimonialImages.imageThree"
-								:src="imageUrlFor(testimonialImages.imageThree)"
+								src="../assets/julia.jpg"
 							/>
 						</div>
 					</div>
@@ -90,20 +83,6 @@
 </template>
 
 <script>
-import sanity from "../client";
-import imageUrlBuilder from "@sanity/image-url";
-const imageBuilder = imageUrlBuilder(sanity);
-
-const query = `*[_type == "testimonialImages"]{
-  _id,
-  frontParagraphThe,
-imageOne,
-imageTwo,
-imageThree
- 
-
-}[0...50]`;
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -124,8 +103,7 @@ export default {
 		isTwoPictureInactiveRight: false,
 		isTwoPictureInactiveLeft: false,
 		isThreePictureActive: false,
-		isThreePictureInactive: false,
-		testImages: []
+		isThreePictureInactive: false
 	}),
 	mounted() {
 		ScrollTrigger.create({
@@ -136,30 +114,8 @@ export default {
 			onEnter: () => (this.isOnePictureActive = true)
 		});
 	},
-	created() {
-		this.fetchData();
-		setTimeout(function () {
-			ScrollTrigger.refresh();
-		}, 50);
-	},
+	created() {},
 	methods: {
-		imageUrlFor(source) {
-			return imageBuilder.image(source);
-		},
-		fetchData() {
-			this.error = this.testimonialImages = null;
-			this.loading = true;
-			sanity.fetch(query).then(
-				(testImages) => {
-					this.loading = false;
-					this.testImages = testImages;
-				},
-				(error) => {
-					this.error = error;
-				}
-			);
-		},
-
 		updatePictureOne(updatedPictureOne) {
 			this.isThreePictureInactive = updatedPictureOne;
 			this.isTwoPictureInactiveRight = updatedPictureOne;

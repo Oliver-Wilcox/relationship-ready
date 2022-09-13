@@ -1,18 +1,20 @@
 <template>
-	<div
-		class="retreat-container"
-		v-for="programmesPage in programmesPageText"
-		:key="programmesPage._id"
-	>
+	<div class="retreat-container">
 		<div class="retreat-text-container">
-			<h1 class="retreat-title" ref="retreatTitle">VIRTUAL RETREAT</h1>
+			<h1 class="retreat-title" ref="retreatTitle">COACHING PROGRAMME</h1>
 			<p
 				class="retreat-paragraph"
 				v-bind:class="{
 					retreatParagraphActive: isRetreatParagraphActive
 				}"
 			>
-				{{ programmesPage.programmesParagraphTwo }}
+				If the timings and format of the retreats do not work for you,
+				we have designed a coaching programme that can work around your
+				schedule. Our Relationship Ready coaching programme provides
+				support and insight for you to find a more effortless way to
+				find and be in a relationship. The 1-2-1 coaching allows you to
+				focus on what is important to you and achieve the outcomes you
+				are looking for.
 			</p>
 			<p class="what-you-get">What you get:</p>
 		</div>
@@ -34,7 +36,8 @@
 				v-bind:class="{ checkActive: isCheckOneActive }"
 			></div>
 			<p class="checkbox-paragraph 1">
-				{{ programmesPage.programmesCheckboxOne }}
+				a 30 minute intake call to understand what you are looking to
+				get from working with us
 			</p>
 		</div>
 		<div
@@ -46,73 +49,20 @@
 				class="checkbox-img-container"
 				v-bind:class="{ checkActive: isCheckTwoActive }"
 			></div>
-			<p class="checkbox-paragraph 2">
-				{{ programmesPage.programmesCheckboxTwo }}
-			</p>
+			<p class="checkbox-paragraph 2">8 x one-to-one coaching sessions</p>
 		</div>
-		<p class="full-program">
-			If you want to continue to the full program after the retreat you
-			get:
-		</p>
-		<div
-			class="checkbox 3"
-			v-bind:class="{ checkboxActive: isCheckThreeActive }"
-			ref="checkThree"
-			id="checkthree"
-		>
-			<div
-				class="checkbox-img-container"
-				v-bind:class="{ checkActive: isCheckThreeActive }"
-			></div>
-			<p class="checkbox-paragraph 3">
-				{{ programmesPage.programmesCheckboxThree }}
-			</p>
-		</div>
-		<div
-			class="checkbox 4"
-			v-bind:class="{ checkboxActive: isCheckFourActive }"
-			ref="checkFour"
-		>
-			<div
-				class="checkbox-img-container"
-				v-bind:class="{ checkActive: isCheckFourActive }"
-			></div>
-			<p class="checkbox-paragraph 4">
-				{{ programmesPage.programmesCheckboxFour }}
-			</p>
-		</div>
-		<p class="cost-text">Cost:</p>
+
 		<div
 			class="checkbox 5"
 			v-bind:class="{ checkboxActive: isCheckFourActive }"
 			ref="checkFour"
 			id="checkfive"
 		>
-			<div
-				class="checkbox-img-container"
-				v-bind:class="{ checkActive: isCheckFourActive }"
-			></div>
-			<p class="checkbox-paragraph 5">
-				{{ programmesPage.programmesCheckboxFive }}
-			</p>
+			<p class="checkbox-paragraph 5">Cost: £2,160 (£1,800 + VAT)</p>
 		</div>
 	</div>
 </template>
 <script>
-import sanity from "../client";
-
-const queryProgrammes = `*[_type == "programmesContent"]{
-  _id,
-
-  programmesParagraphTwo,
-  programmesCheckboxOne,
-  programmesCheckboxTwo,
-  programmesCheckboxThree,
-  programmesCheckboxFour,
-  programmesCheckboxFive,
-
-}[0...50]`;
-
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -131,12 +81,11 @@ export default {
 		programmesPageText: []
 	}),
 	created() {
-		this.fetchDataRetreatText();
 		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	},
-	updated() {
+	mounted() {
 		ScrollTrigger.create({
 			trigger: ".retreat-title",
 			toggleActions: "play none none none",
@@ -208,20 +157,6 @@ export default {
 	},
 
 	methods: {
-		fetchDataRetreatText() {
-			this.error = this.programmesPage = null;
-			this.loading = true;
-			sanity.fetch(queryProgrammes).then(
-				(programmesPageText) => {
-					this.loading = false;
-					this.programmesPageText = programmesPageText;
-				},
-				(error) => {
-					this.error = error;
-				}
-			);
-		},
-
 		timelineRetreat() {
 			this.$refs.retreatTitle.style.opacity = "1";
 			let tl = gsap.timeline(),
@@ -255,7 +190,7 @@ export default {
 	left: 0;
 	margin-top: 10vw;
 	width: 100vw;
-	height: 70vw;
+	height: 40vw;
 }
 
 .retreat-text-container {

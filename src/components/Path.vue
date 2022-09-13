@@ -1,10 +1,6 @@
 <template>
 	<div class="path-container" ref="pathcont">
-		<div
-			class="path-cont-2"
-			v-for="pathsTitle in pathsTitles"
-			:key="pathsTitle._id"
-		>
+		<div class="path-cont-2">
 			<div
 				class="path-picture-container"
 				ref="pathPic"
@@ -18,17 +14,21 @@
 				v-bind:class="{ pathTitleActive: isPathTitleActive }"
 				v-on:click="refresh"
 			>
-				{{ pathsTitle.pathTitle }}
+				A FRESH PATH TO DATING
 			</h1>
 			<p
 				class="path-paragraph"
 				ref="para"
 				v-bind:class="{ paragraphActive: isParagraphActive }"
 			>
-				{{ pathsTitle.pathParagraphOne }}
+				We can help you show up in your love life with fresh thinking,
+				opening a world of possibilities. With a new way to approach
+				dating - a new dating life is just one thought away.
 				<br />
 				<br />
-				{{ pathsTitle.pathParagraphTwo }}
+				Join us to discover what gets in the way of you finding that
+				real connection that you are looking for, so you can be
+				Relationship Ready.
 				<br />
 				<br />
 				The natural version of you is the upgrade.
@@ -46,16 +46,6 @@
 </template>
 
 <script>
-import sanity from "../client";
-
-const queryPath = `*[_type == "pathPage"]{
-_id,
-pathTitle,
-pathParagraphOne,
-pathParagraphTwo
-
-}[0...50]`;
-
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -67,7 +57,7 @@ export default {
 	data: () => ({
 		isPathPicActive: false,
 		isParagraphActive: false,
-		pathsTitles: [],
+
 		isPathTitleActive: false,
 		scrollTriggerPic: null
 	}),
@@ -98,26 +88,11 @@ export default {
 	},
 
 	created() {
-		this.fetchDataPath();
-
 		setTimeout(function () {
 			ScrollTrigger.refresh();
 		}, 50);
 	},
 	methods: {
-		fetchDataPath() {
-			this.error = this.pathsTitle = null;
-			this.loading = true;
-			sanity.fetch(queryPath).then(
-				(pathsTitles) => {
-					this.loading = false;
-					this.pathsTitles = pathsTitles;
-				},
-				(error) => {
-					this.error = error;
-				}
-			);
-		},
 		timeLine() {
 			this.isPathTitleActive = true;
 			let tl = gsap.timeline(),
